@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,数据分析,Tensorflow,学习笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-16x16-next.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="2 月 10 号virtualenv通过pip安装virtualenv：pip install virtualenv测试安装:virtualenv –version为一个工程项目搭建一个虚拟环境:cd my_projectvirtualenv my_project_env选择指定一个Python解释器（比如python2.7），没有指定则由系统默认的解释器来搭建：virtualenv -p /us">
+<meta name="keywords" content="python,数据分析,Tensorflow,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019年2月学习笔记">
+<meta property="og:url" content="http://xchcloud.cn/cjv3xo3lo0082rsu3vc57rjm4/index.html">
+<meta property="og:site_name" content="超哥记录日记">
+<meta property="og:description" content="2 月 10 号virtualenv通过pip安装virtualenv：pip install virtualenv测试安装:virtualenv –version为一个工程项目搭建一个虚拟环境:cd my_projectvirtualenv my_project_env选择指定一个Python解释器（比如python2.7），没有指定则由系统默认的解释器来搭建：virtualenv -p /us">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-liuchengtu.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-operation.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-session.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-sessionbuzhou.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-op.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-optimizer.png">
+<meta property="og:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/python/%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.jpg">
+<meta property="og:updated_time" content="2019-04-12T01:52:16.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019年2月学习笔记">
+<meta name="twitter:description" content="2 月 10 号virtualenv通过pip安装virtualenv：pip install virtualenv测试安装:virtualenv –version为一个工程项目搭建一个虚拟环境:cd my_projectvirtualenv my_project_env选择指定一个Python解释器（比如python2.7），没有指定则由系统默认的解释器来搭建：virtualenv -p /us">
+<meta name="twitter:image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-liuchengtu.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xchcloud.cn/cjv3xo3lo0082rsu3vc57rjm4/"/>
+
+
+
+
+
+  <title>2019年2月学习笔记 | 超哥记录日记</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b8d23512908ca3b4b175b2620a75740f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">超哥记录日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生命有息、学无止境、折腾不止</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xchcloud.cn/cjv3xo3lo0082rsu3vc57rjm4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="超哥记录日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2019年2月学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T21:07:09+08:00">
+                2019-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+ 
+
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">访问数</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  11,688
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  50
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="2-月-10-号"><a href="#2-月-10-号" class="headerlink" title="2 月 10 号"></a>2 月 10 号</h2><h3 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h3><p>通过pip安装virtualenv：<br>pip install virtualenv<br>测试安装:<br>virtualenv –version<br>为一个工程项目搭建一个虚拟环境:<br>cd my_project<br>virtualenv my_project_env<br>选择指定一个Python解释器（比如python2.7），没有指定则由系统默认的解释器来搭建：<br>virtualenv -p /usr/bin/python2.7 my_project_env</p>
+<p>要开始使用虚拟环境，其需要被激活：<br>source my_project_env/bin/activate<br>停用虚拟环境：<br>deactivate<br>停用后将回到系统默认的Python解释器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">安装和新建虚拟环境</span><br><span class="line"></span><br><span class="line">cmd下输入：前提是你的python安装路径已经被添加到环境变量中</span><br><span class="line">C:\&gt;pip install virtualenv</span><br><span class="line">新建虚拟环境：</span><br><span class="line"></span><br><span class="line">C:\&gt;virtualenv testenv</span><br><span class="line">Using base prefix &apos;c:\\python36&apos;</span><br><span class="line">New python executable in C:\testenv\Scripts\python.exe //默认安装在当前目录下</span><br><span class="line">Installing setuptools, pip, wheel...done.</span><br><span class="line">可以在当前目录下看一下：</span><br><span class="line"></span><br><span class="line">激活和关闭当前的虚拟环境</span><br><span class="line">C:\testenv\Scripts&gt;activate   //激活</span><br><span class="line"></span><br><span class="line">(testenv) C:\testenv\Scripts&gt;  //注意终端发生了变化</span><br><span class="line">(testenv) C:\testenv\Scripts&gt;deactivate   //关闭当前虚拟环境</span><br><span class="line">C:\testenv\Scripts&gt;</span><br><span class="line">列出当前的虚拟环境都安装了哪些包</span><br><span class="line"></span><br><span class="line">(testenv) c:\testenv\Scripts&gt;pip3 list</span><br><span class="line">pip (9.0.1)</span><br><span class="line">setuptools (37.0.0)</span><br><span class="line">wheel (0.30.0)</span><br><span class="line">现在你就可以在你创建的虚拟环境下安装需要使用到的包了</span><br></pre></td></tr></table></figure>
+<h3 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h3><p>其实应该先在Terminal里运行Jupyter Notebook</p>
+<p>详细见 jupyter 专题总结</p>
+<h3 id="查看linux版本"><a href="#查看linux版本" class="headerlink" title="查看linux版本"></a>查看linux版本</h3><p>1、# uname －a   （Linux查看版本当前操作系统内核信息）<br>2、# cat /proc/version （Linux查看当前操作系统版本信息）<br>3、# cat /etc/issue  或cat /etc/redhat-release（Linux查看版本当前操作系统发行版信息）<br>4、# cat /proc/cpuinfo （Linux查看cpu相关信息，包括型号、主频、内核信息等）<br>5、# getconf LONG_BIT  （Linux查看版本说明当前CPU运行在32bit模式下， 但不代表CPU不支持64bit）<br>6、# lsb_release -a</p>
+<h3 id="Hosts"><a href="#Hosts" class="headerlink" title="Hosts"></a>Hosts</h3><p>hosts文件的默认格式，ip地址+空格+网址，其实hosts文件完全是用来加速网址访问的，也就是网址解析部分，这样不需要连接查询DNS服务器！<br>这样，我们只要修改掉其中的ip地址，就会连接到一个错误的ip地址，并不会连接DNS服务器查询，这样就无法访问网址了！</p>
+<p>Linux用户 /etc/hosts文件修改后如何生效<br>修改/etc/hosts之后正常情况应该是保存之后立即生效的，但是有时不是。使用uname -a 可以查看hostname是多少，就可以知道是否修改生效了。如果没有<br>这时的策略有：<br>1） 重启机器<br>2） 重启服务<br>      Ubuntu: $sudo /etc/init.d/networking restart<br>      Gentoo: /etc/init.d/net.eth0 restart<br>3）使用hostname命令<br>        hostname 定义的主机名</p>
+<h3 id="tensorflow"><a href="#tensorflow" class="headerlink" title="tensorflow"></a>tensorflow</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">print(time.ctime())</span><br><span class="line">print(&apos;hello Jupyter!&apos;)</span><br></pre></td></tr></table></figure>
+<h2 id="2-月-12-至-13-号"><a href="#2-月-12-至-13-号" class="headerlink" title="2 月 12 至 13 号"></a>2 月 12 至 13 号</h2><h3 id="优化了一个python小工具"><a href="#优化了一个python小工具" class="headerlink" title="优化了一个python小工具"></a>优化了一个python小工具</h3><h4 id="Python文本文件的输入输出操作学习"><a href="#Python文本文件的输入输出操作学习" class="headerlink" title="Python文本文件的输入输出操作学习"></a>Python文本文件的输入输出操作学习</h4><p>创建文件对象<br>我们打开一个文件，并使用一个对象来表示该文件：</p>
+<p>f = open(文件名，模式)</p>
+<p>最常用的模式有：</p>
+<p>“r”     # 只读</p>
+<p>“w”     # 写入</p>
+<p>比如</p>
+<blockquote>
+<p>f = open(“test.txt”,”r”)</p>
+</blockquote>
+<p>文件对象的方法<br>读取：</p>
+<p>content = f.read(N)          # 读取N bytes的数据</p>
+<p>content = f.readline()       # 读取一行</p>
+<p>content = f.readlines()      # 读取所有行，储存在列表中，每个元素是一行。</p>
+<p>写入：</p>
+<p>f.write(‘I like apple’)      # 将’I like apple’写入文件</p>
+<p>关闭文件：</p>
+<p>f.close()</p>
+<pre><code>
+#coding=utf-8 
+import os
+#获取目标文件夹的路径
+filedir = os.getcwd()+'/yuliao'
+#获取当前文件夹中的文件名称列表  
+filenames=os.listdir(filedir)
+#打开当前目录下的result.txt文件，如果没有则创建
+f=open('result.txt','w')
+#先遍历文件名
+for filename in filenames:
+    filepath = filedir+'/'+filename
+    #遍历单个文件，读取行数
+    for line in open(filepath):
+        f.writelines(line)
+    // f.write('\n')
+#关闭文件
+f.close()
+</code></pre>
+
+<p>‘replace替换函数的使用’</p>
+<h2 id="2-月-12-至-14-号-Tnesorflow"><a href="#2-月-12-至-14-号-Tnesorflow" class="headerlink" title="2 月 12 至 14 号 Tnesorflow"></a>2 月 12 至 14 号 Tnesorflow</h2><h3 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h3><h4 id="张量有两个重要属性："><a href="#张量有两个重要属性：" class="headerlink" title="张量有两个重要属性："></a>张量有两个重要属性：</h4><p>1.数据类型（如浮点型、整型、字符串）<br>2.数组形状（各个维度的大小）</p>
+<h4 id="TensorFlow-张量是什么？"><a href="#TensorFlow-张量是什么？" class="headerlink" title="TensorFlow 张量是什么？"></a>TensorFlow 张量是什么？</h4><p>1、张量是用来表示多维数据的<br>2、张量是执行操作时的输入或输出数据。<br>3、用户通过执行操作来创建或计算张量。<br>4、张量的形状不一定在编译时确定，可以在运行时通过形状推断计算得出。</p>
+<h4 id="几类比较特别的张量"><a href="#几类比较特别的张量" class="headerlink" title="几类比较特别的张量"></a>几类比较特别的张量</h4><p>1、tf.constant//常量<br>2、tf.placeholder//占位符<br>3、tf.Variable//变量</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="变量（Variab1e）的主要作用"><a href="#变量（Variab1e）的主要作用" class="headerlink" title="变量（Variab1e）的主要作用"></a>变量（Variab1e）的主要作用</h4><p>维护特定节点的状态，如深度学习或机器学习的模型参数。<br>tf.Variable 方法是操作，返回值是变量（特殊张量）。</p>
+<h4 id="变量与张量有什么不同"><a href="#变量与张量有什么不同" class="headerlink" title="变量与张量有什么不同"></a>变量与张量有什么不同</h4><p>张量的生命周期通常随依赖的计算完成而结束，内存也随即释放。<br>变量则常驻内存，在每一步训练时不断更新其值，以实现模型参数的更新。</p>
+<h4 id="什么是阶"><a href="#什么是阶" class="headerlink" title="什么是阶"></a>什么是阶</h4><p>定义了张量所能买描述的最大的维度。<br>维度值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">linear_squares = tf.Variable([[4], [9], [16], [25]], tf.int32)</span><br><span class="line">&lt;tf.Variable &apos;Variable_10:0&apos; shape=(4, 1) dtype=int32_ref&gt;,</span><br><span class="line">第一阶维度值为4，第二阶维度值是1。</span><br></pre></td></tr></table></figure></p>
+<p>tf.rank 获取张量的阶数<br>tf.zeros  把任何一个数组进行初始化。  返回值为张量 tf.Tensor 会像jvm一样进行内存回收但是 tf.Variable 会一直存留（维护状态），可用来保存某参数。</p>
+<h4 id="TensorFlow-变量使用流程"><a href="#TensorFlow-变量使用流程" class="headerlink" title="TensorFlow 变量使用流程"></a>TensorFlow 变量使用流程</h4><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-liuchengtu.png" alt="tensorflow-liuchengtu"></p>
+<p>checkpoint 文件：整个训练过程中如果需要对其训练参数进行调整，可以用 saver 函数进行保存、恢复。</p>
+<h4 id="部分函数"><a href="#部分函数" class="headerlink" title="部分函数"></a>部分函数</h4><ul>
+<li>tf.random_normal：<br>方法返回形状为(1，4)的张量。它的4个元素符合均值为100、标准差为0.35的正态分布。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def random_normal(shape,</span><br><span class="line">                  mean=0.0,</span><br><span class="line">                  stddev=1.0,</span><br><span class="line">                  dtype=dtypes.float32,</span><br><span class="line">                  seed=None,</span><br><span class="line">                  name=None):</span><br><span class="line">从正态分布输出随机值。</span><br><span class="line">   Args：shape：一维整数Tensor或Python数组。输出张量的形状。</span><br><span class="line">    mean：类型为`dtype`的0-D Tensor或Python值。正态分布的均值。</span><br><span class="line">    stddev：类型为`dtype`的0-D Tensor或Python值。正态分布的标准差。</span><br><span class="line">    dtype：输出的类型。</span><br><span class="line">    seed：Python整数。用于为分发创建随机种子。</span><br><span class="line">      请参阅`tf.set_random_seed`了解行为。</span><br><span class="line">    name：操作的名称（可选）。</span><br><span class="line">   返回：指定形状的张量，填充随机正常值。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>global_variables_initializer ：<br>方法初始化全局变量</p>
+</li>
+<li><p>def assign_add(ref, value, use_locking=None, name=None):<br>通过向其添加“值”来更新“ref”。更新完成后，此操作输出“ref”。</p>
+</li>
+<li><p>train.Saver<br>def <strong> init </strong> (self,</p>
+<pre><code>var_list=None,
+reshape=False,
+sharded=False,
+max_to_keep=5,
+keep_checkpoint_every_n_hours=10000.0,
+name=None,
+restore_sequentially=False,
+saver_def=None,
+builder=None,
+defer_build=False,
+allow_empty=False,
+write_version=saver_pb2.SaverDef.V2,
+pad_step_number=False,
+save_relative_paths=False,
+filename=None):
+</code></pre></li>
+<li><p>def save(self,</p>
+<pre><code>sess,
+save_path,
+global_step=None,
+latest_filename=None,
+meta_graph_suffix=&quot;meta&quot;,
+write_meta_graph=True,
+write_state=True,
+strip_default_attrs=False):
+</code></pre></li>
+<li><p>def restore(self, sess, save_path):</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 创建Saver</span><br><span class="line">saver = tf.train.Saver(&#123;&apos;W&apos;: W, &apos;b&apos;: b&#125;)</span><br><span class="line"># 存储变量到文件 &apos;./summary/test.ckpt-0&apos;</span><br><span class="line">saver.save(sess, &apos;./summary/test.ckpt&apos;, global_step=0)</span><br><span class="line"></span><br><span class="line"># 从文件中恢复变量 b 的值</span><br><span class="line">saver.restore(sess, &apos;./summary/test.ckpt-0&apos;)</span><br><span class="line"># 查看变量 b 是否恢复成功</span><br><span class="line">sess.run(b)</span><br></pre></td></tr></table></figure>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><p>TensorFlow 用数据流图表示算法模型。数据流图由节点和有向边组成，每个节点均对应一个具体的操作。因此，操作是模型功能的实际载体。</p>
+<h4 id="数据流图中的节点按照功能不同可以分为3种："><a href="#数据流图中的节点按照功能不同可以分为3种：" class="headerlink" title="数据流图中的节点按照功能不同可以分为3种："></a>数据流图中的节点按照功能不同可以分为3种：</h4><p>存储节点：有状态的变量操作，通常用来存储模型参数；<br>计算节点：无状态的计算或控制操作，主要负责算法逻辑表达或流程控制；<br>数据节点：数据的占位符操作，用于描述图外输入数据的属性。</p>
+<h4 id="TensorFlow典型计算和控制操作"><a href="#TensorFlow典型计算和控制操作" class="headerlink" title="TensorFlow典型计算和控制操作"></a>TensorFlow典型计算和控制操作</h4><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-operation.png" alt="tensorflow-operation"></p>
+<h4 id="TensorFlow-占位符操作"><a href="#TensorFlow-占位符操作" class="headerlink" title="TensorFlow 占位符操作"></a>TensorFlow 占位符操作</h4><ul>
+<li>def placeholder(dtype, shape=None, name=None):</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 占位符操作</span><br><span class="line"># x = tf.placeholder(dtype, shape, name)</span><br><span class="line">x = tf.placeholder(tf.int16, shape=(), name=&quot;x&quot;)</span><br><span class="line">y = tf.placeholder(tf.int16, shape=(), name=&quot;y&quot;)</span><br></pre></td></tr></table></figure>
+<p>TensorFlow 使用占位符操作表示图外输入的数据，如训练和测试数据。<br>TensorFlow 数据流图描述了算法模型的计算拓扑，其中的各个操作（节点）都是抽象的函数映射或数学表达式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 加载默认数据流图</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    # 不填充数据，直接执行操作，报错</span><br><span class="line">    print(&quot;Addition with variables: %i&quot; % sess.run(add, feed_dict=&#123;x: 10, y: 5&#125;))</span><br><span class="line">    print(&quot;Multiplication with variables: %i&quot; % sess.run(mul, feed_dict=&#123;x: 2, y: 3&#125;))</span><br></pre></td></tr></table></figure>
+<h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><p>会话提供了估算张量和执行操作的运行环境，它是发放计算任务的客户端，所有计算任务都由它连接的执行引擎完成。</p>
+<h4 id="一个会话的典型使用流程分为以下3步："><a href="#一个会话的典型使用流程分为以下3步：" class="headerlink" title="一个会话的典型使用流程分为以下3步："></a>一个会话的典型使用流程分为以下3步：</h4><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-session.png" alt="tensorflow-session"></p>
+<h4 id="会话执行"><a href="#会话执行" class="headerlink" title="会话执行"></a>会话执行</h4><h5 id="获取张量值的另外两种方法"><a href="#获取张量值的另外两种方法" class="headerlink" title="获取张量值的另外两种方法:"></a>获取张量值的另外两种方法:</h5><p>估算张量（Tensor.eval）与执行操作（Operation.run）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line"># 创建数据流图：y = W * x + b，其中W和b为存储节点，x为数据节点。</span><br><span class="line">x = tf.placeholder(tf.float32)</span><br><span class="line">W = tf.Variable(1.0)</span><br><span class="line">b = tf.Variable(1.0)</span><br><span class="line">y = W * x + b</span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    tf.global_variables_initializer().run() # Operation.run</span><br><span class="line">    fetch = y.eval(feed_dict=&#123;x: 3.0&#125;)      # Tensor.eval</span><br><span class="line">    print(fetch)                            # fetch = 1.0 * 3.0 + 1.0</span><br></pre></td></tr></table></figure>
+<h4 id="会话执行原理"><a href="#会话执行原理" class="headerlink" title="会话执行原理"></a>会话执行原理</h4><p>当我们调用sess.run（train_op）语句执行训练操作时：</p>
+<ul>
+<li>首先，程序内部提取操作依赖的所有前置操作。这些操作的节点共同组成一幅子图。</li>
+<li>然后，程序会将子图中的计算节点、存储节点和数据节点按照各自的执行设备分类，相同设备上的节点组成了一幅局部图。·最后，每个设备上的局部图在实际执行时，根据节点间的依赖关系将各个节点有序地加载到设备上执行。</li>
+</ul>
+<h4 id="会话执行步骤"><a href="#会话执行步骤" class="headerlink" title="会话执行步骤"></a>会话执行步骤</h4><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-sessionbuzhou.png" alt="tensorflow-sessionbuzhou"></p>
+<h4 id="会话本地执行"><a href="#会话本地执行" class="headerlink" title="会话本地执行"></a>会话本地执行</h4><p>对于单机程序来说，相同机器上不同编号的CPU或GPU就是不同的设备，我们可以在创建节点时指定执行该节点的设备。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#在0号CPU执行的存储节点</span><br><span class="line">with tf.device（&quot;/cpu：0&quot;）：</span><br><span class="line">v=tf.Variable（...）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#在0号GPU执行的计算节点</span><br><span class="line">with tf.device（&quot;/gpu：0&quot;）：</span><br><span class="line">z=tf.matmul（x，y）</span><br></pre></td></tr></table></figure>
+<h3 id="优化器（Optimizer）"><a href="#优化器（Optimizer）" class="headerlink" title="优化器（Optimizer）"></a>优化器（Optimizer）</h3><p>优化器是实现优化算法的载体。</p>
+<h4 id="一次典型的迭代优化应该分为以下3个步骤："><a href="#一次典型的迭代优化应该分为以下3个步骤：" class="headerlink" title="一次典型的迭代优化应该分为以下3个步骤："></a>一次典型的迭代优化应该分为以下3个步骤：</h4><p>1.计算梯度：调用compute_gradients方法；<br>2.处理梯度：用户按照自己需求处理梯度值，如梯度裁剪和梯度加权等；<br>3.应用梯度：调用apply_gradients方法，将处理后的梯度值应用到模型参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#1.计算梯度</span><br><span class="line">optimizer=tf.train.GradientDescentoptimizer（learning_rate=0.01）</span><br><span class="line">## 定义一个优化器 学习率0.01</span><br><span class="line">grads_and_vars=optimizer.compute_gradients（loss，var_list，..…）</span><br><span class="line">## 用XX方法获取梯度值 输入损失函数、变量列表</span><br><span class="line">#2.处理梯度</span><br><span class="line">cLip_grads_and_vars=[（tf.clip_by_value（grad，-1.0，1.0），var）</span><br><span class="line">for grad，var in grads_and_varsl</span><br><span class="line">## 用 XX 方法处理梯度值</span><br><span class="line">#3.应用梯度</span><br><span class="line">train_op=optimizer.apply_gradients（clip_grads_and_vars）</span><br><span class="line">## 把处理好的梯度以及对应的变量进行更新得到新的模型</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#计算并应用梯度到模型参数</span><br><span class="line">optimizer=tf.train.GradientDescentOptimizer（learning_rate=0.01）</span><br><span class="line">global_step=tf.Variable（0，name=&apos;global_step&apos;，trainable=False）</span><br><span class="line">train_op=optimizer.minimize（loss，global_step=global_step）</span><br><span class="line">## 不需要对梯度值进行优化处理的情况直接 minmize</span><br></pre></td></tr></table></figure>
+<p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-op.png" alt="tensorflow-op"></p>
+<h4 id="内置优化器"><a href="#内置优化器" class="headerlink" title="内置优化器"></a>内置优化器</h4><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/Tensorflow/tensorflow-optimizer.png" alt=""></p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>损失函数是评估特定模型参数和特定输入时，表达模型输出的推理值与真实值之间不一致程度的函数。<br>常见的损失函数有平方损失函数、交叉熵损失函数和指数损失函数<br>使用损失函数对所有训练样本求损失值，再累加求平均可得到模型的经验风险。<br>换句话说，f（x）关于训练集的平均损失就是经验风险</p>
+<h5 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h5><p>然而，如果过度地追求训练数据上的低损失值，就会遇到过拟合问题。训练集通常并不能完全代表真实场景的数据分布。当两者的分布不一致时，如果过分依赖训练集上的数据，面对新数据时就会无所适从，这时模型的泛化能力就会变差。</p>
+<p>ps：就是说我们通过现有的数据进行训练，但是可能将这个误差减少的非常少，但是实际的值并不一定符合样本数据，过分拟合会导致接收到真实值后预测值反而误差很大（接收的值偏离样本分布规律）。</p>
+<h5 id="为了降低过度训练可能造成的过拟合风险"><a href="#为了降低过度训练可能造成的过拟合风险" class="headerlink" title="为了降低过度训练可能造成的过拟合风险"></a>为了降低过度训练可能造成的过拟合风险</h5><p>可以引入专门用来度量模型复杂度的正则化项（regularizer）或惩罚项（penalty term）-J（f）。常用的正则化项有L0、L1和L2范数。因此，我们将模型最优化的目标替换为鲁棒性更好的结构风险最小化（structural risk minimization，SRM）。</p>
+<p>在模型训练过程中，结构风险不断地降低。当小于我们设置的损失值阈值时，则认为此时的模型已经满足需求。因此，模型训练的本质就是在最小化结构风险的同时取得最优的模型参数。</p>
+<h4 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h4><p>典型的机器学习和深度学习问题通常都需要转换为最优化问题进行求解。</p>
+<h5 id="通常采用迭代方式实现："><a href="#通常采用迭代方式实现：" class="headerlink" title="通常采用迭代方式实现："></a>通常采用迭代方式实现：</h5><p>首先设定一个初始的可行解，然后基于特定的函数反复重新计算可行解，直到找到一个最优解或达到预设的收敛条件。</p>
+<ul>
+<li>不同的优化算法采用的迭代策略各有不同：</li>
+<li>有的使用目标函数的一阶导数，如梯度下降法；</li>
+<li>有的使用目标函数的二阶导数，如牛顿法；·有的使用前几轮迭代的信息，如Adam。</li>
+</ul>
+<p>基于梯度下降法的迭代策略最简单，它直接沿着梯度负方向，即 目标函数减小最快 的方向进行直线搜索。其计算表达式如下：</p>
+<h2 id="2-月-15-至17-号-Tensorflow"><a href="#2-月-15-至17-号-Tensorflow" class="headerlink" title="2 月 15 至17 号 Tensorflow"></a>2 月 15 至17 号 Tensorflow</h2><h3 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h3><h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lists = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]</span><br><span class="line">lists.append(&apos;d&apos;)</span><br><span class="line">print lists</span><br><span class="line">print len(lists)</span><br><span class="line">lists.insert(0,&apos;mm&apos;)</span><br><span class="line">lists.pop()</span><br><span class="line">print lists</span><br></pre></td></tr></table></figure>
+<p>列表是 Python 中常用的数据结构，相当于数组，具有增删改查的功能，我们可以使用 len() 函数获得 lists 中元素的个数；使用 append() 在尾部添加元素，使用 insert() 在列表中插入元素，使用 pop() 删除尾部的元素。</p>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tuples = (&apos;tupleA&apos;,&apos;tupleB&apos;)</span><br><span class="line">print (tuples[0])</span><br></pre></td></tr></table></figure>
+<p>元组 tuple 和 list 非常类似，但是 tuple 一旦初始化就不能修改。因为不能修改所以没有 append(), insert() 这样的方法，可以像访问数组一样进行访问，比如 tuples[0]，但不能赋值。</p>
+<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 定义一个 dictionary</span><br><span class="line">from typing import Dict</span><br><span class="line"></span><br><span class="line">score: Dict[str, int] = &#123;&apos;guanyu&apos;:95,&apos;zhangfei&apos;:96&#125;</span><br><span class="line"># 添加一个元素</span><br><span class="line">score[&apos;zhaoyun&apos;] = 98</span><br><span class="line">print (score)</span><br><span class="line"># 删除一个元素</span><br><span class="line">score.pop(&apos;zhangfei&apos;)</span><br><span class="line"># 查看 key 是否存在</span><br><span class="line">print (&apos;guanyu&apos; in score)</span><br><span class="line"># 查看一个 key 对应的值</span><br><span class="line">print (score.get(&apos;guanyu&apos;))</span><br><span class="line">print (score.get(&apos;yase&apos;,99))</span><br></pre></td></tr></table></figure>
+<p>字典其实就是{key, value}，多次对同一个 key 放入 value，后面的值会把前面的值冲掉，同样字典也有增删改查。增加字典的元素相当于赋值，比如 score[‘zhaoyun’] = 98，删除一个元素使用 pop，查询使用 get，如果查询的值不存在，我们也可以给一个默认值，比如 score.get(‘yase’,99)。</p>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])</span><br><span class="line">s.add(&apos;d&apos;)</span><br><span class="line">s.remove(&apos;b&apos;)</span><br><span class="line">print s</span><br><span class="line">print &apos;c&apos; in s</span><br></pre></td></tr></table></figure>
+<p>集合 set 和字典 dictory 类似，不过它只是 key 的集合，不存储 value。同样可以增删查，增加使用 add，删除使用 remove，查询看某个元素是否在这个集合里，使用 in。</p>
+<p>ps:思考为什么 jupyter 与 pycharm 集合输出结果顺序不同？集合。。没顺序。。。</p>
+<h4 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h4><p>标准的 Python 中，用列表 list 保存数组的数值。由于列表中的元素可以是任意的对象，所以列表中 list 保存的是对象的指针。虽然在 Python 编程中隐去了指针的概念，但是数组有指针，Python 的列表 list 其实就是数组。这样如果我要保存一个简单的数组 [0,1,2]，就需要有 3 个指针和 3 个整数的对象，这样对于 Python 来说是非常不经济的，浪费了内存和计算时间。</p>
+<p><strong>为什么要用 NumPy 数组结构而不是 Python 本身的列表 list？</strong><br>这是因为列表 list 的元素在系统内存中是分散存储的，而 NumPy 数组存储在一个均匀连续的内存块中。这样数组计算遍历所有的元素，不像列表 list 还需要对内存地址进行查找，从而节省了计算资源。</p>
+<p>缓存会直接把字节块从 RAM 加载到 CPU 寄存器中。因为数据连续的存储在内存中，NumPy 直接利用<strong>现代 CPU 的矢量化指令计算</strong>，加载寄存器中的多个连续浮点数。另外 NumPy 中的矩阵计算可以采用多线程的方式，充分利用多核 CPU 计算资源，大大提升了计算效率。</p>
+<p><strong>在 NumPy 里有两个重要的对象：ndarray（N-dimensional array object）解决了多维数组问题，而 ufunc（universal function object）则是解决对数组进行处理的函数。</strong></p>
+<h5 id="ndarray-对象"><a href="#ndarray-对象" class="headerlink" title="ndarray 对象"></a>ndarray 对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a = np.array([1, 2, 3])</span><br><span class="line">b = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])</span><br><span class="line">b[1,1]=10</span><br><span class="line">print(a.shape)</span><br><span class="line">print(b.shape)</span><br><span class="line">print(a.dtype)</span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure>
+<p>通过函数 shape 属性获得数组的大小，通过 dtype 获得元素的属性。如果你想对数组里的数值进行修改的话，直接赋值即可,下标应该是 [1,1]=10。</p>
+<h5 id="迷之结构数组"><a href="#迷之结构数组" class="headerlink" title="迷之结构数组"></a>迷之结构数组</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">persontype = np.dtype(&#123;</span><br><span class="line">    &apos;names&apos;:[&apos;name&apos;, &apos;age&apos;, &apos;chinese&apos;, &apos;math&apos;, &apos;english&apos;],</span><br><span class="line">    &apos;formats&apos;:[&apos;S32&apos;,&apos;i&apos;, &apos;i&apos;, &apos;i&apos;, &apos;f&apos;]&#125;)</span><br><span class="line">peoples = np.array([(&quot;ZhangFei&quot;,32,75,100, 90),(&quot;GuanYu&quot;,24,85,96,88.5),</span><br><span class="line">       (&quot;ZhaoYun&quot;,28,85,92,96.5),(&quot;HuangZhong&quot;,29,65,85,100)],</span><br><span class="line">    dtype=persontype)</span><br><span class="line">ages = peoples[:][&apos;age&apos;]</span><br><span class="line">chineses = peoples[:][&apos;chinese&apos;]</span><br><span class="line">maths = peoples[:][&apos;math&apos;]</span><br><span class="line">englishs = peoples[:][&apos;english&apos;]</span><br><span class="line">print(np.mean(ages))</span><br><span class="line">print(np.mean(chineses))</span><br><span class="line">print(np.mean(maths))</span><br><span class="line">print(np.mean(englishs))</span><br></pre></td></tr></table></figure>
+<p>首先在 NumPy 中是用 dtype 定义的结构类型，然后在定义数组的时候，用 array 中指定了结构数组的类型 dtype=persontype，这样你就可以自由地使用自定义的 persontype 了。</p>
+<h6 id="函数解释"><a href="#函数解释" class="headerlink" title="函数解释"></a>函数解释</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def mean(a, axis=None, dtype=None, out=None, keepdims=np._NoValue):</span><br><span class="line">求平均值。</span><br><span class="line">axis：无或 int 或 int 的元组，可选的Axis或计算均值的轴。默认设置是计算展平数组的平均值。**迷茫**</span><br><span class="line">out：Alternate 输出数组，用于放置结果。默认为“无”。如果提供，它必须具有与预期输出相同的形状，但必要时将转换类型。</span><br><span class="line">keepdims：bool，optional 如果将此值设置为True，则缩小的轴将作为尺寸为1的尺寸保留在结果中。使用此选项，结果将针对输入数组正确广播。</span><br><span class="line">如果传递了默认值，那么`keepdims`将不会传递给`ndarray`的子类的`mean`方法，但是任何非默认值都将是。如果子类&apos;方法没有实现`keepdims`，则会引发任何异常。</span><br></pre></td></tr></table></figure>
+<h5 id="ufunc-运算"><a href="#ufunc-运算" class="headerlink" title="ufunc 运算"></a>ufunc 运算</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x1 = np.arange(1,11,2)</span><br><span class="line">x2 = np.linspace(1,9,5)</span><br><span class="line">print np.add(x1, x2)</span><br><span class="line">print np.subtract(x1, x2)</span><br><span class="line">print np.multiply(x1, x2)</span><br><span class="line">print np.divide(x1, x2)</span><br><span class="line">print np.power(x1, x2)</span><br><span class="line">print np.remainder(x1, x2)</span><br><span class="line"></span><br><span class="line">这两个数组的结果 x1,x2 都是 [1 3 5 7 9]。</span><br><span class="line">加、减、乘、除、求 n 次方和取余数。</span><br></pre></td></tr></table></figure>
+<h6 id="函数解释-1"><a href="#函数解释-1" class="headerlink" title="函数解释"></a>函数解释</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def linspace(start, stop, num=50, endpoint=True, retstep=False, dtype=None,</span><br><span class="line">             axis=0):</span><br><span class="line">从 start 开始 到 stop 结束取 50 个值，相邻间隔相同</span><br><span class="line">endpoint:输出值是否将stop的值包含进去</span><br><span class="line">retpoint:是否将相邻两个书的间隔显示出来</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def arange(start=None, *args, **kwargs): </span><br><span class="line">开始、停止、间隔 for（i，&lt;,）</span><br></pre></td></tr></table></figure>
+<h5 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">a = np.array([[1,2,3], [4,5,6], [7,8,9]])</span><br><span class="line">print(np.amin(a))</span><br><span class="line">print(np.amin(a,0))</span><br><span class="line">print(np.amin(a,1))</span><br><span class="line">print(np.amax(a))</span><br><span class="line">print(np.amax(a,0))</span><br><span class="line">print(np.amax(a,1))</span><br></pre></td></tr></table></figure>
+<p>amin() 用于计算数组中的元素沿指定轴的最小值。对于一个二维数组 a，amin(a) 指的是数组中全部元素的最小值，amin(a,0) 是延着 axis=0 轴的最小值，axis=0 轴是把元素看成了 [1,4,7], [2,5,8], [3,6,9] 三个元素，所以最小值为 [1,2,3]，amin(a,1) 是延着 axis=1 轴的最小值，axis=1 轴是把元素看成了 [1,2,3], [4,5,6], [7,8,9] 三个元素，所以最小值为 [1,4,7]。同理 amax() 是计算数组中元素沿指定轴的最大值。</p>
+<h6 id="函数解释-2"><a href="#函数解释-2" class="headerlink" title="函数解释"></a>函数解释</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def amin(a, axis=None, out=None, keepdims=np._NoValue, initial=np._NoValue):</span><br><span class="line">def amax(a, axis=None, out=None, keepdims=np._NoValue, initial=np._NoValue):</span><br><span class="line">返回最大最小</span><br><span class="line">axis：无或int或int的元组，可选轴或沿其运行的轴。默认情况下，使用展平输入。</span><br><span class="line">         .. versionadded :: 1.7.0</span><br><span class="line">如果这是一个整数元组，则在多个轴上选择最大值，而不是像以前那样选择单个轴或所有轴。</span><br><span class="line">out：替代输出数组，用于放置结果。必须与预期输出具有相同的形状和缓冲长度。</span><br><span class="line">initial：标量，可选输出元素的最小值。必须存在以允许在空切片上进行计算。有关详细信息。</span><br><span class="line">keepdims：同 mean 函数</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">a = np.arange(4).reshape((2,2))</span><br><span class="line">print(a)</span><br><span class="line">print(np.amax(a)          ) # Maximum of the flattened array)</span><br><span class="line">print(np.amax(a, axis=0)  ) # Maxima along the first axis)</span><br><span class="line">print(np.amax(a, axis=1)   )# Maxima along the second axis)</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line"></span><br><span class="line">[[0 1]</span><br><span class="line"> [2 3]]</span><br><span class="line">3</span><br><span class="line">[2 3]</span><br><span class="line">[1 3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def reshape(self, shape, order=&apos;C&apos;):</span><br><span class="line">返回包含具有新形状的相同数据的数组。</span><br></pre></td></tr></table></figure>
+<h5 id="统计最大值与最小值之差-ptp"><a href="#统计最大值与最小值之差-ptp" class="headerlink" title="统计最大值与最小值之差 ptp()"></a>统计最大值与最小值之差 ptp()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[1,2,3], [4,5,6], [7,8,9]])</span><br><span class="line">print(np.ptp(a))</span><br><span class="line">print(np.ptp(a,0))</span><br><span class="line">print(np.ptp(a,1))</span><br></pre></td></tr></table></figure>
+<p>对于相同的数组 a，np.ptp(a) 可以统计数组中最大值与最小值的差，即 9-1=8。同样 ptp(a,0) 统计的是沿着 axis=0 轴的最大值与最小值之差，即 7-1=6（当然 8-2=6,9-3=6，第三行减去第一行的 ptp 差均为 6），ptp(a,1) 统计的是沿着 axis=1 轴的最大值与最小值之差，即 3-1=2（当然 6-4=2, 9-7=2，即第三列与第一列的 ptp 差均为 2）。</p>
+<h6 id="函数解释-3"><a href="#函数解释-3" class="headerlink" title="函数解释"></a>函数解释</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def ptp(a, axis=None, out=None, keepdims=np._NoValue):</span><br><span class="line">同mean</span><br></pre></td></tr></table></figure>
+<h5 id="统计数组的百分位数-percentile"><a href="#统计数组的百分位数-percentile" class="headerlink" title="统计数组的百分位数 percentile()"></a>统计数组的百分位数 percentile()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[1,2,3], [4,5,6], [7,8,9]])</span><br><span class="line">print(np.percentile(a, 50))</span><br><span class="line">print(np.percentile(a, 50, axis=0))</span><br><span class="line">print(np.percentile(a, 50, axis=1))</span><br></pre></td></tr></table></figure>
+<p>percentile() 代表着第 p 个百分位数，这里 p 的取值范围是 0-100，如果 p=0，那么就是求最小值，如果 p=50 就是求平均值，如果 p=100 就是求最大值。同样你也可以求得在 axis=0 和 axis=1 两个轴上的 p% 的百分位数。</p>
+<h6 id="函数解释-4"><a href="#函数解释-4" class="headerlink" title="函数解释"></a>函数解释</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">def percentile(a, q, axis=None, out=None,</span><br><span class="line">               overwrite_input=False, interpolation=&apos;linear&apos;, keepdims=False):</span><br><span class="line">keepdims:如果将此值设置为True，则缩小的轴将作为尺寸为1的尺寸保留在结果中。使用此选项，结果将正确地对原始数组“a”进行广播。</span><br><span class="line">overwrite:允许通过中间计算修改输入数组`a`，以节省内存。在这种情况下，此函数完成后输入“a”的内容未定义。</span><br><span class="line">out：可选的替代输出数组，用于放置结果。它必须具有与预期输出相同的形状和缓冲区长度，但必要时将转换类型（输出）。</span><br><span class="line">interpolation : &#123;&apos;linear&apos;, &apos;lower&apos;, &apos;higher&apos;, &apos;midpoint&apos;, &apos;nearest&apos;&#125;  迷茫</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">a = np.array([[10, 7, 4], [3, 2, 1]])</span><br><span class="line">print(a)</span><br><span class="line">print(np.percentile(a, 50))</span><br><span class="line">print(np.percentile(a, 50, axis=0))</span><br><span class="line">print(np.percentile(a, 50, axis=1))</span><br><span class="line">print( np.percentile(a, 50, axis=1, keepdims=True))</span><br><span class="line"></span><br><span class="line">m = np.percentile(a, 50, axis=0)</span><br><span class="line">out = np.zeros_like(m)</span><br><span class="line">print(np.percentile(a, 50, axis=0, out=out))</span><br><span class="line">print(m)</span><br><span class="line">b = a.copy()</span><br><span class="line">print(np.percentile(b, 50, axis=1, overwrite_input=True))</span><br><span class="line"># assert not np.all(a == b)</span><br><span class="line"></span><br><span class="line">out：</span><br><span class="line">[[10  7  4]</span><br><span class="line"> [ 3  2  1]]</span><br><span class="line">3.5</span><br><span class="line">[6.5 4.5 2.5]</span><br><span class="line">[7. 2.]</span><br><span class="line">[[7.]</span><br><span class="line"> [2.]]</span><br><span class="line">[6.5 4.5 2.5]</span><br><span class="line">[6.5 4.5 2.5]</span><br><span class="line">[7. 2.]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def zeros_like(a, dtype=None, order=&apos;K&apos;, subok=True):</span><br><span class="line">返回与给定数组具有相同形状和类型的零数组。就是初始化赋值0.</span><br></pre></td></tr></table></figure>
+<h5 id="统计数组中的中位数-median-、平均数-mean"><a href="#统计数组中的中位数-median-、平均数-mean" class="headerlink" title="统计数组中的中位数 median()、平均数 mean()"></a>统计数组中的中位数 median()、平均数 mean()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[1,2,3], [4,5,6], [7,8,9]])</span><br><span class="line"># 求中位数</span><br><span class="line">print(np.median(a))</span><br><span class="line">print(np.median(a, axis=0))</span><br><span class="line">print(np.median(a, axis=1))</span><br><span class="line"># 求平均数</span><br><span class="line">print(np.mean(a))</span><br><span class="line">print(np.mean(a, axis=0))</span><br><span class="line">print(np.mean(a, axis=1))</span><br></pre></td></tr></table></figure>
+<h6 id="函数说明"><a href="#函数说明" class="headerlink" title="函数说明"></a>函数说明</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def median(a, axis=None, out=None, overwrite_input=False, keepdims=False):</span><br></pre></td></tr></table></figure>
+<h5 id="统计数组中的加权平均值-average"><a href="#统计数组中的加权平均值-average" class="headerlink" title="统计数组中的加权平均值 average()"></a>统计数组中的加权平均值 average()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([1,2,3,4])</span><br><span class="line">wts = np.array([1,2,3,4])</span><br><span class="line">print(np.average(a))</span><br><span class="line">print(np.average(a,weights=wts))</span><br></pre></td></tr></table></figure>
+<p>average() 函数可以求加权平均，加权平均的意思就是每个元素可以设置个权重，默认情况下每个元素的权重是相同的，所以 np.average(a)=(1+2+3+4)/4=2.5，你也可以指定权重数组 wts=[1,2,3,4]，这样加权平均 np.average(a,weights=wts)=(1<em>1+2</em>2+3<em>3+4</em>4)/(1+2+3+4)=3.0。</p>
+<h6 id="函数说明-1"><a href="#函数说明-1" class="headerlink" title="函数说明"></a>函数说明</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def average(a, axis=None, weights=None, returned=False):</span><br><span class="line"></span><br><span class="line">weights：权重；与“a”中的值相关联的权重数组。 “a”中的每个值根据其相关权重对平均值做出贡献。</span><br><span class="line">        权重数组可以是1-D（在这种情况下，其长度必须是沿给定轴的“a”的大小）或者与“a”形状相同。</span><br><span class="line">        如果`weights = None`，则假定“a”中的所有数据的权重等于1。</span><br><span class="line"></span><br><span class="line">returned: 默认为“False”。如果为“True”，则返回元组（“average”，“sum_of_weights”），否则仅返回平均值。</span><br><span class="line">        如果`weights = None`，`sum_of_weights`等于获取平均值的元素数。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">data = np.arange(1,5)</span><br><span class="line">print(np.average(data))</span><br><span class="line">print(np.average(range(1,11), weights=range(10,0,-1),returned = True))#迷</span><br><span class="line">data2 = np.arange(6).reshape((3,2))</span><br><span class="line">print(data2)</span><br><span class="line"></span><br><span class="line">out：</span><br><span class="line">2.5</span><br><span class="line">(4.0, 55.0)</span><br><span class="line">[[0 1]</span><br><span class="line"> [2 3]</span><br><span class="line"> [4 5]]</span><br></pre></td></tr></table></figure>
+<h5 id="统计数组中的标准差-std-、方差-var"><a href="#统计数组中的标准差-std-、方差-var" class="headerlink" title="统计数组中的标准差 std()、方差 var()"></a>统计数组中的标准差 std()、方差 var()</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([1,2,3,4])</span><br><span class="line">print(np.std(a))</span><br><span class="line">print(np.var(a))</span><br></pre></td></tr></table></figure>
+<p>方差的计算是指每个数值与平均值之差的平方求和的平均值，即 mean((x - x.mean())** 2)。标准差是方差的算术平方根。在数学意义上，代表的是一组数据离平均值的分散程度。所以 np.var(a)=1.25, np.std(a)=1.118033988749895。</p>
+<h6 id="函数说明-2"><a href="#函数说明-2" class="headerlink" title="函数说明"></a>函数说明</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def std(a, axis=None, dtype=None, out=None, ddof=0, keepdims=np._NoValue):</span><br><span class="line">标准差。</span><br><span class="line">ddof：意味着三角自由度。计算中使用的除数是“N  -  ddof”，其中“N”表示元素的数量。</span><br><span class="line">        默认情况下，`ddof`为零。    迷</span><br><span class="line">keepdims：如果将其设置为True，则缩小的轴将作为尺寸为1的尺寸保留在结果中。使用此选项，结果将针对输入数组正确广播。</span><br><span class="line">         如果传递了默认值，那么`keepdims`将不会传递给`ndarray`的子类的`std`方法，但是任何非默认值都将是。如果子类&apos;方法没有实现`keepdims`，则会引发任何异常。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def var(a, axis=None, dtype=None, out=None, ddof=0, keepdims=np._NoValue):</span><br><span class="line">方差；</span><br><span class="line">同上。</span><br></pre></td></tr></table></figure>
+<h5 id="NumPy-排序"><a href="#NumPy-排序" class="headerlink" title="NumPy 排序"></a>NumPy 排序</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[4,3,2],[2,4,1]])</span><br><span class="line">print(np.sort(a))</span><br><span class="line">print(np.sort(a, axis=None))</span><br><span class="line">print(np.sort(a, axis=0)  )</span><br><span class="line">print(np.sort(a, axis=1)  )</span><br></pre></td></tr></table></figure>
+<p>那么这些排序算法在 NumPy 中实现起来其实非常简单，一条语句就可以搞定。这里你可以使用 sort 函数，sort(a, axis=-1, kind=‘quicksort’, order=None)，默认情况下使用的是快速排序；在 kind 里，可以指定 quicksort、mergesort、heapsort 分别表示快速排序、合并排序、堆排序。同样 axis 默认是 -1，即沿着数组的最后一个轴进行排序，也可以取不同的 axis 轴，或者 axis=None 代表采用扁平化的方式作为一个向量进行排序。另外 order 字段，对于结构化的数组可以指定按照某个字段进行排序。</p>
+<h6 id="函数说明-3"><a href="#函数说明-3" class="headerlink" title="函数说明"></a>函数说明</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def sort(a, axis=-1, kind=&apos;quicksort&apos;, order=None):</span><br><span class="line">kind : &#123;&apos;quicksort&apos;, &apos;mergesort&apos;, &apos;heapsort&apos;, &apos;stable&apos;&#125;, optional</span><br><span class="line">        Sorting algorithm. Default is &apos;quicksort&apos;.</span><br><span class="line">order : str或str的列表，可选当`a`是一个定义了字段的数组时，此参数指定要比较哪些字段的第一个，第二个等。可以将单个字段指定为字符串，而不是所有字段都需要指定，但是仍然会按照它们出现在dtype中的顺序使用未指定的字段来打破关系。 迷</span><br></pre></td></tr></table></figure>
+<h4 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h4><h5 id="数据结构：Series-和-DataFrame"><a href="#数据结构：Series-和-DataFrame" class="headerlink" title="数据结构：Series 和 DataFrame"></a>数据结构：Series 和 DataFrame</h5><p><strong>Series 是个定长的字典序列。</strong>说是定长是因为在存储的时候，相当于两个 ndarray，这也是和字典结构最大的不同。<br><em>因为在字典的结构里，元素的个数是不固定的</em>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">在 Series 结构中，index 默认是 0,1,2,……递增的整数序列，当然我们也可以自己来指定索引，比如 index=[‘a’, ‘b’, ‘c’, ‘d’]。</span><br><span class="line"></span><br><span class="line">import pandas as pd</span><br><span class="line">from pandas import Series, DataFrame</span><br><span class="line">x1 = Series([1,2,3,4])</span><br><span class="line">x2 = Series(data=[1,2,3,4], index=[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;])</span><br><span class="line">print(x1)</span><br><span class="line">print(x2)</span><br><span class="line"></span><br><span class="line">也可以采用字典的方式来创建 Series</span><br><span class="line"></span><br><span class="line">d = &#123;&apos;a&apos;:1, &apos;b&apos;:2, &apos;c&apos;:3, &apos;d&apos;:4&#125;</span><br><span class="line">x3 = Series(d)</span><br><span class="line">print x3</span><br></pre></td></tr></table></figure>
+<h5 id="DataFrame-类型数据结构类似数据库表"><a href="#DataFrame-类型数据结构类似数据库表" class="headerlink" title="DataFrame 类型数据结构类似数据库表"></a>DataFrame 类型数据结构类似数据库表</h5><p>它包括了行索引和列索引，我们可以将 DataFrame 看成是由相同索引的 Series 组成的字典类型。</p>
+<h6 id="DataFrame-类型数据结构类似数据库表。"><a href="#DataFrame-类型数据结构类似数据库表。" class="headerlink" title="DataFrame 类型数据结构类似数据库表。"></a>DataFrame 类型数据结构类似数据库表。</h6><h6 id="数据导入和输出"><a href="#数据导入和输出" class="headerlink" title="数据导入和输出"></a>数据导入和输出</h6><h6 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">1、 删除 DataFrame 中的不必要的列或行</span><br><span class="line">df2 = df2.drop(columns=[&apos;Chinese&apos;])</span><br><span class="line">df2 = df2.drop(index=[&apos;ZhangFei&apos;])</span><br><span class="line"></span><br><span class="line"> def drop(self, labels=None, axis=0, index=None, columns=None,</span><br><span class="line">             level=None, inplace=False, errors=&apos;raise&apos;):</span><br><span class="line"></span><br><span class="line">level : int or level name, optional</span><br><span class="line">    For MultiIndex, level from which the labels will be removed.</span><br><span class="line">inplace : bool, default False</span><br><span class="line">    If True, do operation inplace and return None.</span><br><span class="line">errors : &#123;&apos;ignore&apos;, &apos;raise&apos;&#125;, default &apos;raise&apos;</span><br><span class="line">    If &apos;ignore&apos;, suppress error and only existing labels are dropped.</span><br><span class="line"></span><br><span class="line">2. 重命名列名 columns，让列表名更容易识别</span><br><span class="line"></span><br><span class="line"> def rename(self, *args, **kwargs):</span><br><span class="line"></span><br><span class="line">3. 去重复的值</span><br><span class="line"></span><br><span class="line">def drop_duplicates(self, keep=&apos;first&apos;, inplace=False):</span><br><span class="line"></span><br><span class="line">keep：&#123;&apos;first&apos;，&apos;last&apos;，``False``&#125;，默认&apos;first&apos; - &apos;first&apos;：删除第一次出现的重复项。</span><br><span class="line">             - &apos;last&apos;：删除重复项，最后一次出现除外。</span><br><span class="line">             - ``False``：删除所有重复项。</span><br><span class="line">inplace：boolean，默认``False``如果``True``，则执行inplace操作并返回None。</span><br><span class="line"></span><br><span class="line">4. 格式问题</span><br><span class="line"></span><br><span class="line">    更改数据格式</span><br><span class="line"></span><br><span class="line">    df2[&apos;Chinese&apos;].astype(&apos;str&apos;) </span><br><span class="line">    df2[&apos;Chinese&apos;].astype(np.int64) </span><br><span class="line"></span><br><span class="line">    数据间的空格</span><br><span class="line"></span><br><span class="line">    # 删除左右两边空格</span><br><span class="line">    df2[&apos;Chinese&apos;]=df2[&apos;Chinese&apos;].map(str.strip)</span><br><span class="line">    # 删除左边空格</span><br><span class="line">    df2[&apos;Chinese&apos;]=df2[&apos;Chinese&apos;].map(str.lstrip)</span><br><span class="line">    # 删除右边空格</span><br><span class="line">    df2[&apos;Chinese&apos;]=df2[&apos;Chinese&apos;].map(str.rstrip)</span><br><span class="line">    # 删除美元符号</span><br><span class="line">    df2[&apos;Chinese&apos;]=df2[&apos;Chinese&apos;].str.strip(&apos;$&apos;)</span><br><span class="line"></span><br><span class="line">    大小写转换</span><br><span class="line"></span><br><span class="line">    # 全部大写</span><br><span class="line">    df2.columns = df2.columns.str.upper()</span><br><span class="line">    # 全部小写</span><br><span class="line">    df2.columns = df2.columns.str.lower()</span><br><span class="line">    # 首字母大写</span><br><span class="line">    df2.columns = df2.columns.str.title()</span><br><span class="line"></span><br><span class="line">    查找空值</span><br><span class="line"></span><br><span class="line">    .isnull()</span><br><span class="line">    .isnull().any()</span><br></pre></td></tr></table></figure>
+<h6 id="使用-apply-函数对数据进行清洗"><a href="#使用-apply-函数对数据进行清洗" class="headerlink" title="使用 apply 函数对数据进行清洗"></a>使用 apply 函数对数据进行清洗</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">大写转化</span><br><span class="line"></span><br><span class="line">df[&apos;name&apos;] = df[&apos;name&apos;].apply(str.upper)</span><br></pre></td></tr></table></figure>
+<h6 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h6><p><img src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/python/%E5%B8%B8%E7%94%A8%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.jpg" alt=""></p>
+<h6 id="数据表合并"><a href="#数据表合并" class="headerlink" title="数据表合并"></a>数据表合并</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. 基于指定列进行连接</span><br><span class="line"></span><br><span class="line">    df3 = pd.merge(df1, df2, on=&apos;name&apos;)</span><br><span class="line"></span><br><span class="line">2. inner 内连接</span><br><span class="line"></span><br><span class="line">    df3 = pd.merge(df1, df2, how=&apos;inner&apos;)</span><br><span class="line"></span><br><span class="line">3. left 左连接</span><br><span class="line"></span><br><span class="line">    df3 = pd.merge(df1, df2, how=&apos;left&apos;)</span><br><span class="line"></span><br><span class="line">4. right 右连接</span><br><span class="line"></span><br><span class="line">    df3 = pd.merge(df1, df2, how=&apos;right&apos;)</span><br><span class="line"></span><br><span class="line">5. outer 外连接</span><br><span class="line"></span><br><span class="line">    df3 = pd.merge(df1, df2, how=&apos;outer&apos;)</span><br><span class="line"></span><br><span class="line">def merge(left, right, how=&apos;inner&apos;, on=None, left_on=None, right_on=None,</span><br><span class="line">          left_index=False, right_index=False, sort=False,</span><br><span class="line">          suffixes=(&apos;_x&apos;, &apos;_y&apos;), copy=True, indicator=False,</span><br><span class="line">          validate=None):</span><br><span class="line"></span><br><span class="line">    left : DataFrame</span><br><span class="line">    right : DataFrame</span><br><span class="line">    on : label or list</span><br><span class="line">        Field names to join on. Must be found in both DataFrames.</span><br><span class="line">    left_on : label or list, or array-like</span><br><span class="line">        Field names to join on in left DataFrame. Can be a vector or list of</span><br><span class="line">        vectors of the length of the DataFrame to use a particular vector as</span><br><span class="line">        the join key instead of columns</span><br><span class="line">    right_on : label or list, or array-like</span><br><span class="line">        Field names to join on in right DataFrame or vector/list of vectors per</span><br><span class="line">        left_on docs</span><br><span class="line">    left_by : column name or list of column names</span><br><span class="line">        Group left DataFrame by group columns and merge piece by piece with</span><br><span class="line">        right DataFrame</span><br><span class="line">    right_by : column name or list of column names</span><br><span class="line">        Group right DataFrame by group columns and merge piece by piece with</span><br><span class="line">        left DataFrame</span><br><span class="line">    fill_method : &#123;&apos;ffill&apos;, None&#125;, default None</span><br><span class="line">        Interpolation method for data</span><br><span class="line">    suffixes : 2-length sequence (tuple, list, ...)</span><br><span class="line">        Suffix to apply to overlapping column names in the left and right</span><br><span class="line">        side, respectively</span><br><span class="line">    how : &#123;&apos;left&apos;, &apos;right&apos;, &apos;outer&apos;, &apos;inner&apos;&#125;, default &apos;outer&apos;</span><br><span class="line">        * left: use only keys from left frame (SQL: left outer join)</span><br><span class="line">        * right: use only keys from right frame (SQL: right outer join)</span><br><span class="line">        * outer: use union of keys from both frames (SQL: full outer join)</span><br><span class="line">        * inner: use intersection of keys from both frames (SQL: inner join)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">left：</span><br><span class="line">DataFrame right：DataFrame on：label或list要加入的字段名称。必须在两个DataFrame中都能找到。</span><br><span class="line">left_on：</span><br><span class="line">标签或列表，或类似于数组的字段名称，用于在左侧DataFrame中连接。</span><br><span class="line">可以是DataFrame长度的向量或向量列表，使用特定向量作为连接键而不是列right_on：</span><br><span class="line">label或list，或类似于数组的字段名称，用于在右侧DataFrame或向量/向量列表中连</span><br><span class="line">接per_ left docs left_by：列名称或列名列表按组列分组左DataFrame并使用右DataFrame右键合</span><br><span class="line">并right_by：列名称或列名列表按组列分组右DataFrame并与左DataFrame fill_method逐</span><br><span class="line">段合并：&#123;&apos;ffill&apos;，None&#125;，默认无数据后缀的插值方法：2长度序列（元组，列表，...）后</span><br><span class="line">缀应用于左侧和右侧的重叠列名称，分别如何：&#123;&apos;left &apos;，&apos;right&apos;，&apos;outer&apos;，&apos;inner&apos;&#125;，</span><br><span class="line">默认&apos;outer&apos;* left：仅使用左框架中的键（SQL：left outer join）* right：仅使用来</span><br><span class="line">自rig的键ht frame（SQL：右外连接）* outer：使用来自两个帧的键的并集（SQL：全外</span><br><span class="line">连接）* inner：使用来自两个帧的键的交集（SQL：内连接）</span><br></pre></td></tr></table></figure>
+<h6 id="用-SQL-方式打开-Pandas"><a href="#用-SQL-方式打开-Pandas" class="headerlink" title="用 SQL 方式打开 Pandas"></a>用 SQL 方式打开 Pandas</h6><p>pandasql 工具包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import pandas as pd</span><br><span class="line">from pandas import DataFrame</span><br><span class="line">from pandasql import sqldf, load_meat, load_births</span><br><span class="line">df1 = DataFrame(&#123;&apos;name&apos;:[&apos;ZhangFei&apos;, &apos;GuanYu&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;], &apos;data1&apos;:range(5)&#125;)</span><br><span class="line">pysqldf = lambda sql: sqldf(sql, globals())</span><br><span class="line">sql = &quot;select * from df1 where name =&apos;ZhangFei&apos;&quot;</span><br><span class="line">print pysqldf(sql)</span><br><span class="line"></span><br><span class="line">lambda:用来定义一个匿名函数的.</span><br><span class="line">eg:</span><br><span class="line">lambda argument_list: expression</span><br><span class="line"></span><br><span class="line">这里 argument_list 是参数列表，expression 是关于参数的表达式，会根据 expression 表达式计算结果进行输出返回。</span><br></pre></td></tr></table></figure>
+<h3 id="pycharm-get-小技巧"><a href="#pycharm-get-小技巧" class="headerlink" title="pycharm get 小技巧"></a>pycharm get 小技巧</h3><p><strong>pycharm中使用正则表达式批量添加print括号</strong><br>1、在pycharm编译器中，Ctrl+R调出替换功能框，勾选“Regex”，选择正则表达式替换方法<br>2、 从上到下，第一个搜索框输入<br>print (.*?);?$<br>3、第二个替换框输入<br>print($1)<br>4、点击Replace all，替换所有搜索结果，完成替换</p>
+<h3 id="监督学习典型算法"><a href="#监督学习典型算法" class="headerlink" title="监督学习典型算法"></a>监督学习典型算法</h3><p>线性回归（Linear Regression）：<br>线性回归是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。</p>
+<p>逻辑回归（Logistic Regression）<br>决策树（Decision Tree）<br>随机森林（Random Forest）<br>最近邻算法（k-NN）<br>朴素贝叶斯（Naive Bayes）<br>支持向量机（SVM）<br>感知器（Perceptron）<br>深度神经网络（DNN）</p>
+<h5 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h5><h5 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h5><h3 id="java-小技巧"><a href="#java-小技巧" class="headerlink" title="java 小技巧"></a>java 小技巧</h3><p><a href="https://jingyan.baidu.com/article/c74d6000a464060f6a595d99.html" target="_blank" rel="noopener">怎么java代码打包成可执行jar并用批处理bat运行</a><br><a href="https://blog.csdn.net/youngstar70/article/details/75116227?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">Java项目打包成exe的详细教程</a><br><a href="https://blog.csdn.net/bananachong/article/details/82253866" target="_blank" rel="noopener">把java项目打包成安装包，在windows下安装</a></p>
+<h2 id="2-月-18-号至-27-号"><a href="#2-月-18-号至-27-号" class="headerlink" title="2 月 18 号至 27 号"></a>2 月 18 号至 27 号</h2><p>开学四天没怎么干活，就是看了点牛客网的python题库。</p>
+<p>然后呢花了一天时间啃了下opencv的入门教程，利用opencv打开图片、美化图片、切割图片等。</p>
+<p>花了两天时间看了下 face++ 的开发文档，利用python的SDK算是能利用api实现点功能。</p>
+<p>花了一天时间入门了解了下测试开发流程、发展、以及相应的工具。</p>
+<h2 id="2-月-28-号-python-数据可视化入门"><a href="#2-月-28-号-python-数据可视化入门" class="headerlink" title="2 月 28 号 python 数据可视化入门"></a>2 月 28 号 python 数据可视化入门</h2><h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><p><strong>scatter plot 二维散点图、三维散点图。</strong></p>
+<p>画散点图，需要使用 <strong>plt.scatter(x, y, marker=None)</strong> 函数。<br>x、y 是坐标，<br>marker 代表了标记的符号。<br>比如“x”、“&gt;”或者“o”。选择不同的 marker，呈现出来的符号样式也会不同。</p>
+<p><strong>除了 Matplotlib 外，你也可以使用 Seaborn 进行散点图的绘制。</strong></p>
+<p>在引用 seaborn 工具包之后，就可以使用 seaborn 工具包的函数了。如果想要做散点图，可以直接使用 <strong>sns.jointplot(x, y, data=None, kind=‘scatter’)</strong> 函数。<br>其中 x、y 是 data 中的下标。<br>data 就是我们要传入的数据，一般是 DataFrame 类型。<br>kind 这类我们取 scatter，代表散点的意思。<br>当然 kind 还可以取其他值，这个我在后面的视图中会讲到，不同的 kind 代表不同的视图绘制方式。<br>eg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">N = 1000</span><br><span class="line">x = np.random.randn(N)</span><br><span class="line">y = np.random.randn(N)</span><br><span class="line"># 用 Matplotlib 画散点图</span><br><span class="line">plt.scatter(x, y,marker=&apos;x&apos;)</span><br><span class="line">plt.show()</span><br><span class="line"># 用 Seaborn 画散点图</span><br><span class="line">df = pd.DataFrame(&#123;&apos;x&apos;: x, &apos;y&apos;: y&#125;)</span><br><span class="line">sns.jointplot(x=&quot;x&quot;, y=&quot;y&quot;, data=df, kind=&apos;scatter&apos;);</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><p>在 Matplotlib 中，我们可以直接使用 plt.plot() 函数，当然需要<strong>提前把数据按照 x 轴的大小进行排序</strong>，要不画出来的折线图就无法按照 x 轴递增的顺序展示。</p>
+<p>在 Seaborn 中，我们使用 <strong>sns.lineplot (x, y, data=None)</strong> 函数。<br>其中 x、y 是 data 中的下标。data 就是我们要传入的数据，一般是 DataFrame 类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 这里我们设置了 x、y 的数组。x 数组代表时间（年），y 数组我们随便设置几个取值。</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">x = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019]</span><br><span class="line">y = [5, 3, 6, 20, 17, 16, 19, 30, 32, 35]</span><br><span class="line"># 使用 Matplotlib 画折线图</span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br><span class="line"># 使用 Seaborn 画折线图</span><br><span class="line">df = pd.DataFrame(&#123;&apos;x&apos;: x, &apos;y&apos;: y&#125;)</span><br><span class="line">sns.lineplot(x=&quot;x&quot;, y=&quot;y&quot;, data=df)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h3><p>在 Matplotlib 中，我们使用 <strong>plt.hist(x, bins=10)</strong> 函数，其中<br>参数 x 是一维数组，<br>bins 代表直方图中的箱子数量，默认是 10。</p>
+<p>在 Seaborn 中，我们使用 <strong>sns.distplot(x, bins=10, kde=True)</strong> 函数。其中<br>参数 x 是一维数组，<br>bins 代表直方图中的箱子数量，<br>kde 代表显示核密度估计，默认是 True，<br>我们也可以把 kde 设置为 False，不进行显示。核密度估计是通过核函数帮我们来估计概率密度的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">a = np.random.randn(100)</span><br><span class="line">s = pd.Series(a) </span><br><span class="line"># 用 Matplotlib 画直方图</span><br><span class="line">plt.hist(s)</span><br><span class="line">plt.show()</span><br><span class="line"># 用 Seaborn 画直方图</span><br><span class="line">sns.distplot(s, kde=False)</span><br><span class="line">plt.show()</span><br><span class="line">sns.distplot(s, kde=True)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"># a = np.random.randn(100)</span><br><span class="line"></span><br><span class="line"># s = pd.Series(a)</span><br></pre></td></tr></table></figure>
+<h3 id="条形图"><a href="#条形图" class="headerlink" title="条形图"></a>条形图</h3><p>在 Matplotlib 中，我们使用 <strong>plt.bar(x, height)</strong> 函数，其中<br>参数 x 代表 x 轴的位置序列，<br>height 是 y 轴的数值序列，也就是柱子的高度。</p>
+<p>在 Seaborn 中，我们使用 <strong>sns.barplot(x=None, y=None, data=None)</strong> 函数。其中参数<br>data 为 DataFrame 类型，<br>x、y 是 data 中的变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">x = [&apos;Cat1&apos;, &apos;Cat2&apos;, &apos;Cat3&apos;, &apos;Cat4&apos;, &apos;Cat5&apos;]</span><br><span class="line">y = [5, 4, 8, 12, 7]</span><br><span class="line"># 用 Matplotlib 画条形图</span><br><span class="line">plt.bar(x, y)</span><br><span class="line">plt.show()</span><br><span class="line"># 用 Seaborn 画条形图</span><br><span class="line">sns.barplot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="箱线图"><a href="#箱线图" class="headerlink" title="箱线图"></a>箱线图</h3><p>箱线图，又称盒式图，由五个数值点组成：最大值 (max)、最小值 (min)、中位数 (median) 和上下四分位数 (Q3, Q1)。它可以帮我们分析出数据的差异性、离散程度和异常值等。</p>
+<p>在 Matplotlib 中，我们使用 <strong>plt.boxplot(x, labels=None)</strong> 函数，其中参数<br>x 代表要绘制箱线图的数据，<br>labels 是缺省值，可以为箱线图添加标签。</p>
+<p>在 Seaborn 中，我们使用 <strong>sns.boxplot(x=None, y=None, data=None)</strong> 函数。其中参数<br>data 为 DataFrame 类型，<br>x、y 是 data 中的变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 数据准备</span><br><span class="line"># 生成 0-1 之间的 10*4 维度数据</span><br><span class="line">data=np.random.normal(size=(10,4)) </span><br><span class="line">lables = [&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;]</span><br><span class="line"># 用 Matplotlib 画箱线图</span><br><span class="line">plt.boxplot(data,labels=lables)</span><br><span class="line">plt.show()</span><br><span class="line"># 用 Seaborn 画箱线图</span><br><span class="line">df = pd.DataFrame(data, columns=lables)</span><br><span class="line">sns.boxplot(data=df)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h3><p>在 Matplotlib 中，我们使用 <strong>plt.pie(x, labels=None)</strong> 函数，其中参数<br>x 代表要绘制饼图的数据，<br>labels 是缺省值，可以为饼图添加标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#这里我设置了 lables 数组，分别代表高中、本科、硕士、博士和其他几种学历的分类标签。nums 代表这些学历对应的人数。</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"># 数据准备</span><br><span class="line">nums = [25, 37, 33, 37, 6]</span><br><span class="line">labels = [&apos;High-school&apos;,&apos;Bachelor&apos;,&apos;Master&apos;,&apos;Ph.d&apos;, &apos;Others&apos;]</span><br><span class="line"># 用 Matplotlib 画饼图</span><br><span class="line">plt.pie(x = nums, labels=labels)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h3><p>热力图，英文叫 heat map，是一种矩阵表示方法，其中矩阵中的元素值用颜色来代表，不同的颜色代表不同大小的值。通过颜色就能直观地知道某个位置上数值的大小。另外你也可以将这个位置上的颜色，与数据集中的其他位置颜色进行比较。<strong>热力图是一种非常直观的多元变量分析方法。</strong><br>一般使用 Seaborn 中的 <strong>sns.heatmap(data)</strong> 函数，其中<br>data 代表需要绘制的热力图数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#这里我们使用 Seaborn 中自带的数据集 flights，该数据集记录了 1949 年到 1960 年期间，每个月的航班乘客的数量。</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">flights = sns.load_dataset(&quot;flights&quot;)</span><br><span class="line">data=flights.pivot(&apos;year&apos;,&apos;month&apos;,&apos;passengers&apos;)</span><br><span class="line"># 用 Seaborn 画热力图</span><br><span class="line">sns.heatmap(data)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="蜘蛛图"><a href="#蜘蛛图" class="headerlink" title="蜘蛛图"></a>蜘蛛图</h3><p>蜘蛛图是一种显示一对多关系的方法。在蜘蛛图中，一个变量相对于另一个变量的显著性是清晰可见的。</p>
+<p>代码中 <strong>flt.figure</strong> 是创建一个空白的 figure 对象，这样做的目的相当于画画前先准备一个空白的画板。<br>然后 <strong>add_subplot(111)</strong> 可以把画板划分成 1 行 1 列。<br>再用 <strong>ax.plot 和 ax.fill</strong> 进行连线以及给图形上色。<br>最后我们在相应的位置上显示出属性名。<br>这里需要用到中文，Matplotlib 对中文的显示不是很友好，因此我设置了中文的字体 font，这个需要在调用前进行定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 这里我们需要使用 Matplotlib 来进行画图，首先设置两个数组：</span><br><span class="line"># labels 和 stats。他们分别保存了这些属性的名称和属性值。</span><br><span class="line"></span><br><span class="line"># 因为蜘蛛图是一个圆形，你需要计算每个坐标的角度，然后对这些数值进行设置。</span><br><span class="line"># 当画完最后一个点后，需要与第一个点进行连线。</span><br><span class="line"></span><br><span class="line"># 因为需要计算角度，所以我们要准备 angles 数组；又因为需要设定统计结果的数值，所以我们要设定 stats 数组。</span><br><span class="line"># 并且需要在原有 angles 和 stats 数组上增加一位，也就是添加数组的第一个元素。</span><br><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">from matplotlib.font_manager import FontProperties  </span><br><span class="line"># 数据准备</span><br><span class="line">labels=np.array([u&quot; 推进 &quot;,&quot;KDA&quot;,u&quot; 生存 &quot;,u&quot; 团战 &quot;,u&quot; 发育 &quot;,u&quot; 输出 &quot;])</span><br><span class="line">stats=[83, 61, 95, 67, 76, 88]</span><br><span class="line"># 画图数据准备，角度、状态值</span><br><span class="line">angles=np.linspace(0, 2*np.pi, len(labels), endpoint=False)</span><br><span class="line">stats=np.concatenate((stats,[stats[0]]))</span><br><span class="line">angles=np.concatenate((angles,[angles[0]]))</span><br><span class="line"># 用 Matplotlib 画蜘蛛图</span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.add_subplot(111, polar=True)   </span><br><span class="line">ax.plot(angles, stats, &apos;o-&apos;, linewidth=2)</span><br><span class="line">ax.fill(angles, stats, alpha=0.25)</span><br><span class="line"># 设置中文字体</span><br><span class="line">font = FontProperties(fname=r&quot;C:\Windows\Fonts\simhei.ttf&quot;, size=14)  </span><br><span class="line">ax.set_thetagrids(angles * 180/np.pi, labels, FontProperties=font)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="二元变量分布"><a href="#二元变量分布" class="headerlink" title="二元变量分布"></a>二元变量分布</h3><p>在 Seaborn 里，使用二元变量分布是非常方便的，直接使用 <strong>sns.jointplot(x, y, data=None, kind)</strong> 函数即可。其中<br>用 kind 表示不同的视图类型：<br>“kind=‘scatter’”代表散点图，<br>“kind=‘kde’”代表核密度图，<br>“kind=‘hex’ ”代表 Hexbin 图，它代表的是直方图的二维模拟。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 这里我们使用 Seaborn 中自带的数据集 tips，这个数据集记录了不同顾客在餐厅的消费账单及小费情况。</span><br><span class="line"># 代码中 total_bill 保存了客户的账单金额，tip 是该客户给出的小费金额。</span><br><span class="line"># 我们可以用 Seaborn 中的 jointplot 来探索这两个变量之间的关系。</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">tips = sns.load_dataset(&quot;tips&quot;)</span><br><span class="line">print(tips.head(10))</span><br><span class="line"># 用 Seaborn 画二元变量分布图（散点图，核密度图，Hexbin 图）</span><br><span class="line">sns.jointplot(x=&quot;total_bill&quot;, y=&quot;tip&quot;, data=tips, kind=&apos;scatter&apos;)</span><br><span class="line">sns.jointplot(x=&quot;total_bill&quot;, y=&quot;tip&quot;, data=tips, kind=&apos;kde&apos;)</span><br><span class="line">sns.jointplot(x=&quot;total_bill&quot;, y=&quot;tip&quot;, data=tips, kind=&apos;hex&apos;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="成对关系"><a href="#成对关系" class="headerlink" title="成对关系"></a>成对关系</h3><p>如果想要探索数据集中的多个成对双变量的分布，可以直接采用 <strong>sns.pairplot()</strong> 函数。它会同时展示出 DataFrame 中每对变量的关系，另外在对角线上，你能看到每个变量自身作为单变量的分布情况。它可以说是探索性分析中的常用函数，可以很快帮我们理解变量对之间的关系。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#这里我们使用 Seaborn 中自带的 iris 数据集，这个数据集也叫鸢尾花数据集。</span><br><span class="line"># 鸢尾花可以分成 Setosa、Versicolour 和 Virginica 三个品种，</span><br><span class="line"># 在这个数据集中，针对每一个品种，都有 50 个数据，每个数据中包括了 4 个属性，</span><br><span class="line"># 分别是花萼长度、花萼宽度、花瓣长度和花瓣宽度。</span><br><span class="line"># 通过这些数据，需要你来预测鸢尾花卉属于三个品种中的哪一种。</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line"># 数据准备</span><br><span class="line">iris = sns.load_dataset(&apos;iris&apos;)</span><br><span class="line"># 用 Seaborn 画成对关系</span><br><span class="line">sns.pairplot(iris)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="3月计划"><a href="#3月计划" class="headerlink" title="3月计划"></a>3月计划</h2><p><strong>Django、flask 框架快速入门</strong></p>
+<p>小程序走起</p>
+<p><strong>face++ 为主要内容快速搭建出来一个东西，快速把云台搭建出来。3.3 之前做好！</strong></p>
+<p><strong><em>了解下esp8266，快速实现样品的搭建。3月5号之前。</em></strong></p>
+<p>了解下esp8266 lua nodemcu，把路由攻击做出来。</p>
+<p>每天写点东西吧，把小型组的PPT做出来。</p>
+<p>Tensorflow opencv 智能小车 python 框架的自动化测试爬虫、分析，linux shell</p>
+<p>瞅下 C++ linux 的开发 😭</p>
+
+      
+    </div>
+    
+    
+    
+
+      <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/cjv3xo3lo0082rsu3vc57rjm4/">2019年2月学习笔记</a></p>
+  <p><span>文章作者:</span></a>Chao</p>
+  <p><span>发布时间:</span>2019年02月28日 - 21:02</p>
+  <p><span>最后更新:</span>2019年04月12日 - 09:04</p>
+  <p><span>原始链接:</span><a href="/cjv3xo3lo0082rsu3vc57rjm4/" title="2019年2月学习笔记">http://xchcloud.cn/cjv3xo3lo0082rsu3vc57rjm4/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/cjv3xo3lo0082rsu3vc57rjm4/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" <i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/数据分析/" <i class="fa fa-tag"></i> 数据分析</a>
+          
+            <a href="/tags/Tensorflow/" <i class="fa fa-tag"></i> Tensorflow</a>
+          
+            <a href="/tags/学习笔记/" <i class="fa fa-tag"></i> 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cjv3xo2td0023rsu3dwn58tmh/" rel="next" title="新年新计划新起航">
+                <i class="fa fa-chevron-left"></i> 新年新计划新起航
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/cjv3xo2pi0001rsu3conek202/" rel="prev" title="2019年3月学习笔记">
+                2019年3月学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg"
+               alt="John Doe" />
+          </span></a>Chao</p>
+
+
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhc0101" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qJmcmp_akJ6ZmZHo2dmGy8fF" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              dalao&nbsp;
+              <i class="fa  fa-fw fa-globe"></i>
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://giracle.cn" title="DJG" target="_blank">DJG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://owencxc.github.io" title="CX" target="_blank">CX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.myzwl.win" title="ZWL" target="_blank">ZWL</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuliekun.me/" title="WLK" target="_blank">WLK</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Li-rr.github.io" title="LRR" target="_blank">LRR</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dh.xchcloud.cn" title="导航" target="_blank">导航</a>
+                </li>
+              
+            </ul>
++        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+          </div>
+         
+
+-        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-10-号"><span class="nav-number">1.</span> <span class="nav-text">2 月 10 号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#virtualenv"><span class="nav-number">1.1.</span> <span class="nav-text">virtualenv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jupyter"><span class="nav-number">1.2.</span> <span class="nav-text">Jupyter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看linux版本"><span class="nav-number">1.3.</span> <span class="nav-text">查看linux版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hosts"><span class="nav-number">1.4.</span> <span class="nav-text">Hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow"><span class="nav-number">1.5.</span> <span class="nav-text">tensorflow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-12-至-13-号"><span class="nav-number">2.</span> <span class="nav-text">2 月 12 至 13 号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化了一个python小工具"><span class="nav-number">2.1.</span> <span class="nav-text">优化了一个python小工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Python文本文件的输入输出操作学习"><span class="nav-number">2.1.1.</span> <span class="nav-text">Python文本文件的输入输出操作学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-12-至-14-号-Tnesorflow"><span class="nav-number">3.</span> <span class="nav-text">2 月 12 至 14 号 Tnesorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#张量"><span class="nav-number">3.1.</span> <span class="nav-text">张量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#张量有两个重要属性："><span class="nav-number">3.1.1.</span> <span class="nav-text">张量有两个重要属性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow-张量是什么？"><span class="nav-number">3.1.2.</span> <span class="nav-text">TensorFlow 张量是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几类比较特别的张量"><span class="nav-number">3.1.3.</span> <span class="nav-text">几类比较特别的张量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">3.2.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量（Variab1e）的主要作用"><span class="nav-number">3.2.1.</span> <span class="nav-text">变量（Variab1e）的主要作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量与张量有什么不同"><span class="nav-number">3.2.2.</span> <span class="nav-text">变量与张量有什么不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是阶"><span class="nav-number">3.2.3.</span> <span class="nav-text">什么是阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow-变量使用流程"><span class="nav-number">3.2.4.</span> <span class="nav-text">TensorFlow 变量使用流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部分函数"><span class="nav-number">3.2.5.</span> <span class="nav-text">部分函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">3.3.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据流图中的节点按照功能不同可以分为3种："><span class="nav-number">3.3.1.</span> <span class="nav-text">数据流图中的节点按照功能不同可以分为3种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow典型计算和控制操作"><span class="nav-number">3.3.2.</span> <span class="nav-text">TensorFlow典型计算和控制操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TensorFlow-占位符操作"><span class="nav-number">3.3.3.</span> <span class="nav-text">TensorFlow 占位符操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话"><span class="nav-number">3.4.</span> <span class="nav-text">会话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个会话的典型使用流程分为以下3步："><span class="nav-number">3.4.1.</span> <span class="nav-text">一个会话的典型使用流程分为以下3步：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话执行"><span class="nav-number">3.4.2.</span> <span class="nav-text">会话执行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取张量值的另外两种方法"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">获取张量值的另外两种方法:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话执行原理"><span class="nav-number">3.4.3.</span> <span class="nav-text">会话执行原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话执行步骤"><span class="nav-number">3.4.4.</span> <span class="nav-text">会话执行步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话本地执行"><span class="nav-number">3.4.5.</span> <span class="nav-text">会话本地执行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器（Optimizer）"><span class="nav-number">3.5.</span> <span class="nav-text">优化器（Optimizer）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一次典型的迭代优化应该分为以下3个步骤："><span class="nav-number">3.5.1.</span> <span class="nav-text">一次典型的迭代优化应该分为以下3个步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内置优化器"><span class="nav-number">3.5.2.</span> <span class="nav-text">内置优化器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">3.5.3.</span> <span class="nav-text">损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过拟合问题"><span class="nav-number">3.5.3.1.</span> <span class="nav-text">过拟合问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了降低过度训练可能造成的过拟合风险"><span class="nav-number">3.5.3.2.</span> <span class="nav-text">为了降低过度训练可能造成的过拟合风险</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化算法"><span class="nav-number">3.5.4.</span> <span class="nav-text">优化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通常采用迭代方式实现："><span class="nav-number">3.5.4.1.</span> <span class="nav-text">通常采用迭代方式实现：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-15-至17-号-Tensorflow"><span class="nav-number">4.</span> <span class="nav-text">2 月 15 至17 号 Tensorflow</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python基础"><span class="nav-number">4.1.</span> <span class="nav-text">python基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#列表"><span class="nav-number">4.1.1.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#元组"><span class="nav-number">4.1.2.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字典"><span class="nav-number">4.1.3.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合"><span class="nav-number">4.1.4.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NumPy"><span class="nav-number">4.1.5.</span> <span class="nav-text">NumPy</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ndarray-对象"><span class="nav-number">4.1.5.1.</span> <span class="nav-text">ndarray 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迷之结构数组"><span class="nav-number">4.1.5.2.</span> <span class="nav-text">迷之结构数组</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数解释"><span class="nav-number">4.1.5.2.1.</span> <span class="nav-text">函数解释</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ufunc-运算"><span class="nav-number">4.1.5.3.</span> <span class="nav-text">ufunc 运算</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数解释-1"><span class="nav-number">4.1.5.3.1.</span> <span class="nav-text">函数解释</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计函数"><span class="nav-number">4.1.5.4.</span> <span class="nav-text">统计函数</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数解释-2"><span class="nav-number">4.1.5.4.1.</span> <span class="nav-text">函数解释</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计最大值与最小值之差-ptp"><span class="nav-number">4.1.5.5.</span> <span class="nav-text">统计最大值与最小值之差 ptp()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数解释-3"><span class="nav-number">4.1.5.5.1.</span> <span class="nav-text">函数解释</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计数组的百分位数-percentile"><span class="nav-number">4.1.5.6.</span> <span class="nav-text">统计数组的百分位数 percentile()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数解释-4"><span class="nav-number">4.1.5.6.1.</span> <span class="nav-text">函数解释</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计数组中的中位数-median-、平均数-mean"><span class="nav-number">4.1.5.7.</span> <span class="nav-text">统计数组中的中位数 median()、平均数 mean()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数说明"><span class="nav-number">4.1.5.7.1.</span> <span class="nav-text">函数说明</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计数组中的加权平均值-average"><span class="nav-number">4.1.5.8.</span> <span class="nav-text">统计数组中的加权平均值 average()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数说明-1"><span class="nav-number">4.1.5.8.1.</span> <span class="nav-text">函数说明</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#统计数组中的标准差-std-、方差-var"><span class="nav-number">4.1.5.9.</span> <span class="nav-text">统计数组中的标准差 std()、方差 var()</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数说明-2"><span class="nav-number">4.1.5.9.1.</span> <span class="nav-text">函数说明</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NumPy-排序"><span class="nav-number">4.1.5.10.</span> <span class="nav-text">NumPy 排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#函数说明-3"><span class="nav-number">4.1.5.10.1.</span> <span class="nav-text">函数说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pandas"><span class="nav-number">4.1.6.</span> <span class="nav-text">Pandas</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据结构：Series-和-DataFrame"><span class="nav-number">4.1.6.1.</span> <span class="nav-text">数据结构：Series 和 DataFrame</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DataFrame-类型数据结构类似数据库表"><span class="nav-number">4.1.6.2.</span> <span class="nav-text">DataFrame 类型数据结构类似数据库表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#DataFrame-类型数据结构类似数据库表。"><span class="nav-number">4.1.6.2.1.</span> <span class="nav-text">DataFrame 类型数据结构类似数据库表。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据导入和输出"><span class="nav-number">4.1.6.2.2.</span> <span class="nav-text">数据导入和输出</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据清洗"><span class="nav-number">4.1.6.2.3.</span> <span class="nav-text">数据清洗</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-apply-函数对数据进行清洗"><span class="nav-number">4.1.6.2.4.</span> <span class="nav-text">使用 apply 函数对数据进行清洗</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据统计"><span class="nav-number">4.1.6.2.5.</span> <span class="nav-text">数据统计</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据表合并"><span class="nav-number">4.1.6.2.6.</span> <span class="nav-text">数据表合并</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#用-SQL-方式打开-Pandas"><span class="nav-number">4.1.6.2.7.</span> <span class="nav-text">用 SQL 方式打开 Pandas</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pycharm-get-小技巧"><span class="nav-number">4.2.</span> <span class="nav-text">pycharm get 小技巧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习典型算法"><span class="nav-number">4.3.</span> <span class="nav-text">监督学习典型算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最小二乘法"><span class="nav-number">4.3.0.1.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#梯度下降"><span class="nav-number">4.3.0.2.</span> <span class="nav-text">梯度下降</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-小技巧"><span class="nav-number">4.4.</span> <span class="nav-text">java 小技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-18-号至-27-号"><span class="nav-number">5.</span> <span class="nav-text">2 月 18 号至 27 号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-月-28-号-python-数据可视化入门"><span class="nav-number">6.</span> <span class="nav-text">2 月 28 号 python 数据可视化入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">6.1.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图"><span class="nav-number">6.2.</span> <span class="nav-text">折线图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直方图"><span class="nav-number">6.3.</span> <span class="nav-text">直方图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条形图"><span class="nav-number">6.4.</span> <span class="nav-text">条形图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箱线图"><span class="nav-number">6.5.</span> <span class="nav-text">箱线图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饼图"><span class="nav-number">6.6.</span> <span class="nav-text">饼图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热力图"><span class="nav-number">6.7.</span> <span class="nav-text">热力图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#蜘蛛图"><span class="nav-number">6.8.</span> <span class="nav-text">蜘蛛图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二元变量分布"><span class="nav-number">6.9.</span> <span class="nav-text">二元变量分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成对关系"><span class="nav-number">6.10.</span> <span class="nav-text">成对关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3月计划"><span class="nav-number">7.</span> <span class="nav-text">3月计划</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chao</span>
+</div>
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共85.4k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">访客总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
