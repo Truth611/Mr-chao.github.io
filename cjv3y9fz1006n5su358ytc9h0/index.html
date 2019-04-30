@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-16x16-next.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="计划：每天 19：00 - 20：00 时间段内花费 30 min - 40 min 学习一个设计模式。 一个月完成。 学习内容： gitchat 白话设计模式 28 讲 什么是设计模式设计模式（Design Pattern）是一套被反复使用、多数人知晓的、无数工程师实践的代码设计经验的总结，它是面向对象思想的高度提炼和模板化，使用设计模式是为了让代码具有更高的可重用性，更好的灵活性和可拓展性，更">
+<meta name="keywords" content="python,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式学习计划">
+<meta property="og:url" content="http://xchcloud.cn/cjv3y9fz1006n5su358ytc9h0/index.html">
+<meta property="og:site_name" content="超哥记录日记">
+<meta property="og:description" content="计划：每天 19：00 - 20：00 时间段内花费 30 min - 40 min 学习一个设计模式。 一个月完成。 学习内容： gitchat 白话设计模式 28 讲 什么是设计模式设计模式（Design Pattern）是一套被反复使用、多数人知晓的、无数工程师实践的代码设计经验的总结，它是面向对象思想的高度提炼和模板化，使用设计模式是为了让代码具有更高的可重用性，更好的灵活性和可拓展性，更">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-14T11:38:29.715Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式学习计划">
+<meta name="twitter:description" content="计划：每天 19：00 - 20：00 时间段内花费 30 min - 40 min 学习一个设计模式。 一个月完成。 学习内容： gitchat 白话设计模式 28 讲 什么是设计模式设计模式（Design Pattern）是一套被反复使用、多数人知晓的、无数工程师实践的代码设计经验的总结，它是面向对象思想的高度提炼和模板化，使用设计模式是为了让代码具有更高的可重用性，更好的灵活性和可拓展性，更">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xchcloud.cn/cjv3y9fz1006n5su358ytc9h0/"/>
+
+
+
+
+
+  <title>设计模式学习计划 | 超哥记录日记</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b8d23512908ca3b4b175b2620a75740f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">超哥记录日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">生命有息、学无止境、折腾不止</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xchcloud.cn/cjv3y9fz1006n5su358ytc9h0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="超哥记录日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">设计模式学习计划</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T15:24:12+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+ 
+
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">访问数</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,453
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="计划："><a href="#计划：" class="headerlink" title="计划："></a>计划：</h2><p>每天 19：00 - 20：00 时间段内花费 30 min - 40 min 学习一个设计模式。</p>
+<p>一个月完成。</p>
+<p>学习内容：</p>
+<p><a href="https://gitbook.cn/gitchat/column/5b26040ac81ac568fcf64ea3" target="_blank" rel="noopener">gitchat 白话设计模式 28 讲</a></p>
+<h2 id="什么是设计模式"><a href="#什么是设计模式" class="headerlink" title="什么是设计模式"></a>什么是设计模式</h2><p>设计模式（Design Pattern）是一套被反复使用、多数人知晓的、无数工程师实践的代码设计经验的总结，它是面向对象思想的高度提炼和模板化，使用设计模式是为了让代码具有更高的可重用性，更好的灵活性和可拓展性，更易被人阅读和理解。</p>
+<h2 id="学习设计模式的先行条件"><a href="#学习设计模式的先行条件" class="headerlink" title="学习设计模式的先行条件"></a>学习设计模式的先行条件</h2><p>熟悉一门面向对象语言、学会阅读 UML 图</p>
+<p><a href="http://www.uml.org.cn/oobject/201210081.asp" target="_blank" rel="noopener">UML 类图关系大全</a><br><a href="http://www.cnblogs.com/olvo/archive/2012/05/03/2481014.html" target="_blank" rel="noopener">UML 类图关系（泛化 、继承、实现、依赖、关联、聚合、组合）</a></p>
+<h2 id="监听模式-观察者模式"><a href="#监听模式-观察者模式" class="headerlink" title="监听模式/观察者模式"></a>监听模式/观察者模式</h2><p>观察者模式是对象的行为模式，又叫发布 - 订阅（Publish/Subscribe）模式、模型 - 视图（Model/View）模式、源 - 监听器（Source/Listener）模式或从属者（Dependents）模式。当你看这些模式的时候，不要觉得陌生，它们就是观察者模式。</p>
+<p>观察者模式一般是一种一对多的关系，可以有任意个（一个或多个）观察者对象同时监听某一个对象。监听的对象叫观察者（后面提到监听者，其实就指观察者，两者是等价的），被监听的对象叫被观察者（Observable，也叫主题 Subject）。被观察者对象在状态或内容发生变化时，会通知所有观察者对象，使它们能够做出相应的变化（如自动更新自己的信息）。</p>
+<h2 id="模型抽象"><a href="#模型抽象" class="headerlink" title="模型抽象"></a>模型抽象</h2><h3 id="思考类图设计"><a href="#思考类图设计" class="headerlink" title="思考类图设计"></a>思考类图设计</h3><h2 id="模型说明"><a href="#模型说明" class="headerlink" title="模型说明"></a>模型说明</h2><h3 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h3><p>在设计观察者模式的程序时要注意以下几点：</p>
+<p>要明确谁是观察者谁是被观察者，只要明白谁是关注对象，问题也就明白了。一般观察者与被观察者之间是多对一的关系，一个被观察对象可以有多个监听对象 (观察者)。如一个编辑框，有鼠标点击的监听者，也有键盘的监听者，还有内容改变的监听者。</p>
+<p>Observable 在发送广播通知的时候，无须指定具体的 Observer，Observer 可以自己决定是否要订阅 Subject 的通知。</p>
+<p>被观察者至少需要有三个方法：添加监听者、移除监听者、通知 Observer 的方法；观察者至少要有一个方法：更新方法，更新当前的内容，作出相应的处理。</p>
+<p>添加监听者、移除监听者在不同的模型称谓中可能会有不同命名，如观察者模型中一般，addObserver，removeObserver；在源 - 监听器（Source/Listener）模型中一般是 attach/detach，应用在桌面编程的窗口中，还可能是 attachWindow/detachWindow，或 Register/UnRegister。不要被名称迷糊了，不管他们是什么名称，其实功能都是一样的，就是添加 / 删除观察者。</p>
+<h3 id="推模型和拉模型"><a href="#推模型和拉模型" class="headerlink" title="推模型和拉模型"></a>推模型和拉模型</h3><p>观察者模式根据其侧重的功能还可以分为推模型和拉模型。</p>
+<p>推模型：</p>
+<p>被观察者对象向观察者推送主题的详细信息，不管观察者是否需要，推送的信息通常是主题对象的全部或部分数据。一般这种模型的实现中，会把被观察者对象中的全部或部分信息通过 update 的参数传递给观察者 [update (Object obj) ，通过 obj 参数传递]。</p>
+<p>拉模型：</p>
+<p>被观察者在通知观察者的时候，只传递少量信息。如果观察者需要更具体的信息，由观察者主动到被观察者对象中获取，相当于是观察者从被观察者对象中拉数据。一般这种模型的实现中，会把被观察者对象自身通过 update 方法传递给观察者 [update (Observable observable)，通过 observable 参数传递 ]，这样在观察者需要获取数据的时候，就可以通过这个引用来获取了。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、对一个对象状态或数据的更新需要其他对象同步更新，或者一个对象的更新需要依赖另一个对象的更新；</p>
+<p>2、对象仅需要将自己的更新通知给其他对象而不需要知道其他对象的细节，如消息推送。</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h3 id="模型抽象-1"><a href="#模型抽象-1" class="headerlink" title="模型抽象"></a>模型抽象</h3><h4 id="思考类图设计-1"><a href="#思考类图设计-1" class="headerlink" title="思考类图设计"></a>思考类图设计</h4><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>接口转换，将原有的接口（或方法）转换成另一种接口；<br>用新的接口包装一个已有的类；<br>匹配一个老的组件到一个新的接口。</p>
+<h3 id="设计要点-1"><a href="#设计要点-1" class="headerlink" title="设计要点"></a>设计要点</h3><h4 id="思考设计类图"><a href="#思考设计类图" class="headerlink" title="思考设计类图"></a>思考设计类图</h4><p>适配器模式中主要三个角色，在设计适配器模式时要找到并区分这些角色：</p>
+<p>目标（Target）： 即你期望的目标接口，要转换成的接口。<br>源对象（Adaptee）： 即要被转换的角色，要把谁转换成目标角色。<br>适配器（Adapter）： 适配器模式的核心角色，负责把源对象转换和包装成目标对象。</p>
+<h3 id="模型说明-1"><a href="#模型说明-1" class="headerlink" title="模型说明"></a>模型说明</h3><h4 id="设计要点-2"><a href="#设计要点-2" class="headerlink" title="设计要点"></a>设计要点</h4><p>适配器模式中主要三个角色，在设计适配器模式时要找到并区分这些角色：</p>
+<ul>
+<li><p>目标（Target）：<br>即你期望的目标接口，要转换成的接口。</p>
+</li>
+<li><p>源对象（Adaptee）：<br>即要被转换的角色，要把谁转换成目标角色。</p>
+</li>
+<li><p>适配器（Adapter）：<br>适配器模式的核心角色，负责把源对象转换和包装成目标对象</p>
+</li>
+</ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>适配器模式的优点</li>
+</ul>
+<p>可以让两个没有关联的类一起运行，起着中间转换的作用。<br>提高了类的复用。<br>灵活性好，不会破坏原有的系统。</p>
+<ul>
+<li>适配器模式的缺点</li>
+</ul>
+<p>如果原有系统没有设计好（如 Target 不是抽象类或接口，而一个实体类），适配器模式将很难实现。<br>过多地使用适配器，容易使代码结构混乱，如明明看到调用的是 A 接口，内部调用的却是 B 接口的实现。</p>
+<h3 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、系统需要使用现有的类，而这些类的接口不符合现有系统的要求。</p>
+<p>2、对已有的系统拓展新功能时，尤其适用于在设计良好的系统框架下增加接入第三方的接口或第三方的 SDK 时。</p>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h3 id="模型抽象-2"><a href="#模型抽象-2" class="headerlink" title="模型抽象"></a>模型抽象</h3><h4 id="思考代码框架与类图"><a href="#思考代码框架与类图" class="headerlink" title="思考代码框架与类图"></a>思考代码框架与类图</h4><h3 id="模型说明-2"><a href="#模型说明-2" class="headerlink" title="模型说明"></a>模型说明</h3><p>1、在状态模式实现的时候，实现的场景状态有时候会非常复杂。决定状态变化的因素也会非常多，这个时候我们可以把决定状态变化的属性单独抽象成一个类 StateInfo，这样判断状态属性是否符合当前的状态 isMatch 时就可以传入更多的信息。</p>
+<p>2、每一种状态应当只有唯一的一个实例。</p>
+<h3 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、一个对象的行为取决于它的状态，并且它在运行时可能经常改变它的状态从而改变它的行为。</p>
+<p>2、一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态，且每一个分支的业务逻辑非常复杂时，我们可以使用状态模式来拆分他不同分支逻辑，使程序有更好的可读性可维护性。</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h3 id="模型抽象-3"><a href="#模型抽象-3" class="headerlink" title="模型抽象"></a>模型抽象</h3><h4 id="代码框架"><a href="#代码框架" class="headerlink" title="代码框架"></a>代码框架</h4><p>1.重写new和init方法<br>2.自定义metaclass的方法<br>3.装饰器的方法</p>
+<h4 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h4><h4 id="基于框架的实现"><a href="#基于框架的实现" class="headerlink" title="基于框架的实现"></a>基于框架的实现</h4><h3 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a>应用场景</h3><p>1、你希望这个类只有一个且只能有一个实例；</p>
+<p>2、项目中的一些全局管理类（Manager）可以用单例来实现。</p>
+<h2 id="职责模式"><a href="#职责模式" class="headerlink" title="职责模式"></a>职责模式</h2><h3 id="模型抽象-4"><a href="#模型抽象-4" class="headerlink" title="模型抽象"></a>模型抽象</h3><h4 id="代码框架-1"><a href="#代码框架-1" class="headerlink" title="代码框架"></a>代码框架</h4><h4 id="类图-1"><a href="#类图-1" class="headerlink" title="类图"></a>类图</h4><h4 id="基于框架的实现-1"><a href="#基于框架的实现-1" class="headerlink" title="基于框架的实现"></a>基于框架的实现</h4><h3 id="模型说明-3"><a href="#模型说明-3" class="headerlink" title="模型说明"></a>模型说明</h3><h4 id="设计要点-3"><a href="#设计要点-3" class="headerlink" title="设计要点"></a>设计要点</h4><p>在设计职责模式的程序时要注意以下几点：</p>
+<p>请求者与请求内容：谁要发送请求？发送请求的对象称为请求者。请求的内容通过发送请求时的参数进行传递。</p>
+<p>有哪些责任人：责任人是构成责任链的关键要素。请求的流动方向是链条中的线，而责任人则是链条上的结点，线和结点才构成了一条链条。</p>
+<p>对责任人进行抽象：真实世界中的责任人会多种多样，纷繁复杂，会有不同的职责和功能；但他们也有一个共同的特征——都可以处理请求。所以需要对责任人进行抽象，使他们具有责任的可传递性。</p>
+<p>责任人可自由组合：责任链上的责任人可以根据业务的具体逻辑进行自由的组合和排序。</p>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>优点：</li>
+</ul>
+<p>降低耦合度。它将请求的发送者和接受者解耦。<br>简化了对象。使得对象不需要知道链的结构。<br>增强给对象指派职责的灵活性。通过改变链内的成员或者调动它们的次序，允许动态地新增或者删除责任人。<br>增加新的处理类很方便。</p>
+<ul>
+<li>缺点：</li>
+</ul>
+<p>不能保证请求一定被接收。<br>系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。</p>
+<h3 id="应用场景-4"><a href="#应用场景-4" class="headerlink" title="应用场景"></a>应用场景</h3><p>有多个对象可以处理同一个请求，具体哪个对象处理该请求由运行时刻自动确定。<br>请求的处理具有明显的一层层传递关系。<br>请求的处理流程和顺序需要程序运行时动态确定。</p>
+
+      
+    </div>
+    
+    
+    
+
+      <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/cjv3y9fz1006n5su358ytc9h0/">设计模式学习计划</a></p>
+  <p><span>文章作者:</span></a>Chao</p>
+  <p><span>发布时间:</span>2019年04月01日 - 15:04</p>
+  <p><span>最后更新:</span>2019年04月14日 - 19:04</p>
+  <p><span>原始链接:</span><a href="/cjv3y9fz1006n5su358ytc9h0/" title="设计模式学习计划">http://xchcloud.cn/cjv3y9fz1006n5su358ytc9h0/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/cjv3y9fz1006n5su358ytc9h0/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" <i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/设计模式/" <i class="fa fa-tag"></i> 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cjv3y9fhz002l5su3jymanxb1/" rel="next" title="算法学习计划">
+                <i class="fa fa-chevron-left"></i> 算法学习计划
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/cjv3y9few000l5su3in9r80y0/" rel="prev" title="python-Django-HFNU_Small_Size网站设计">
+                python-Django-HFNU_Small_Size网站设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg"
+               alt="John Doe" />
+          </span></a>Chao</p>
+
+
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhc0101" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qJmcmp_akJ6ZmZHo2dmGy8fF" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              dalao&nbsp;
+              <i class="fa  fa-fw fa-globe"></i>
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://giracle.cn" title="DJG" target="_blank">DJG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://owencxc.github.io" title="CX" target="_blank">CX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.myzwl.win" title="ZWL" target="_blank">ZWL</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuliekun.me/" title="WLK" target="_blank">WLK</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Li-rr.github.io" title="LRR" target="_blank">LRR</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dh.xchcloud.cn" title="导航" target="_blank">导航</a>
+                </li>
+              
+            </ul>
++        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+          </div>
+         
+
+-        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计划："><span class="nav-number">1.</span> <span class="nav-text">计划：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是设计模式"><span class="nav-number">2.</span> <span class="nav-text">什么是设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习设计模式的先行条件"><span class="nav-number">3.</span> <span class="nav-text">学习设计模式的先行条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听模式-观察者模式"><span class="nav-number">4.</span> <span class="nav-text">监听模式/观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型抽象"><span class="nav-number">5.</span> <span class="nav-text">模型抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思考类图设计"><span class="nav-number">5.1.</span> <span class="nav-text">思考类图设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型说明"><span class="nav-number">6.</span> <span class="nav-text">模型说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计要点"><span class="nav-number">6.1.</span> <span class="nav-text">设计要点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推模型和拉模型"><span class="nav-number">6.2.</span> <span class="nav-text">推模型和拉模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-number">6.3.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">7.</span> <span class="nav-text">适配器模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型抽象-1"><span class="nav-number">7.1.</span> <span class="nav-text">模型抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思考类图设计-1"><span class="nav-number">7.1.1.</span> <span class="nav-text">思考类图设计</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用："><span class="nav-number">7.2.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计要点-1"><span class="nav-number">7.3.</span> <span class="nav-text">设计要点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思考设计类图"><span class="nav-number">7.3.1.</span> <span class="nav-text">思考设计类图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型说明-1"><span class="nav-number">7.4.</span> <span class="nav-text">模型说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设计要点-2"><span class="nav-number">7.4.1.</span> <span class="nav-text">设计要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点"><span class="nav-number">7.4.2.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-1"><span class="nav-number">7.5.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">8.</span> <span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型抽象-2"><span class="nav-number">8.1.</span> <span class="nav-text">模型抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思考代码框架与类图"><span class="nav-number">8.1.1.</span> <span class="nav-text">思考代码框架与类图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型说明-2"><span class="nav-number">8.2.</span> <span class="nav-text">模型说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-2"><span class="nav-number">8.3.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">9.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型抽象-3"><span class="nav-number">9.1.</span> <span class="nav-text">模型抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码框架"><span class="nav-number">9.1.1.</span> <span class="nav-text">代码框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类图"><span class="nav-number">9.1.2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于框架的实现"><span class="nav-number">9.1.3.</span> <span class="nav-text">基于框架的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-3"><span class="nav-number">9.2.</span> <span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#职责模式"><span class="nav-number">10.</span> <span class="nav-text">职责模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型抽象-4"><span class="nav-number">10.1.</span> <span class="nav-text">模型抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码框架-1"><span class="nav-number">10.1.1.</span> <span class="nav-text">代码框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类图-1"><span class="nav-number">10.1.2.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于框架的实现-1"><span class="nav-number">10.1.3.</span> <span class="nav-text">基于框架的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型说明-3"><span class="nav-number">10.2.</span> <span class="nav-text">模型说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设计要点-3"><span class="nav-number">10.2.1.</span> <span class="nav-text">设计要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优缺点-1"><span class="nav-number">10.2.2.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景-4"><span class="nav-number">10.3.</span> <span class="nav-text">应用场景</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chao</span>
+</div>
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共85.4k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">访客总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+</body>
+</html>
