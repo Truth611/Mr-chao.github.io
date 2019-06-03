@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Wireshark," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-16x16-next.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="基于 ABNF 语义定义的HTTP消息格式维基百科 chrome Network结构Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。 Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互 Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScr">
+<meta name="keywords" content="Wireshark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web协议详解与抓包实战">
+<meta property="og:url" content="http://xchcloud.cn/web协议详解与抓包实战/index.html">
+<meta property="og:site_name" content="超哥记录日记">
+<meta property="og:description" content="基于 ABNF 语义定义的HTTP消息格式维基百科 chrome Network结构Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。 Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互 Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tuchuang.xchcloud.cn/789055-20170506162942976-381307940.jpg">
+<meta property="og:updated_time" content="2019-05-25T10:12:47.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web协议详解与抓包实战">
+<meta name="twitter:description" content="基于 ABNF 语义定义的HTTP消息格式维基百科 chrome Network结构Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。 Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互 Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScr">
+<meta name="twitter:image" content="http://tuchuang.xchcloud.cn/789055-20170506162942976-381307940.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xchcloud.cn/web协议详解与抓包实战/"/>
+
+
+
+
+
+  <title>web协议详解与抓包实战 | 超哥记录日记</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b8d23512908ca3b4b175b2620a75740f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">超哥记录日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">生命有息、学无止境、折腾不止</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xchcloud.cn/web协议详解与抓包实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="超哥记录日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">web协议详解与抓包实战</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T08:44:41+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+ 
+
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">访问数</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  4,769
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基于-ABNF-语义定义的HTTP消息格式"><a href="#基于-ABNF-语义定义的HTTP消息格式" class="headerlink" title="基于 ABNF 语义定义的HTTP消息格式"></a>基于 ABNF 语义定义的HTTP消息格式</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%89%A9%E5%85%85%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F" target="_blank" rel="noopener">维基百科</a></p>
+<h3 id="chrome-Network"><a href="#chrome-Network" class="headerlink" title="chrome Network"></a>chrome Network</h3><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。</p>
+<p>Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互</p>
+<p>Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScript ，或者通过Workspaces（工作区）连接本地文件来使用开发者工具的实时编辑器</p>
+<p>Network（网络面板）：从发起网页页面请求Request后得到的各个请求资源信息（包括状态、资源类型、大小、所用时间等），并可以根据这个进行网络性能优化</p>
+<p>Performance（性能面板）：使用时间轴面板，可以通过记录和查看网站生命周期内发生的各种事件来提高页面运行时的性能</p>
+<p>Memory（内存面板）：分析web应用或者页面的执行时间以及内存使用情况</p>
+<p>Application（应用面板）：记录网站加载的所有资源信息，包括存储数据（Local Storage、Session Storage、-IndexedDB、Web SQL、Cookies）、缓存数据、字体、图片、脚本、样式表等</p>
+<p>Security（安全面板）：使用安全面板调试混合内容问题，证书问题等等</p>
+<p>Audits（审核面板）：对当前网页进行网络利用情况、网页性能方面的诊断，并给出一些优化建议。比如列出所有没有用到的CSS文件等</p>
+<h4 id="Filters（过滤器）"><a href="#Filters（过滤器）" class="headerlink" title="Filters（过滤器）"></a>Filters（过滤器）</h4><p>domain：仅显示来自指定域的资源。您可以使用通配符（）来包括多个域。例如，.com显示以.com结尾的所有域名中的资源。 DevTools会在自动完成下拉菜单中自动填充它遇到的所有域。</p>
+<p>has-response-header：显示包含指定HTTP响应头信息的资源。 DevTools会在自动完成下拉菜单中自动填充它遇到的所有响应头。</p>
+<p>is：通过is:running找出WebSocket请求。</p>
+<p>larger-than(大于)：显示大于指定大小的资源（以字节为单位）。设置值1000等效于设置值1k。</p>
+<p>method(方法)：显示通过指定的HTTP方法类型检索的资源。DevTools使用它遇到的所有HTTP方法填充下拉列表。</p>
+<p>mime-type（mime类型：显示指定MIME类型的资源。 DevTools使用它遇到的所有MIME类型填充下拉列表。</p>
+<p>mixed-content（混合内容：显示所有混合内容资源（mixed-content:all）或仅显示当前显示的内容（mixed-content:displayed）。</p>
+<p>Scheme（协议）：显示通过不受保护的HTTP（scheme:http）或受保护的HTTPS（scheme:https）检索的资源。</p>
+<p>set-cookie-domain（cookie域）：显示具有Set-Cookie头,并且其Domain属性与指定值匹配的资源。DevTools会在自动完成下拉菜单中自动填充它遇到的所有Cookie域。</p>
+<p>set-cookie-name（cookie名）：显示具有Set-Cookie头,并且名称与指定值匹配的资源。DevTools会在自动完成下拉菜单中自动填充它遇到的所有Cookie名。</p>
+<p>set-cookie-value（cookie值）：显示具有Set-Cookie头,并且值与指定值匹配的资源。DevTools会在自动完成下拉菜单中自动填充它遇到的所有cookie值。</p>
+<p>status-code（状态码）：仅显示其HTTP状态代码与指定代码匹配的资源。DevTools会在自动完成下拉菜单中自动填充它遇到的所有状态码。</p>
+<h4 id="Controls（控件）"><a href="#Controls（控件）" class="headerlink" title="Controls（控件）"></a>Controls（控件）</h4><p>使用这些选项可以控制 Network(网络)面板的外观和功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Preserve log：是网络日志记录,如果勾上,页面刷新后,日志也不会消失(这功能很有用,比如页面跳转后,你想看页面跳转前发出的请求有哪些,比如查看别人网站登录请求,登录成功返回什么,登录成功后又发起了些什么请求,重定向到什么地址)</span><br><span class="line"></span><br><span class="line">Disable cache：缓存开关</span><br><span class="line"></span><br><span class="line">Online：网络控制</span><br><span class="line"></span><br><span class="line">Group by frame：勾选了该选项后,会对网络请求按表单名称进行分组</span><br></pre></td></tr></table></figure>
+<h4 id="Overview（概览）"><a href="#Overview（概览）" class="headerlink" title="Overview（概览）"></a>Overview（概览）</h4><p>这个图表显示检索资源的时间轴。如果您看到多个垂直堆叠的栏，这意味着这些资源被同时检索。</p>
+<h4 id="Requests-Table（请求列表）"><a href="#Requests-Table（请求列表）" class="headerlink" title="Requests Table（请求列表）"></a>Requests Table（请求列表）</h4><p>此列表列出了检索的每个资源。默认情况下，此表按时间顺序排序，也就是最早的资源在顶部。单击资源名称可以获得更多信息。提示：右键单击列表的任何标题栏可以以添加或删除信息列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">捕获屏幕</span><br><span class="line">Controls 窗格包括的功能有网络日志录制、日志清理、捕获屏幕、过滤器，视图切换、保留日志开关、Cache开关、网络连接开关、网速阀值。</span><br><span class="line"></span><br><span class="line">以捕获屏幕为例，点击摄像机按钮（捕获屏幕），重新加载页面即可捕获屏幕。</span><br><span class="line"></span><br><span class="line">双击其中的截屏可以放大显示，在放大的图下方可以点击跳转到上一帧或者下一帧。</span><br><span class="line"></span><br><span class="line">单击则可以查看该帧被捕获时的网络请求信息，并且在Overview上会有一条黄色竖线以标记该帧被捕获的具体时间点。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Name 资源名称，点击名称可以查看资源的详情情况，包括Headers、Preview、Response、Cookies、Timing。</span><br><span class="line">Status HTTP状态码。</span><br><span class="line">Type 请求的资源MIME类型。</span><br><span class="line">Initiator 标记请求是由哪个对象或进程发起的（请求源）。</span><br><span class="line">Parser： 请求由Chrome的HTML解析器时发起的。</span><br><span class="line">Redirect：请求是由HTTP页面重定向发起的。</span><br><span class="line">Script：请求是由Script脚本发起的。</span><br><span class="line">Other：请求是由其他进程发起的，比如用户点击一个链接跳转到另一个页面或者在地址栏输入URL地址。</span><br><span class="line">Size 从服务器下载的文件和请求的资源大小。如果是从缓存中取得的资源则该列会显示(from cache)</span><br><span class="line">Time 请求或下载的时间，从发起Request到获取到Response所用的总时间。</span><br><span class="line">Timeline 显示所有网络请求的可视化瀑布流(时间状态轴)，点击时间轴，可以查看该请求的详细信息，点击列头则可以根据指定的字段可以排序。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Headers：与资源关联的 HTTP 标头。</span><br><span class="line"></span><br><span class="line">Preview：JSON、图像和文本资源的预览。</span><br><span class="line"></span><br><span class="line">Response：HTTP 响应数据（如果存在）。</span><br><span class="line"></span><br><span class="line">Timing：资源请求生命周期的精细分解。</span><br><span class="line"></span><br><span class="line">Headers（查看 HTTP 标头） </span><br><span class="line"></span><br><span class="line">点击 Headers 可以显示该资源的标头。 </span><br><span class="line"></span><br><span class="line">Headers 标签可以显示资源的请求网址、HTTP 方法以及响应状态代码。 此外，该标签还会列出 HTTP 响应和请求标头、它们的值以及任何查询字符串参数</span><br><span class="line"></span><br><span class="line">····可以自定义添加列····</span><br></pre></td></tr></table></figure>
+<h4 id="查看-Cookie"><a href="#查看-Cookie" class="headerlink" title="查看 Cookie"></a>查看 Cookie</h4><p>点击 Cookies 标签可以查看在资源的 HTTP 请求和响应标头中传输的 Cookie 表。 只有传输 Cookie 时，此标签才可用。</p>
+<p>下面是 Cookie 表中每一列的说明：</p>
+<p>Name：Cookie 的名称。</p>
+<p>Value：Cookie 的值。</p>
+<p>Domain：Cookie 所属的域。</p>
+<p>Path：Cookie 来源的网址路径。</p>
+<p>Expires / Max-Age：Cookie 的 expires 或 max-age 属性的值。</p>
+<p>Size：Cookie 的大小（以字节为单位）。</p>
+<p>HTTP：指示 Cookie 应仅由浏览器在 HTTP 请求中设置，而无法通过 JavaScript 访问。</p>
+<p>Secure：如果存在此属性，则指示 Cookie 应仅通过安全连接传输。</p>
+<p>复制、保存和清除网络信息</p>
+<h5 id="Copy-Response（复制响应）"><a href="#Copy-Response（复制响应）" class="headerlink" title="Copy Response（复制响应）"></a>Copy Response（复制响应）</h5><p>将所选资源的HTTP响应复制到系统剪贴板。</p>
+<h5 id="Copy-as-cURL（复制为cURL）"><a href="#Copy-as-cURL（复制为cURL）" class="headerlink" title="Copy as cURL（复制为cURL）"></a>Copy as cURL（复制为cURL）</h5><p>将所选资源的网络请求作为cURL命令字符串复制到系统剪贴板。 请参阅将复制请求为cURL命令。</p>
+<p>curl命令是一个利用URL规则在命令行下工作的文件传输工具。它支持文件的上传和下载，所以是综合传输工具，但按传统，习惯称curl为下载工具。作为一款强力工具，curl支持包括HTTP、HTTPS、ftp等众多协议，还支持POST、cookies、认证、从指定偏移处下载部分文件、用户代理字符串、限速、文件大小、进度条等特征。做网页处理流程和数据检索自动化，curl可以祝一臂之力。l</p>
+<h5 id="Copy-All-as-HAR（全部复制为HAR）"><a href="#Copy-All-as-HAR（全部复制为HAR）" class="headerlink" title="Copy All as HAR（全部复制为HAR）"></a>Copy All as HAR（全部复制为HAR）</h5><p>将所有资源复制到系统剪贴板作为HAR数据。 HAR文件包含描述网络“瀑布”的JSON数据结构。一些第三方工具可以使用HAR文件中的数据重建网络瀑布。有关详细信息，请参阅Web性能强大工具：HTTP归档（HAR）。</p>
+<h5 id="Save-as-HAR-with-Content（另存为带内容的HAR）"><a href="#Save-as-HAR-with-Content（另存为带内容的HAR）" class="headerlink" title="Save as HAR with Content（另存为带内容的HAR）"></a>Save as HAR with Content（另存为带内容的HAR）</h5><p>将所有网络数据与每个页面资源一起保存到HAR文件中。 二进制资源（包括图像）被编码为Base64编码文本。</p>
+<h5 id="Clear-Browser-Cache（清除浏览器缓存）"><a href="#Clear-Browser-Cache（清除浏览器缓存）" class="headerlink" title="Clear Browser Cache（清除浏览器缓存）"></a>Clear Browser Cache（清除浏览器缓存）</h5><p>清除浏览器高速缓存。提示：您也可以从Network Conditions(网络条件)抽屉式窗格中启用或禁用浏览器缓存。</p>
+<h5 id="Clear-Browser-Cookies（清除浏览器Cookie）"><a href="#Clear-Browser-Cookies（清除浏览器Cookie）" class="headerlink" title="Clear Browser Cookies（清除浏览器Cookie）"></a>Clear Browser Cookies（清除浏览器Cookie）</h5><p>清除浏览器的Cookie。</p>
+<h5 id="Open-in-Sources-Panel（在源文件面板中打开）"><a href="#Open-in-Sources-Panel（在源文件面板中打开）" class="headerlink" title="Open in Sources Panel（在源文件面板中打开）"></a>Open in Sources Panel（在源文件面板中打开）</h5><p>在Sources(源文件)面板中打开选定的资源。</p>
+<h5 id="Open-Link-in-New-Tab（在新标签页中打开链接）"><a href="#Open-Link-in-New-Tab（在新标签页中打开链接）" class="headerlink" title="Open Link in New Tab（在新标签页中打开链接）"></a>Open Link in New Tab（在新标签页中打开链接）</h5><p>在新标签页中打开所选资源。您还可以在Requests Table(请求列表)中双击资源名称。</p>
+<h5 id="Copy-Link-Address（复制链接地址）"><a href="#Copy-Link-Address（复制链接地址）" class="headerlink" title="Copy Link Address（复制链接地址）"></a>Copy Link Address（复制链接地址）</h5><p>将资源URL复制到系统剪贴板。</p>
+<h5 id="Save（保存）"><a href="#Save（保存）" class="headerlink" title="Save（保存）"></a>Save（保存）</h5><p>保存所选的文本资源。仅显示在文本资源上。</p>
+<h5 id="Replay-XHR（重新发送XHR）"><a href="#Replay-XHR（重新发送XHR）" class="headerlink" title="Replay XHR（重新发送XHR）"></a>Replay XHR（重新发送XHR）</h5><p>重新发送所选的XMLHTTPRequest。仅显示在XHR资源上。</p>
+<p>查看资源发起者和依赖关系</p>
+<p>按住Shift并移动鼠标到资源上可查看它的发起者和依赖关系。这部分是你鼠标悬停的资源的target(目标)引用。</p>
+<p>从target(目标)往上查找，第一个颜色编码为绿色的资源是target(目标)的发起者。如果存在第二个颜色编码为绿色资源，那么这个是发起者的发起者。从target(目标)向下查找，任何颜色编码为红色的资源都是target的依赖。</p>
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><h3 id="响应码"><a href="#响应码" class="headerlink" title="响应码"></a>响应码</h3><p><a href="http://tool.oschina.net/commons?type=5" target="_blank" rel="noopener">参考</a></p>
+<h3 id="URI与URL"><a href="#URI与URL" class="headerlink" title="URI与URL"></a>URI与URL</h3><p>URI：统一资源标示符，只是标识资源在哪里，这意味着存在多个URI可以指向该资源（例如：绝对与相对）【URI包含URL】</p>
+<p>URI一般由三部分组成：<br>　　1. 访问资源的命名机制。<br>　　2. 存放资源的主机名。<br>　　3. 资源自身的名称，由路径表示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">语法：[scheme:] scheme-specific-part </span><br><span class="line"></span><br><span class="line">　　URI以scheme和冒号开头。Scheme用大写/小写字母开头，后面为空或者跟着更多的大写/小写字母、数字、加号、减号和点号。冒号把 scheme与scheme-specific-part分开了，并且scheme-specific-part的语法和语义（意思）由URI的名字空间决定。如下面的例子：</span><br><span class="line">　　http://www.cnn.com，其中http是scheme，//www.cnn.com是 scheme-specific-part，并且它的scheme与scheme-specific-part被冒号分开了。</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">绝对与相对：</span><br><span class="line"></span><br><span class="line">　　绝对的URI指以scheme（后面跟着冒号）开头的URI。(例如：mailto:jeff@javajeff.com、news:comp.lang.java.help和xyz: //whatever)；绝对的URI看作是以某种方式引用某种资源，而这种方式对标识符出现的环境没有依赖。</span><br><span class="line"></span><br><span class="line">　　相对的URI不是以scheme（后面跟着冒号）开始的URI。(例如：articles/articles.html、img/aa.jpg)你可以把相对的URI看作是以某种方式引用某种资源，而这种方式依赖于标识符出现的环境。（即你在html中引用图片：./img/aa.jpg，那么它依赖的就是http）</span><br></pre></td></tr></table></figure>
+<p>URL：统一资源定位符，是URI的子集；它除了标识资源的位置，还提供一种定位该资源的主要访问机制(如其网络“位置”)。【即提供具体方式找到该资源（位置+方式）】</p>
+<p>URL的格式由下列三部分组成：<br>　　1. 第一部分，是协议或称为服务方式 （指定低层使用的协议，例如：http, https, ftp)；<br>　　2. 第二部分，是存有该资源的主机IP地址（有时也包括端口号）；<br>　　3. 第三部分，是主机资源的具体地址。如目录和文件名等。 </p>
+<p>　　第一部分和第二部分之间用”：//“符号隔开，第二部分和第三部分用”/“符号隔开。第一部分和第二部分是不可缺少的，第三部分有时可以省略。 </p>
+<h3 id="三次握手四次挥手"><a href="#三次握手四次挥手" class="headerlink" title="三次握手四次挥手"></a>三次握手四次挥手</h3><p><img src="http://tuchuang.xchcloud.cn/789055-20170506162942976-381307940.jpg" alt=""></p>
+<p>上图中主要分为三部分：建立连接、传输数据、断开连接。</p>
+<h4 id="建立连接："><a href="#建立连接：" class="headerlink" title="建立连接："></a>建立连接：</h4><p>　　三次握手即可建立TCP连接</p>
+<p>　　1、第一次握手：客户端发送syn包(seq=x)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<p>　　2、第二次握手：服务器收到syn包，必须确认客户的SYN(ack=x+1)，同时自己也发送一个SYN包(seq=y)，即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>　　3、第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=y+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。</p>
+<p>　　握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据。理想状态下，TCP连接一旦建立，在通信双方中的任何一方主动关闭连接之前，TCP 连接都将被一直保持下去。</p>
+<p>　　为什么需要三次握手呢？</p>
+<p>　　相互确认！</p>
+<h4 id="数据传输："><a href="#数据传输：" class="headerlink" title="数据传输："></a>数据传输：</h4><p>　　建立好连接后，开始传输数据。TCP数据传输牵涉到的概念很多：超时重传、快速重传、流量控制、拥塞控制等等。（这一切都是为了提供可靠的字节流服务）</p>
+<h4 id="断开连接："><a href="#断开连接：" class="headerlink" title="断开连接："></a>断开连接：</h4><p>　　四次握手即可断开TCP连接</p>
+<p>　　1、第一次握手：主动关闭方发送一个FIN，用来关闭主动方到被动关闭方的数据传送，也就是主动关闭方告诉被动关闭方：我已经不会再给你发数据了(当然，在fin包之前发送出去的数据，如果没有收到对应的ack确认报文，主动关闭方依然会重发这些数据)，但此时主动关闭方还可以接受数据。</p>
+<p>　　2、第二次握手：被动关闭方收到FIN包后，发送一个ACK给对方，确认序号为收到序号+1(与SYN相同，一个FIN占用一个序号)。</p>
+<p>　　3、第三次握手：被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会再给你发数据了。</p>
+<p>　　4、第四次握手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">白话文：</span><br><span class="line"></span><br><span class="line">　　1、第一次握手，浏览器对服务器说：“煞笔，我不再给你发数据啦，但可以接受数据。”</span><br><span class="line"></span><br><span class="line">　　2、第二次握手，服务器对浏览器说：“骚货，我知道啦！”</span><br><span class="line"></span><br><span class="line">　　3、第三次握手，服务器对浏览器说：“骚货，我也不再给你发数据啦！”</span><br><span class="line"></span><br><span class="line">　　4、第四次握手，浏览器对服务器说：“煞笔，我知道啦！”</span><br></pre></td></tr></table></figure></p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>HTTP协议永远都是客户端发起请求，服务器回送响应。这样就限制了使用HTTP协议，无法实现在客户端没有发起请求的时候，服务器将消息推送给客户端。、</p>
+<p>主要特点：</p>
+<p>　　1、支持客户/服务器模式。一旦建立了运输连接（这常常称为建立了会话），浏览器端就向万维网服务器端发送HTTP请求，服务器收到请求后给出HTTP响应。<br>　　2、简单快速：客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。<br>　　3、灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记。<br>　　4、<strong>HTTP 0.9和1.0使用非持续连接</strong>：限制每次连接只处理一个请求，服务器处理完客户的请求，并收到客户的应答后，即断开连接。<br><strong>HTTP 1.1使用持续连接</strong>：不必为每个web对象创建一个新的连接，一个连接可以传送多个对象，采用这种方式可以节省传输时间。<br>　　5、无状态：<strong>HTTP协议是无状态协议</strong>。即每一个HTTP请求都是独立的。万维网服务器不保存过去的请求和过去的会话记录。这就是说，同一个用户再次访问同一个服务器时，只要服务器没有进行内容的更新，服务器的响应就给出和以前被访问时相同的响应。<strong><em>服务器不记录曾经访问过的用户，也不记录某个用户访问过多少次。</em></strong></p>
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><h4 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h4><p>　1、GET：向特定的资源发出请求</p>
+<p>　　2、POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</p>
+<p>　　3、PUT：向指定资源位置上传其最新内容。</p>
+<p>　　4、DELETE：请求服务器删除Request-URI所标识的资源。</p>
+<p>　　5、HEAD： 向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。该方法常用于测试超链接的有效性，是否可以访问，以及最近是否更新。</p>
+<p>　　6、TRACE：请求服务器会送收到的请求信息，主要用于测试或诊断。</p>
+<p>　　7、OPTIONS：请求查询服务器的性能，或者查询与资源相关的选项和需求</p>
+<p>　　8、CONNECT： HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。（即留为将来使用）</p>
+<p>　　【注意：请求方法区分大小写；所示请求方法应为大写】</p>
+<h4 id="非持久连接方式"><a href="#非持久连接方式" class="headerlink" title="非持久连接方式"></a>非持久连接方式</h4><h4 id="持久连接方式"><a href="#持久连接方式" class="headerlink" title="持久连接方式"></a>持久连接方式</h4><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/LibraThinker/p/5981346.html" target="_blank" rel="noopener">Chrome开发者工具详解(2)-Network面板</a><br><a href="https://zhuanlan.zhihu.com/p/32825491" target="_blank" rel="noopener">Google Chrome抓包分析详解</a><br><a href="https://segmentfault.com/a/1190000008407729?utm_source=tag-newest" target="_blank" rel="noopener">Chrome DevTools — Network</a><br><a href="https://www.cnblogs.com/phpstudy2015-6/p/6810130.html" target="_blank" rel="noopener">HTTP协议详解以及URL具体访问过程</a></p>
+
+      
+    </div>
+    
+    
+    
+
+      <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/web协议详解与抓包实战/">web协议详解与抓包实战</a></p>
+  <p><span>文章作者:</span></a>Chao</p>
+  <p><span>发布时间:</span>2019年05月23日 - 08:05</p>
+  <p><span>最后更新:</span>2019年05月25日 - 18:05</p>
+  <p><span>原始链接:</span><a href="/web协议详解与抓包实战/" title="web协议详解与抓包实战">http://xchcloud.cn/web协议详解与抓包实战/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/web协议详解与抓包实战/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Wireshark/" <i class="fa fa-tag"></i> Wireshark</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/《深度学习》读书笔记/" rel="next" title="《深度学习》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《深度学习》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Hadoop入门笔记/" rel="prev" title="Hadoop入门笔记">
+                Hadoop入门笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg"
+               alt="John Doe" />
+          </span></a>Chao</p>
+
+
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhc0101" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qJmcmp_akJ6ZmZHo2dmGy8fF" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              dalao&nbsp;
+              <i class="fa  fa-fw fa-globe"></i>
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://giracle.cn" title="DJG" target="_blank">DJG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://owencxc.github.io" title="CX" target="_blank">CX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.myzwl.win" title="ZWL" target="_blank">ZWL</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuliekun.me/" title="WLK" target="_blank">WLK</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Li-rr.github.io" title="LRR" target="_blank">LRR</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dh.xchcloud.cn" title="导航" target="_blank">导航</a>
+                </li>
+              
+            </ul>
++        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+          </div>
+         
+
+-        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-ABNF-语义定义的HTTP消息格式"><span class="nav-number">1.</span> <span class="nav-text">基于 ABNF 语义定义的HTTP消息格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chrome-Network"><span class="nav-number">1.1.</span> <span class="nav-text">chrome Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构"><span class="nav-number">1.2.</span> <span class="nav-text">结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Filters（过滤器）"><span class="nav-number">1.2.1.</span> <span class="nav-text">Filters（过滤器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Controls（控件）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Controls（控件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Overview（概览）"><span class="nav-number">1.2.3.</span> <span class="nav-text">Overview（概览）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Requests-Table（请求列表）"><span class="nav-number">1.2.4.</span> <span class="nav-text">Requests Table（请求列表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-Cookie"><span class="nav-number">1.2.5.</span> <span class="nav-text">查看 Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Copy-Response（复制响应）"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">Copy Response（复制响应）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copy-as-cURL（复制为cURL）"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">Copy as cURL（复制为cURL）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copy-All-as-HAR（全部复制为HAR）"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">Copy All as HAR（全部复制为HAR）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Save-as-HAR-with-Content（另存为带内容的HAR）"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">Save as HAR with Content（另存为带内容的HAR）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Clear-Browser-Cache（清除浏览器缓存）"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">Clear Browser Cache（清除浏览器缓存）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Clear-Browser-Cookies（清除浏览器Cookie）"><span class="nav-number">1.2.5.6.</span> <span class="nav-text">Clear Browser Cookies（清除浏览器Cookie）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Open-in-Sources-Panel（在源文件面板中打开）"><span class="nav-number">1.2.5.7.</span> <span class="nav-text">Open in Sources Panel（在源文件面板中打开）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Open-Link-in-New-Tab（在新标签页中打开链接）"><span class="nav-number">1.2.5.8.</span> <span class="nav-text">Open Link in New Tab（在新标签页中打开链接）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Copy-Link-Address（复制链接地址）"><span class="nav-number">1.2.5.9.</span> <span class="nav-text">Copy Link Address（复制链接地址）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Save（保存）"><span class="nav-number">1.2.5.10.</span> <span class="nav-text">Save（保存）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Replay-XHR（重新发送XHR）"><span class="nav-number">1.2.5.11.</span> <span class="nav-text">Replay XHR（重新发送XHR）</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议"><span class="nav-number">2.</span> <span class="nav-text">HTTP 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应码"><span class="nav-number">2.1.</span> <span class="nav-text">响应码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URI与URL"><span class="nav-number">2.2.</span> <span class="nav-text">URI与URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三次握手四次挥手"><span class="nav-number">2.3.</span> <span class="nav-text">三次握手四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立连接："><span class="nav-number">2.3.1.</span> <span class="nav-text">建立连接：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据传输："><span class="nav-number">2.3.2.</span> <span class="nav-text">数据传输：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断开连接："><span class="nav-number">2.3.3.</span> <span class="nav-text">断开连接：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">2.4.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求"><span class="nav-number">2.5.</span> <span class="nav-text">HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求方法"><span class="nav-number">2.5.1.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非持久连接方式"><span class="nav-number">2.5.2.</span> <span class="nav-text">非持久连接方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接方式"><span class="nav-number">2.5.3.</span> <span class="nav-text">持久连接方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chao</span>
+</div>
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共102.0k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">访客总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+</body>
+</html>
