@@ -81,7 +81,7 @@
 <meta property="og:site_name" content="超哥记录日记">
 <meta property="og:description" content="linux安装软件和卸载的几种方法一、rpm包安装方式步骤：1、找到相应的软件包，比如soft.version.rpm，下载到本机某个目录；  2、打开一个终端，su -成root用户；  3、cd soft.version.rpm所在的目录；  4、输入rpm -ivh soft.version.rpm 详细介绍： 安装：　　我只需简单的一句话，就可以说完。执行：　　rpm –ivh rpm的软">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-28T14:28:00.872Z">
+<meta property="og:updated_time" content="2019-06-04T15:20:23.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux经验汇总">
 <meta name="twitter:description" content="linux安装软件和卸载的几种方法一、rpm包安装方式步骤：1、找到相应的软件包，比如soft.version.rpm，下载到本机某个目录；  2、打开一个终端，su -成root用户；  3、cd soft.version.rpm所在的目录；  4、输入rpm -ivh soft.version.rpm 详细介绍： 安装：　　我只需简单的一句话，就可以说完。执行：　　rpm –ivh rpm的软">
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,306
+                  4,965
                 </span>
               
 
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  12
+                  20
                 </span>
               
             </div>
@@ -520,6 +520,38 @@ apt-cache pkgnames——打印软件包列表中所有软件包的名称
 <p>也可以直接到 /usr/share/applications目录，按照里面其它*.desktop文件的格 </p>
 <p>式生成一个自己的desktop文件即可。</p>
 <h3 id="PS：软件的安装"><a href="#PS：软件的安装" class="headerlink" title="PS：软件的安装"></a>PS：软件的安装</h3><p><code><pre><br>　　—- Linux下软件的安装主要有两种不同的形式。第一种安装文件名为filename.tar.gz。另一种安装文件名为 filename.i386.rpm。以第一种方式发行的软件多为以源码形式发送的。第二种方式则是直接以二进制形式发行的。i386即表示该软件是按 Inter 386指令集编译生成的。<br>　　—- 对于第一种，安装方法如下：<br>　　—- 首先，将安装文件拷贝至你的目录中。例如，如果你是以root身份登录上的，就将软件拷贝至/root中。<br>　　—- #cp filename.tar.gz /root<br>　　—- 由于该文件是被压缩并打包的，所以，应对其解压缩。命令为：<br>　　—- #tar xvzf filename.tar.gz<br>　　—- 执行该命令后，安装文件按路径，解压缩在当前目录下。用ls命令可以看到解压缩后的文件。通常在解压缩后产生的文件中，有名为”INSTALL”的文件。该文件为纯文本文件，详细讲述了该软件包的安装方法。<br>　　—- 对于多数需要编译的软件，其安装的方法大体相同。执行解压缩后产生的一个名为configure的可执行脚本程序。它是用于检查系统是否有编译时所需的库，以及库的版本是否满足编译的需要等安装所需要的系统信息。为随后的编译工作做准备。命令为：<br>　　—- #./configure<br>　　—- 如果检查过程中，发现有错误，configure将给予提示，并停止检查。你可以跟据提示对系统进行配置。再重新执行该程序。检查通过后，将生成用于编译 的MakeFile文件。此时，可以开始进行编译了。编译的过程视软件的规模和计算机的性能的不同，所耗费的时间也不同。命令为：<br>　　—- #make<br>　　—- 成功编译后，键入如下的命令开始安装：<br>　　—- #make install<br>　　—- 安装完毕，应清除编译过程中产生的临时文件和配置过程中产生的文件。键入如下命令：<br>　　#make clean<br>　　#make distclean<br>　　至此，软件的安装结束。<br>　　—- 对于第二种，其安装方法要简单的多。<br>　　—- 同第一种方式一样，将安装文件拷贝至你的目录中。然后使用rpm来安装该文件。命令如下：<br>　　—- #rpm -i filename.i386.rpm<br>　　—- rpm将自动将安装文件解包，并将软件安装到缺省的目录下。并将软件的安装信息注册到rpm的数据库中。参数i的作用是使rpm进入安装模式。<br>　　—- 另外，还有一些Linux平台下的商业软件。在其安装文件中，有Setup安装程序，其安装方法同Windows平台下的一样。如:Corel WordPerfect。<br>　　软件的卸载<br>　　—- 软件的卸载主要是使用rpm来进行的。卸载软件首先要知道软件包在系统中注册的名称。键入命令：<br>　　—- #rpm -q -a<br>　　—- 即可查询到当前系统中安装的所有的软件包。参数q的作用是使rpm进入查询命令模式。参数a是查询模式的子参数，意为全部（ALL）。查询到的信息较多，可使用less人屏显示。<br>　　—- 确定了要卸载的软件的名称，就可以开始实际卸载该软件了。键入命令：<br>　　—- #rpm -e [package name]<br>　　—- 即可卸载软件。参数e的作用是使rpm进入卸载模式。对名为[package name]的软件包进行卸载。由于系统中各个软件包之间相互有依赖关系。如果因存在依赖关系而不能卸载，rpm将给予提示并停止卸载。你可以使用如下的命 令来忽略依赖关系，直接开始卸载：<br>　　—- #rpm -e [package name] -nodeps<br>　　—- 忽略依赖关系的卸载可能会导致系统中其它的一此软件无法使用。你可以使用<br>　　—- #rpm -e [package name] -test<br>　　—- 使rpm进行一次卸载预演，而不是真正卸载。这样可以使你检查一下软件是否存在有依赖关系。卸载过程中是否有错误。<br></pre></code></p>
+<h3 id="交换分区的启用"><a href="#交换分区的启用" class="headerlink" title="交换分区的启用"></a>交换分区的启用</h3><p>编译安装过程，执行make命令时报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c++: internal compiler error: Killed (program cc1plus) </span><br><span class="line">Please submit a full bug report, </span><br><span class="line">with preprocessed source if appropriate. </span><br><span class="line">See http://bugzilla.redhat.com/bugzilla for instructions. </span><br><span class="line">make[2]: * [sql/CMakeFiles/sql.dir/item_geofunc.cc.o] Error 4 </span><br><span class="line">make[1]: * [sql/CMakeFiles/sql.dir/all] Error 2 </span><br><span class="line">make: * [all] Error 2</span><br></pre></td></tr></table></figure></p>
+<p>原因解析：<br>内存不足，mysql5.9以上的版本，编译安装需要1G内存，而我的云主机刚好1G内存。</p>
+<p>解决方案<br>内存不足当然加内存,加内存太贵？那就把硬盘当内存来用把<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$dd if=/dev/zero of=/data/swap_add bs=1M count=2048</span><br><span class="line">$mkswap /data/swap_add</span><br><span class="line">$swapon /data/swap_add</span><br><span class="line">$swapon -s</span><br></pre></td></tr></table></figure></p>
+<p>内存不足出错</p>
+<p>解决方法：增加swap space 交换空间</p>
+<p>1、创建空文件</p>
+<p>/media/swapfile.img只是一个实例文件，这个文件你可以自定义创建任意一个空白文件</p>
+<p><code>dd if=/dev/zero of=/media/swapfile.img bs=1024 count=1M</code></p>
+<p>2、生成文件交换系统</p>
+<p><code>mkswap /media/swapfile.img</code><br>3、设置开机启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Add this line to /etc/fstab</span><br><span class="line">vim /etc/fstab</span><br><span class="line"></span><br><span class="line">//加入</span><br><span class="line">/media/swapfile.img swap swap sw 0 0</span><br></pre></td></tr></table></figure></p>
+<p>4、激活</p>
+<p><code>swapon /media/swapfile.img</code><br>5、验证是否成功</p>
+<p><code>[root@izwz956snfyrvah6yq8sa4z ~]# cat /proc/swaps</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Filename                                Type            Size    Used    Priority</span><br><span class="line">/media/swapfile.img                     file            1048572 0       -2</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@izwz956snfyrvah6yq8sa4z ~]# grep &#39;Swap&#39; /proc/meminfo</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SwapCached:            0 kB</span><br><span class="line">SwapTotal:       1048572 kB</span><br><span class="line">SwapFree:        1048572 kB</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://blog.csdn.net/zhangxiaoyang0/article/details/82501209" target="_blank" rel="noopener">Linux上创建SWAP文件/分区</a>  :参考</p>
+<h4 id="dd命令解释"><a href="#dd命令解释" class="headerlink" title="dd命令解释"></a>dd命令解释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.if=文件名：输入文件名，缺省为标准输入。即指定源文件。&lt;if=inputfile&gt;</span><br><span class="line">2.of=文件名：输出文件名，缺省为标准输出。即指定目的文件。&lt; of=output file &gt;</span><br><span class="line">3.ibs=bytes：一次读入bytes个字节，即指定一个块大小为bytes个字节。</span><br><span class="line">obs=bytes：一次输出bytes个字节，即指定一个块大小为bytes个字节。</span><br><span class="line">bs=bytes：同时设置读入/输出的块大小为bytes个字节。</span><br><span class="line">4.cbs=bytes：一次转换bytes个字节，即指定转换缓冲区大小。</span><br><span class="line">5.skip=blocks：从输入文件开头跳过blocks个块后再开始复制。</span><br><span class="line">6.seek=blocks：从输出文件开头跳过blocks个块后再开始复制。</span><br><span class="line">注意：通常只用当输出文件是磁盘或磁带时才有效，即备份到磁盘或磁带时才有效。</span><br><span class="line">7.count=blocks：仅拷贝blocks个块，块大小等于ibs指定的字节数。</span><br><span class="line">8.conv=conversion：用指定的参数转换文件。</span><br><span class="line">ascii：转换ebcdic为ascii</span><br><span class="line">ebcdic：转换ascii为ebcdic</span><br><span class="line">ibm：转换ascii为alternateebcdic</span><br><span class="line">block：把每一行转换为长度为cbs，不足部分用空格填充</span><br><span class="line">unblock：使每一行的长度都为cbs，不足部分用空格填充</span><br><span class="line">lcase：把大写字符转换为小写字符</span><br><span class="line">ucase：把小写字符转换为大写字符</span><br><span class="line">swab：交换输入的每对字节</span><br><span class="line">noerror：出错时不停止</span><br><span class="line">notrunc：不截短输出文件</span><br><span class="line">sync：将每个输入块填充到ibs个字节，不足部分用空（NUL）字符补齐。</span><br></pre></td></tr></table></figure>
+<p>1.将本地的/dev/hdb整盘备份到/dev/hdd<br><code>dd if=/dev/hdb of=/dev/hdd</code><br>2.将/dev/hdb全盘数据备份到指定路径的image文件<br><code>dd if=/dev/hdb of=/root/image</code><br>3.将备份文件恢复到指定盘<br><code>dd if=/root/image of=/dev/hdb</code><br>4.备份/dev/hdb全盘数据，并利用gzip工具进行压缩，保存到指定路径<br><code>dd if=/dev/hdb | gzip &gt; /root/image.gz</code><br>5.将压缩的备份文件恢复到指定盘<br><code>gzip -dc /root/image.gz | dd of=/dev/hdb</code><br>6.备份磁盘开始的512个字节大小的MBR信息到指定文件<br><code>dd if=/dev/hda of=/root/image count=1 bs=512</code><br>count=1指仅拷贝一个块；bs=512指块大小为512个字节。<br>恢复：<br><code>dd if=/root/image of=/dev/hda</code><br>7.备份软盘<br><code>dd if=/dev/fd0 of=disk.img count=1 bs=1440k</code><br>(即块大小为1.44M)<br>8.拷贝内存内容到硬盘<br><code>dd if=/dev/mem of=/root/mem.bin bs=1024</code><br>(指定块大小为1k)<br>9.拷贝光盘内容到指定文件夹，并保存为cd.iso文件<br><code>dd if=/dev/cdrom(hdc) of=/root/cd.iso</code><br>10.增加swap分区文件大小<br>第一步：创建一个大小为256M的文件：<br><code>dd if=/dev/zero of=/swapfile bs=1024 count=262144</code><br>第二步：把这个文件变成swap文件：<br><code>mkswap /swapfile</code><br>第三步：启用这个swap文件：<br><code>swapon /swapfile</code><br>第四步：编辑/etc/fstab文件，使在每次开机时自动加载swap文件：<br><code>/swapfile swap swap defaults 0 0</code><br>11.销毁磁盘数据<br><code>dd if=/dev/urandom of=/dev/hda1</code><br>注意：利用随机的数据填充硬盘，在某些必要的场合可以用来销毁数据。<br>12.测试硬盘的读写速度<br><code>dd if=/dev/zero bs=1024 count=1000000 of=/root/1Gb.file</code><br><code>dd if=/root/1Gb.file bs=64k | dd of=/dev/null</code><br>通过以上两个命令输出的命令执行时间，可以计算出硬盘的读、写速度。<br>13.确定硬盘的最佳块大小：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero bs=1024 count=1000000 of=/root/1Gb.file</span><br><span class="line">dd if=/dev/zero bs=2048 count=500000 of=/root/1Gb.file</span><br><span class="line">dd if=/dev/zero bs=4096 count=250000 of=/root/1Gb.file</span><br><span class="line">dd if=/dev/zero bs=8192 count=125000 of=/root/1Gb.file</span><br></pre></td></tr></table></figure></p>
+<p>通过比较以上命令输出中所显示的命令执行时间，即可确定系统最佳的块大小。<br>14.修复硬盘<br><code>dd if=/dev/sda of=/dev/sda</code><br>当硬盘较长时间（比如1，2年）放置不使用后，磁盘上会产生magnetic fluxpoint。当磁头读到这些区域时会遇到困难，并可能导致I/O错误。当这种情况影响到硬盘的第一个扇区时，可能导致硬盘报废。上边的命令有可能使这些数据起死回生。且这个过程是安全，高效的。<br>15.dd命令做usb启动盘<br><code>dd if=xxx.iso of=/dev/sdb bs=1M</code><br>root用户或者sudo，用以上命令前必须卸载u盘,sdb是你的u盘,bs=1M是块的大小,后面的数值大,写的速度相对快一点,但也不是无限的,我一般选2M,注意,执行命令后很快完成,但u盘还在闪,等不闪了,安全移除。</p>
+<h3 id="Linux系统-cmake2-8升级到cmake-3-9-2版本"><a href="#Linux系统-cmake2-8升级到cmake-3-9-2版本" class="headerlink" title="Linux系统 cmake2.8升级到cmake-3.9.2版本"></a>Linux系统 cmake2.8升级到cmake-3.9.2版本</h3><p>1、查看当前版本</p>
+<p><code>cmake --version</code></p>
+<p>2、下载获得cmake-3.9.2源码 </p>
+<p><code>wget https://cmake.org/files/v3.9/cmake-3.9.2.tar.gz</code></p>
+<p>3、解压、安装新版本</p>
+<p><code>tar -xvf cmake-3.9.2.tar.gz</code></p>
+<p><code>cd cmake-3.9.2</code></p>
+<p><code>./configure</code></p>
+<p><code>sudo make &amp;&amp; make install</code></p>
+<p>【注】安装完后，执行cmake –version会报如下错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CMake Error: Could not find CMAKE_ROOT !!!</span><br><span class="line">CMake has most likely not been installed correctly.</span><br><span class="line">Modules directory not found in</span><br><span class="line">/Applications/CMake 2.8-11.app/Contents/bin</span><br><span class="line">CMake Error: Error executing cmake::LoadCache(). Aborting.</span><br></pre></td></tr></table></figure></p>
+<p>【解决方法】</p>
+<p>先执行：<code>hash -r</code></p>
+<p>然后再执行：<code>cmake --version</code></p>
+<p>完美解决</p>
 
       
     </div>
@@ -550,7 +582,7 @@ apt-cache pkgnames——打印软件包列表中所有软件包的名称
   <p><span>本文标题:</span><a href="/Linux经验汇总/">Linux经验汇总</a></p>
   <p><span>文章作者:</span></a>Chao</p>
   <p><span>发布时间:</span>2018年11月28日 - 21:11</p>
-  <p><span>最后更新:</span>2018年11月28日 - 22:11</p>
+  <p><span>最后更新:</span>2019年06月04日 - 23:06</p>
   <p><span>原始链接:</span><a href="/Linux经验汇总/" title="Linux经验汇总">http://xchcloud.cn/Linux经验汇总/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/Linux经验汇总/"  aria-label="复制成功！"></i></span>
   </p>
@@ -687,7 +719,7 @@ apt-cache pkgnames——打印软件包列表中所有软件包的名称
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">57</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -857,7 +889,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux安装软件和卸载的几种方法"><span class="nav-number">1.</span> <span class="nav-text">linux安装软件和卸载的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、rpm包安装方式步骤："><span class="nav-number">1.1.</span> <span class="nav-text">一、rpm包安装方式步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍："><span class="nav-number">1.1.1.</span> <span class="nav-text">详细介绍：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、deb包安装方式步骤："><span class="nav-number">1.2.</span> <span class="nav-text">二、deb包安装方式步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍：-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">详细介绍：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、tar-gz源代码包安装方式："><span class="nav-number">1.3.</span> <span class="nav-text">三、tar.gz源代码包安装方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍：-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">详细介绍：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装："><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-卸载："><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2. 卸载：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、tar-bz2源代码包安装方式："><span class="nav-number">1.3.2.</span> <span class="nav-text">四、tar.bz2源代码包安装方式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、apt方式安装：（安装deb包）"><span class="nav-number">1.3.3.</span> <span class="nav-text">五、apt方式安装：（安装deb包）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、yum方式安装：-安装rpm包"><span class="nav-number">1.3.4.</span> <span class="nav-text">六、yum方式安装：(安装rpm包)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、bin文件安装："><span class="nav-number">1.3.5.</span> <span class="nav-text">七、bin文件安装：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、不需要安装的软件："><span class="nav-number">1.3.6.</span> <span class="nav-text">八、不需要安装的软件：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：软件的安装"><span class="nav-number">1.4.</span> <span class="nav-text">PS：软件的安装</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux安装软件和卸载的几种方法"><span class="nav-number">1.</span> <span class="nav-text">linux安装软件和卸载的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、rpm包安装方式步骤："><span class="nav-number">1.1.</span> <span class="nav-text">一、rpm包安装方式步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍："><span class="nav-number">1.1.1.</span> <span class="nav-text">详细介绍：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、deb包安装方式步骤："><span class="nav-number">1.2.</span> <span class="nav-text">二、deb包安装方式步骤：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍：-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">详细介绍：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、tar-gz源代码包安装方式："><span class="nav-number">1.3.</span> <span class="nav-text">三、tar.gz源代码包安装方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#详细介绍：-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">详细介绍：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装："><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-卸载："><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2. 卸载：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、tar-bz2源代码包安装方式："><span class="nav-number">1.3.2.</span> <span class="nav-text">四、tar.bz2源代码包安装方式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、apt方式安装：（安装deb包）"><span class="nav-number">1.3.3.</span> <span class="nav-text">五、apt方式安装：（安装deb包）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、yum方式安装：-安装rpm包"><span class="nav-number">1.3.4.</span> <span class="nav-text">六、yum方式安装：(安装rpm包)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、bin文件安装："><span class="nav-number">1.3.5.</span> <span class="nav-text">七、bin文件安装：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、不需要安装的软件："><span class="nav-number">1.3.6.</span> <span class="nav-text">八、不需要安装的软件：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PS：软件的安装"><span class="nav-number">1.4.</span> <span class="nav-text">PS：软件的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交换分区的启用"><span class="nav-number">1.5.</span> <span class="nav-text">交换分区的启用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dd命令解释"><span class="nav-number">1.5.1.</span> <span class="nav-text">dd命令解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux系统-cmake2-8升级到cmake-3-9-2版本"><span class="nav-number">1.6.</span> <span class="nav-text">Linux系统 cmake2.8升级到cmake-3.9.2版本</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -890,7 +922,7 @@ show_date_time();
 
 
 <div class="theme-info">
-  <span class="post-count">博客全站共102.0k字</span>
+  <span class="post-count">博客全站共105.0k字</span>
 </div>
 
         
