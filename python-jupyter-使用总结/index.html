@@ -81,7 +81,7 @@
 <meta property="og:site_name" content="超哥记录日记">
 <meta property="og:description" content="在 centos 下配置 jupyter配置文档jupyter notebook –generate-config 生成默认配置文档 修改密码：1. windows下，打开命令行，重新生成一个jupyter配置文件： jupyter notebook --generate-config　2. 修个配置文件，找到这个新生成的文件： 123456789101112Windows: C:\Users\U">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-04T15:36:45.167Z">
+<meta property="og:updated_time" content="2019-06-06T01:44:01.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-jupyter-使用总结">
 <meta name="twitter:description" content="在 centos 下配置 jupyter配置文档jupyter notebook –generate-config 生成默认配置文档 修改密码：1. windows下，打开命令行，重新生成一个jupyter配置文件： jupyter notebook --generate-config　2. 修个配置文件，找到这个新生成的文件： 123456789101112Windows: C:\Users\U">
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,352
+                  1,651
                 </span>
               
 
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -447,7 +447,7 @@
 <p>修改(直接在前几行添加）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.ip=&apos;*&apos; # 允许所有ip访问</span><br></pre></td></tr></table></figure></p>
 <p><strong>踩坑：</strong> 设置了反向代理，访问什么的没问题，但是链接不到解释服务器，打不开终端，各种修改无果！修改允许所有IP访问，然后设置301重定向，近似完美解决。</p>
 <h3 id="修改Jupyter工作目录"><a href="#修改Jupyter工作目录" class="headerlink" title="修改Jupyter工作目录"></a>修改Jupyter工作目录</h3><p><code>c.NotebookApp.notebook_dir = &#39;想设置哪个就是哪个&#39;</code></p>
-<h3 id="启动命令："><a href="#启动命令：" class="headerlink" title="启动命令："></a>启动命令：</h3><p><code>jupyter notebook --config jupyter_notebook_config.py --allow-root</code></p>
+<h3 id="启动命令："><a href="#启动命令：" class="headerlink" title="启动命令："></a>启动命令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --config /root/.jupyter/jupyter_notebook_config.py --allow-root</span><br></pre></td></tr></table></figure>
 <p>启动以后，还可以给Python环境安装包之类。如果希望Jupyter长久运行，可以使用nohup后台运行。</p>
 <h2 id="杀死占用端口程序进程"><a href="#杀死占用端口程序进程" class="headerlink" title="杀死占用端口程序进程"></a>杀死占用端口程序进程</h2><p>根据端口查看这个进程的pid<br>netstat -lnp|grep 8080   #8080请换为你的apache需要的端口<br>查看进程的详细信息<br>ps 1777    #1777就是上一步得到的pid<br>杀掉进程<br>例如： kill -9 [PID]  #-9 表示强迫进程立即停止</p>
 <p><a href="https://www.cnblogs.com/coder-lzh/p/8977232.html" target="_blank" rel="noopener">参考地址</a></p>
@@ -462,7 +462,8 @@
 <h3 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h3><p>如果出现错误如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Installing collected packages: msgpack</span><br><span class="line">Could not install packages due to an EnvironmentError: [WinError 5] 拒绝访问。:</span><br><span class="line">&apos;E:\\JiangHeSong\\Anaconda35.2.0\\Lib\\site-packages\\msgpack\\_packer.cp36-win_</span><br><span class="line">amd64.pyd&apos;</span><br><span class="line">Consider using the `--user` option or check the permissions.</span><br><span class="line"> </span><br><span class="line">You are using pip version 10.0.1, however version 18.0 is available.</span><br><span class="line">You should consider upgrading via the &apos;python -m pip install --upgrade pip&apos; comm</span><br><span class="line">and.</span><br></pre></td></tr></table></figure></p>
 <p>只需要加一个–user 例如：</p>
 <p><code>pip install --user msgpack -i https://pypi.mirrors.ustc.edu.cn/simple</code></p>
-<h2 id="在Jupyter-Notebook中交互式运行C-代码"><a href="#在Jupyter-Notebook中交互式运行C-代码" class="headerlink" title="在Jupyter Notebook中交互式运行C++代码"></a>在Jupyter Notebook中交互式运行C++代码</h2><p>Jupyter Notebook 支持非常多的编程语言，而且可以直接运行这些语言的代码。要让 Jupyter Notebook 能够运行特定语言的代码，需要添加对应的内核。具体支持的语言及内核可以查看该链接： <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels" target="_blank" rel="noopener">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels</a> 。</p>
+<h2 id="在Jupyter-Notebook中交互式运行C-代码"><a href="#在Jupyter-Notebook中交互式运行C-代码" class="headerlink" title="在Jupyter Notebook中交互式运行C++代码"></a>在Jupyter Notebook中交互式运行C++代码</h2><h3 id="编译安装（坑货）"><a href="#编译安装（坑货）" class="headerlink" title="编译安装（坑货）"></a>编译安装（坑货）</h3><p>参考：为什么是坑货呢？<a href="http://blog.sina.cn/dpool/blog/s/blog_541944e10102xla0.html" target="_blank" rel="noopener">Jupyternotebook添加c++核心支持的配置过程(新浪blog)</a></p>
+<p>Jupyter Notebook 支持非常多的编程语言，而且可以直接运行这些语言的代码。要让 Jupyter Notebook 能够运行特定语言的代码，需要添加对应的内核。具体支持的语言及内核可以查看该链接： <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels" target="_blank" rel="noopener">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels</a> 。</p>
 <p>cling 内核依赖于 Python3</p>
 <p>添加 C++ cling 内核</p>
 <p>克隆 cling 的 Github 官方仓库：</p>
@@ -477,6 +478,22 @@
 <p><code>jupyter kernelspec install kernel/cling-cpp17</code></p>
 <p>如果没有其他问题，此时就可以打开 Jupyter Notebook 感受不一样的 C++ 编程了！<br>官方代码示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Rectangle &#123;  </span><br><span class="line">    private:</span><br><span class="line">        double w;</span><br><span class="line">        double h;</span><br><span class="line"></span><br><span class="line">    public:</span><br><span class="line"></span><br><span class="line">        Rectangle(double w_, double h_) &#123;</span><br><span class="line">            w = w_;</span><br><span class="line">            h = h_;</span><br><span class="line">        &#125;</span><br><span class="line">        double area(void) &#123;</span><br><span class="line">            return w * h;</span><br><span class="line">        &#125;</span><br><span class="line">        double perimiter(void) &#123;</span><br><span class="line">            return 2 * (w + h);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Rectangle r = Rectangle(5, 4); </span><br><span class="line">r.area();</span><br></pre></td></tr></table></figure></p>
 <p>输出为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cpp</span><br><span class="line">(double) 20.000000</span><br></pre></td></tr></table></figure></p>
+<h3 id="快速安装"><a href="#快速安装" class="headerlink" title="快速安装"></a>快速安装</h3><p>一、 安装Xeus-Cling</p>
+<p>目前已支持Mac和Ubuntu，windows自测，推荐使用conda安装。</p>
+<p>1.首先创建一个conda environment并激活(如果不会在虚拟环境中打开jupyter,可在base环境中安装）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n Xeus-Cling</span><br><span class="line">source activate Xeus-Cling</span><br></pre></td></tr></table></figure></p>
+<p>然后使用conda package installer安装Xeus-Cling</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge xeus-cling</span><br></pre></td></tr></table></figure>
+<p>完成！<br>二、测试C++ Kernel</p>
+<p>1.首先，激活环境并打开jupyter-notebook<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source activate Xeus-Cling</span><br><span class="line">jupyter-notebook</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装的-C-内核-11-14-17-区别"><a href="#安装的-C-内核-11-14-17-区别" class="headerlink" title="安装的 C++ 内核 11 14 17 区别"></a>安装的 C++ 内核 11 14 17 区别</h3><p><a href="https://blog.csdn.net/xiaomu_347/article/details/82563688" target="_blank" rel="noopener">c++11/14/17标准你了解多少(CSDN)</a><br><a href="https://docs.microsoft.com/en-us/previous-versions/hh567368(v=vs.140" target="_blank" rel="noopener">官方(微软、英语)</a>#featurelist)</p>
+<h2 id="Conda使用手册"><a href="#Conda使用手册" class="headerlink" title="Conda使用手册"></a>Conda使用手册</h2><p><a href="https://blog.csdn.net/chenfeidi1/article/details/80873993" target="_blank" rel="noopener">Conda使用手册(CSDN)</a></p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">清华大学开源软件镜像站</a></p>
+<p><a href="https://mirrors.ustc.edu.cn/help/anaconda.html" target="_blank" rel="noopener">科大源镜像站</a></p>
+<h2 id="jupyter-云平台"><a href="#jupyter-云平台" class="headerlink" title="jupyter 云平台"></a>jupyter 云平台</h2><p><a href="https://mybinder.org" target="_blank" rel="noopener">binder</a></p>
+<p><a href="https://mybinder.org/v2/gh/QuantStack/xeus-cling/stable?filepath=notebooks/xcpp.ipynb&amp;tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">C++ jupyter</a></p>
+<h2 id="只下载github的某个文件夹"><a href="#只下载github的某个文件夹" class="headerlink" title="只下载github的某个文件夹"></a>只下载github的某个文件夹</h2><p>很多时候我们只想下载某个文件夹，而不是整个目录</p>
+<p>我们可以用svn，先安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install subversion</span><br><span class="line"></span><br><span class="line">yum install subversion</span><br></pre></td></tr></table></figure></p>
+<p>比如你要下载这个<a href="https://github.com/QuantStack/xeus-cling/tree/master/notebooks，将/tree/master/换成/trunk/即可" target="_blank" rel="noopener">https://github.com/QuantStack/xeus-cling/tree/master/notebooks，将/tree/master/换成/trunk/即可</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn checkout https://github.com/QuantStack/xeus-cling/trunk/notebooks</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -507,7 +524,7 @@
   <p><span>本文标题:</span><a href="/python-jupyter-使用总结/">python-jupyter-使用总结</a></p>
   <p><span>文章作者:</span></a>Chao</p>
   <p><span>发布时间:</span>2019年04月12日 - 09:04</p>
-  <p><span>最后更新:</span>2019年06月04日 - 23:06</p>
+  <p><span>最后更新:</span>2019年06月06日 - 09:06</p>
   <p><span>原始链接:</span><a href="/python-jupyter-使用总结/" title="python-jupyter-使用总结">http://xchcloud.cn/python-jupyter-使用总结/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/python-jupyter-使用总结/"  aria-label="复制成功！"></i></span>
   </p>
@@ -816,7 +833,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-centos-下配置-jupyter"><span class="nav-number">1.</span> <span class="nav-text">在 centos 下配置 jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文档"><span class="nav-number">1.1.</span> <span class="nav-text">配置文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码："><span class="nav-number">1.2.</span> <span class="nav-text">修改密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问是https"><span class="nav-number">1.3.</span> <span class="nav-text">访问是https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Jupyter工作目录"><span class="nav-number">1.4.</span> <span class="nav-text">修改Jupyter工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动命令："><span class="nav-number">1.5.</span> <span class="nav-text">启动命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死占用端口程序进程"><span class="nav-number">2.</span> <span class="nav-text">杀死占用端口程序进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改jupyter的权限"><span class="nav-number">3.</span> <span class="nav-text">修改jupyter的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-快捷键"><span class="nav-number">4.</span> <span class="nav-text">jupyter 快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-notebook-写代码自动补全"><span class="nav-number">5.</span> <span class="nav-text">jupyter notebook 写代码自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.1.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Jupyter-Notebook中交互式运行C-代码"><span class="nav-number">6.</span> <span class="nav-text">在Jupyter Notebook中交互式运行C++代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-centos-下配置-jupyter"><span class="nav-number">1.</span> <span class="nav-text">在 centos 下配置 jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文档"><span class="nav-number">1.1.</span> <span class="nav-text">配置文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码："><span class="nav-number">1.2.</span> <span class="nav-text">修改密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问是https"><span class="nav-number">1.3.</span> <span class="nav-text">访问是https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Jupyter工作目录"><span class="nav-number">1.4.</span> <span class="nav-text">修改Jupyter工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动命令："><span class="nav-number">1.5.</span> <span class="nav-text">启动命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死占用端口程序进程"><span class="nav-number">2.</span> <span class="nav-text">杀死占用端口程序进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改jupyter的权限"><span class="nav-number">3.</span> <span class="nav-text">修改jupyter的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-快捷键"><span class="nav-number">4.</span> <span class="nav-text">jupyter 快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-notebook-写代码自动补全"><span class="nav-number">5.</span> <span class="nav-text">jupyter notebook 写代码自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.1.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Jupyter-Notebook中交互式运行C-代码"><span class="nav-number">6.</span> <span class="nav-text">在Jupyter Notebook中交互式运行C++代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装（坑货）"><span class="nav-number">6.1.</span> <span class="nav-text">编译安装（坑货）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速安装"><span class="nav-number">6.2.</span> <span class="nav-text">快速安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装的-C-内核-11-14-17-区别"><span class="nav-number">6.3.</span> <span class="nav-text">安装的 C++ 内核 11 14 17 区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conda使用手册"><span class="nav-number">7.</span> <span class="nav-text">Conda使用手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-云平台"><span class="nav-number">8.</span> <span class="nav-text">jupyter 云平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只下载github的某个文件夹"><span class="nav-number">9.</span> <span class="nav-text">只下载github的某个文件夹</span></a></li></ol></div>
             
 
           </div>
@@ -849,7 +866,7 @@ show_date_time();
 
 
 <div class="theme-info">
-  <span class="post-count">博客全站共105.0k字</span>
+  <span class="post-count">博客全站共105.8k字</span>
 </div>
 
         

@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://xchcloud.cn/Linux%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2019-06-06T04:05:45.220Z</lastmod>
+    <data>
+        <display>
+        <title>Linux经验汇总</title>
+        <pubTime>2018-11-28T13:35:22.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="http://xchcloud.cn/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xchcloud.cn/python-jupyter-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2019-06-04T15:36:45.167Z</lastmod>
+    <lastmod>2019-06-06T01:44:01.587Z</lastmod>
     <data>
         <display>
         <title>python-jupyter-使用总结</title>
@@ -19,26 +39,6 @@
            
              
               <breadCrumb title="python" url="http://xchcloud.cn/categories/python/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xchcloud.cn/Linux%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2019-06-04T15:20:23.687Z</lastmod>
-    <data>
-        <display>
-        <title>Linux经验汇总</title>
-        <pubTime>2018-11-28T13:35:22.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://xchcloud.cn/categories/Linux/"/>
           
         </display>
     </data>
@@ -663,11 +663,11 @@
         <title>python-Django-HFNU_Small_Size网站设计</title>
         <pubTime>2019-04-08T07:20:13.000Z</pubTime>
         
-        <tag>小型组</tag>
-         
         <tag>python</tag>
          
         <tag>Django</tag>
+         
+        <tag>小型组</tag>
          
          
            
@@ -1017,9 +1017,9 @@
         <title>java-web之面向百度编程笔记</title>
         <pubTime>2018-10-07T01:00:47.000Z</pubTime>
         
-        <tag>笔记</tag>
-         
         <tag>java web</tag>
+         
+        <tag>笔记</tag>
          
          
            
@@ -1039,9 +1039,9 @@
         <title>java-web-会话及其会话技术</title>
         <pubTime>2018-10-09T11:59:18.000Z</pubTime>
         
-        <tag>java web</tag>
-         
         <tag>会话</tag>
+         
+        <tag>java web</tag>
          
          
            
