@@ -6,7 +6,6 @@ http://xchcloud.cn/Hadoop入门笔记/
 http://xchcloud.cn/web协议详解与抓包实战/
 http://xchcloud.cn/《深度学习》读书笔记/
 http://xchcloud.cn/Lua-查缺补漏/
-http://xchcloud.cn/python-查缺补漏/
 http://xchcloud.cn/python-jupyter-使用总结/
 http://xchcloud.cn/python-Django-HFNU-Small-Size网站设计/
 http://xchcloud.cn/设计模式学习计划/
@@ -46,3 +45,4 @@ http://xchcloud.cn/服务器环境搭建/
 http://xchcloud.cn/程序员练级攻略之笔记/
 http://xchcloud.cn/苏州之行/
 http://xchcloud.cn/8月幸会，一次总结/
+http://xchcloud.cn/心路历程/

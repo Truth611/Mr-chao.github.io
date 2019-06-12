@@ -82,7 +82,7 @@
 <meta property="og:description" content="基于 ABNF 语义定义的HTTP消息格式维基百科 chrome Network结构Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。 Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互 Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScr">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tuchuang.xchcloud.cn/789055-20170506162942976-381307940.jpg">
-<meta property="og:updated_time" content="2019-05-25T10:12:47.158Z">
+<meta property="og:updated_time" content="2019-06-12T15:23:41.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web协议详解与抓包实战">
 <meta name="twitter:description" content="基于 ABNF 语义定义的HTTP消息格式维基百科 chrome Network结构Elements（元素面板）：使用“元素”面板可以通过自由操纵DOM和CSS来重演您网站的布局和设计。 Console（控制台面板）：在开发期间，可以使用控制台面板记录诊断信息，或者使用它作为 shell，在页面上与JavaScript交互 Sources（源代码面板）：在源代码面板中设置断点来调试 JavaScr">
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  4,769
+                  4,768
                 </span>
               
 
@@ -462,7 +462,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Preserve log：是网络日志记录,如果勾上,页面刷新后,日志也不会消失(这功能很有用,比如页面跳转后,你想看页面跳转前发出的请求有哪些,比如查看别人网站登录请求,登录成功返回什么,登录成功后又发起了些什么请求,重定向到什么地址)</span><br><span class="line"></span><br><span class="line">Disable cache：缓存开关</span><br><span class="line"></span><br><span class="line">Online：网络控制</span><br><span class="line"></span><br><span class="line">Group by frame：勾选了该选项后,会对网络请求按表单名称进行分组</span><br></pre></td></tr></table></figure>
 <h4 id="Overview（概览）"><a href="#Overview（概览）" class="headerlink" title="Overview（概览）"></a>Overview（概览）</h4><p>这个图表显示检索资源的时间轴。如果您看到多个垂直堆叠的栏，这意味着这些资源被同时检索。</p>
 <h4 id="Requests-Table（请求列表）"><a href="#Requests-Table（请求列表）" class="headerlink" title="Requests Table（请求列表）"></a>Requests Table（请求列表）</h4><p>此列表列出了检索的每个资源。默认情况下，此表按时间顺序排序，也就是最早的资源在顶部。单击资源名称可以获得更多信息。提示：右键单击列表的任何标题栏可以以添加或删除信息列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">捕获屏幕</span><br><span class="line">Controls 窗格包括的功能有网络日志录制、日志清理、捕获屏幕、过滤器，视图切换、保留日志开关、Cache开关、网络连接开关、网速阀值。</span><br><span class="line"></span><br><span class="line">以捕获屏幕为例，点击摄像机按钮（捕获屏幕），重新加载页面即可捕获屏幕。</span><br><span class="line"></span><br><span class="line">双击其中的截屏可以放大显示，在放大的图下方可以点击跳转到上一帧或者下一帧。</span><br><span class="line"></span><br><span class="line">单击则可以查看该帧被捕获时的网络请求信息，并且在Overview上会有一条黄色竖线以标记该帧被捕获的具体时间点。</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Name 资源名称，点击名称可以查看资源的详情情况，包括Headers、Preview、Response、Cookies、Timing。</span><br><span class="line">Status HTTP状态码。</span><br><span class="line">Type 请求的资源MIME类型。</span><br><span class="line">Initiator 标记请求是由哪个对象或进程发起的（请求源）。</span><br><span class="line">Parser： 请求由Chrome的HTML解析器时发起的。</span><br><span class="line">Redirect：请求是由HTTP页面重定向发起的。</span><br><span class="line">Script：请求是由Script脚本发起的。</span><br><span class="line">Other：请求是由其他进程发起的，比如用户点击一个链接跳转到另一个页面或者在地址栏输入URL地址。</span><br><span class="line">Size 从服务器下载的文件和请求的资源大小。如果是从缓存中取得的资源则该列会显示(from cache)</span><br><span class="line">Time 请求或下载的时间，从发起Request到获取到Response所用的总时间。</span><br><span class="line">Timeline 显示所有网络请求的可视化瀑布流(时间状态轴)，点击时间轴，可以查看该请求的详细信息，点击列头则可以根据指定的字段可以排序。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Name 资源名称，点击名称可以查看资源的详情情况，包括Headers、Preview、Response、Cookies、Timing。</span><br><span class="line">Status HTTP状态码。</span><br><span class="line">Type 请求的资源MIME类型。</span><br><span class="line">Initiator 标记请求是由哪个对象或进程发起的（请求源）。</span><br><span class="line">Parser： 请求由Chrome的HTML解析器时发起的。</span><br><span class="line">Redirect：请求是由HTTP页面重定向发起的。</span><br><span class="line">Script：请求是由Script脚本发起的。</span><br><span class="line">Other：请求是由其他进程发起的，比如用户点击一个链接跳转到另一个页面或者在地址栏输入URL地址。</span><br><span class="line">Size 从服务器下载的文件和请求的资源大小。如果是从缓存中取得的资源则该列会显示(from cache)</span><br><span class="line">Time 请求或下载的时间，从发起Request到获取到Response所用的总时间。</span><br><span class="line">Timeline 显示所有网络请求的可视化瀑布流(时间状态轴)，点击时间轴，可以查看该请求的详细信息，点击列头则可以根据指定的字段可以排序。</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Headers：与资源关联的 HTTP 标头。</span><br><span class="line"></span><br><span class="line">Preview：JSON、图像和文本资源的预览。</span><br><span class="line"></span><br><span class="line">Response：HTTP 响应数据（如果存在）。</span><br><span class="line"></span><br><span class="line">Timing：资源请求生命周期的精细分解。</span><br><span class="line"></span><br><span class="line">Headers（查看 HTTP 标头） </span><br><span class="line"></span><br><span class="line">点击 Headers 可以显示该资源的标头。 </span><br><span class="line"></span><br><span class="line">Headers 标签可以显示资源的请求网址、HTTP 方法以及响应状态代码。 此外，该标签还会列出 HTTP 响应和请求标头、它们的值以及任何查询字符串参数</span><br><span class="line"></span><br><span class="line">····可以自定义添加列····</span><br></pre></td></tr></table></figure>
 <h4 id="查看-Cookie"><a href="#查看-Cookie" class="headerlink" title="查看 Cookie"></a>查看 Cookie</h4><p>点击 Cookies 标签可以查看在资源的 HTTP 请求和响应标头中传输的 Cookie 表。 只有传输 Cookie 时，此标签才可用。</p>
 <p>下面是 Cookie 表中每一列的说明：</p>
@@ -555,7 +555,7 @@
   <p><span>本文标题:</span><a href="/web协议详解与抓包实战/">web协议详解与抓包实战</a></p>
   <p><span>文章作者:</span></a>Chao</p>
   <p><span>发布时间:</span>2019年05月23日 - 08:05</p>
-  <p><span>最后更新:</span>2019年05月25日 - 18:05</p>
+  <p><span>最后更新:</span>2019年06月12日 - 23:06</p>
   <p><span>原始链接:</span><a href="/web协议详解与抓包实战/" title="web协议详解与抓包实战">http://xchcloud.cn/web协议详解与抓包实战/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/web协议详解与抓包实战/"  aria-label="复制成功！"></i></span>
   </p>
@@ -692,7 +692,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

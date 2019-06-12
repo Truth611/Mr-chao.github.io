@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://xchcloud.cn/web%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%E4%B8%8E%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2019-06-12T15:23:41.328Z</lastmod>
+    <data>
+        <display>
+        <title>web协议详解与抓包实战</title>
+        <pubTime>2019-05-23T00:44:41.000Z</pubTime>
+        
+        <tag>Wireshark</tag>
+         
+         
+           
+             
+              <breadCrumb title="HTTP" url="http://xchcloud.cn/categories/HTTP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://xchcloud.cn/Linux%E7%BB%8F%E9%AA%8C%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2019-06-06T04:05:45.220Z</lastmod>
     <data>
@@ -260,26 +280,6 @@
 
     
   <url>
-    <loc>http://xchcloud.cn/web%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%E4%B8%8E%E6%8A%93%E5%8C%85%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2019-05-25T10:12:47.158Z</lastmod>
-    <data>
-        <display>
-        <title>web协议详解与抓包实战</title>
-        <pubTime>2019-05-23T00:44:41.000Z</pubTime>
-        
-        <tag>Wireshark</tag>
-         
-         
-           
-             
-              <breadCrumb title="HTTP" url="http://xchcloud.cn/categories/HTTP/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://xchcloud.cn/%E3%80%8A%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-05-05T08:09:32.734Z</lastmod>
     <data>
@@ -373,34 +373,14 @@
         <title>Lua-查缺补漏</title>
         <pubTime>2019-04-14T07:14:18.000Z</pubTime>
         
-        <tag>小型组</tag>
-         
         <tag>Lua</tag>
+         
+        <tag>小型组</tag>
          
          
            
              
               <breadCrumb title="Lua" url="http://xchcloud.cn/categories/Lua/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xchcloud.cn/python-%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F/</loc>
-    <lastmod>2019-04-12T09:40:56.408Z</lastmod>
-    <data>
-        <display>
-        <title>python-查缺补漏</title>
-        <pubTime>2019-04-12T09:29:54.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://xchcloud.cn/categories/python/"/>
           
         </display>
     </data>
@@ -1039,9 +1019,9 @@
         <title>java-web-会话及其会话技术</title>
         <pubTime>2018-10-09T11:59:18.000Z</pubTime>
         
-        <tag>会话</tag>
-         
         <tag>java web</tag>
+         
+        <tag>会话</tag>
          
          
            
