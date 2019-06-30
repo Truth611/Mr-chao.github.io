@@ -2,7 +2,7 @@ http://xchcloud.cn/MongoDB实战经验/
 http://xchcloud.cn/python查缺补漏/
 http://xchcloud.cn/将Ubuntu系统安装到移动硬盘/
 http://xchcloud.cn/2019年4、5月总结/
-http://xchcloud.cn/链接整理2019-5-18始/
+http://xchcloud.cn/链接整理/
 http://xchcloud.cn/Hadoop入门笔记/
 http://xchcloud.cn/web协议详解与抓包实战/
 http://xchcloud.cn/《深度学习》读书笔记/

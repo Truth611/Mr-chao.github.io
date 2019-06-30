@@ -81,7 +81,7 @@
 <meta property="og:site_name" content="超哥记录日记">
 <meta property="og:description" content="在 centos 下配置 jupyter配置文档jupyter notebook –generate-config 生成默认配置文档 修改密码：1. windows下，打开命令行，重新生成一个jupyter配置文件： jupyter notebook --generate-config　2. 修个配置文件，找到这个新生成的文件： 123456789101112Windows: C:\Users\U">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-22T15:00:48.063Z">
+<meta property="og:updated_time" content="2019-06-30T02:19:32.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-jupyter-使用总结">
 <meta name="twitter:description" content="在 centos 下配置 jupyter配置文档jupyter notebook –generate-config 生成默认配置文档 修改密码：1. windows下，打开命令行，重新生成一个jupyter配置文件： jupyter notebook --generate-config　2. 修个配置文件，找到这个新生成的文件： 123456789101112Windows: C:\Users\U">
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,661
+                  2,715
                 </span>
               
 
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  7
+                  11
                 </span>
               
             </div>
@@ -495,6 +495,48 @@
 <h2 id="只下载github的某个文件夹"><a href="#只下载github的某个文件夹" class="headerlink" title="只下载github的某个文件夹"></a>只下载github的某个文件夹</h2><p>很多时候我们只想下载某个文件夹，而不是整个目录</p>
 <p>我们可以用svn，先安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install subversion</span><br><span class="line"></span><br><span class="line">yum install subversion</span><br></pre></td></tr></table></figure></p>
 <p>比如你要下载这个<a href="https://github.com/QuantStack/xeus-cling/tree/master/notebooks，将/tree/master/换成/trunk/即可" target="_blank" rel="noopener">https://github.com/QuantStack/xeus-cling/tree/master/notebooks，将/tree/master/换成/trunk/即可</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn checkout https://github.com/QuantStack/xeus-cling/trunk/notebooks</span><br></pre></td></tr></table></figure></p>
+<h2 id="奇技淫巧"><a href="#奇技淫巧" class="headerlink" title="奇技淫巧"></a>奇技淫巧</h2><p>1、Jupyter常用的快捷键</p>
+<p>1）代码运行键</p>
+<p>如需运行一个cell（代码框）内的Python代码，可以选择Ctrl + Enter组合键，也可以选择Shift + Enter组合键。两者的区别在于前者在运行完代码后不会新增cell，而后者会新增cell或跳转到下一个cell。</p>
+<p>2）自动补齐键</p>
+<p>在代码编写过程中，如果只记得函数或变量名称的前几个字母，可以通过Tab键，实现全名称（如函数名、方法名、变量名等）的自动补齐。</p>
+<p>3）帮助查询键</p>
+<p>Python中有庞大的第三方包，而每个包中又包含很多功能性的函数，在使用这些函数时，往往会忘记函数内参数的具体用法，此时可以在函数后面按入Shift+Tab组合键，查看对应的帮助文档，而且还可以多按几次“Tab”键，返回不同风格的帮助文档。</p>
+<p>4）cell创建键</p>
+<p>在command模式下，按下字母a键，则会在当前cell的上方新增一个cell，如果按下字母b键，则会在当前cell的下方新增一个cell。</p>
+<p>5）cell删除键</p>
+<p>在command模式下，连续按两次d字母键，就可以轻松删除当前cell。或者还有另一个方法，在command模式下，按一次字母x键也可以实现cell的删除。</p>
+<p>6）注释添加/取消键</p>
+<p>如需给代码行或代码块增加注释功能，可以使用“Ctrl+/”的组合键，对于代码块的注释需要先选中，在使用组合键。如果原始代码中没有注释符，按入该组合键则增加注释，否则将取消注释。</p>
+<p>7）保存键</p>
+<p>在编写代码时，最好养成良好的习惯，那就是编写代码便保存（尽管Jupyter默认会2分钟自动保存一次，但2分钟内万一出现一些意外，岂不是糟糕啦）。代码的保存可以在command模式下，按一次字母s键。</p>
+<p>8）行号显示键</p>
+<p>在其他编程环境中也许会显示代码行号，但是在Jupyter的默认情况下是没有代码行号的，如果期望一个cell中显示所有代码对于的行编号，可以在command模式下，按一次字母l键。</p>
+<p>9）code与markdown间切换键</p>
+<p>code指的是Jupyter环境下所进行的Python代码的编写，而markdown则是用于非代码的笔记内容的编写。两者之间是可以轻松切换的，在command模式下，按一次字母m便从code切换到markdowen模式；如果从command模式中，按一次字母y就可以从markdown模式切换到code模式。</p>
+<p>2、Jupyter中的魔法函数</p>
+<p>1）%pwd</p>
+<p>该魔法函数用于显示Jupyter当前的工作空间。</p>
+<p>2）%hist</p>
+<p>该魔法函数用于显示当前Jupyter中，所有运行过的历史代码。</p>
+<p>3）%who</p>
+<p>该魔法函数用于显示当前Jupyter环境中的所有变量或名称。</p>
+<p>4）%reset</p>
+<p>该魔法函数用于删除当前Jupyter环境中的所有变量或名称。</p>
+<p>5)%time</p>
+<p>该魔法函数用于计算当前代码行的运行时长。</p>
+<p>6)%timeit</p>
+<p>该魔法函数用于计算当前代码行的平均运行时长（即在执行一个语句100000次(默认情况下)后，再给出运行最快3次的平均值。</p>
+<p>7)%%timeit</p>
+<p>该魔法函数用于计算当前cell的代码运行时长。</p>
+<p>8）%matplotlib</p>
+<p>该魔法函数用于显示绘图结果的风格，默认为%matplotlib inline，是直接将图片显示在浏览器中，如果希望图片单独生成，可以使用%matplotlib。</p>
+<p>9）%load</p>
+<p>该魔法函数用于加载本地Python文件或者网络中的Python文件，例如本地脚本文件的加载：%load xxx.py。</p>
+<p>10）%run</p>
+<p>该魔法函数用于运行本地或网络中的Python文件，例如本地脚本文件的运行：%load xxx.py。</p>
+<h2 id="其他连接"><a href="#其他连接" class="headerlink" title="其他连接"></a>其他连接</h2><p><a href="http://url.cn/5xxEBSt" target="_blank" rel="noopener">jupyter notebook系列之 自定义主题、字体、字号等(WX)</a><br><a href="http://url.cn/5SelJCe" target="_blank" rel="noopener">python开发者必备，史上最详细的 jupyter 教程(WX)</a></p>
+<p><a href="https://www.bilibili.com/read/cv1924277/" target="_blank" rel="noopener">在 jupyter 里使用 C++(B站文章)</a></p>
 
       
     </div>
@@ -525,7 +567,7 @@
   <p><span>本文标题:</span><a href="/python-jupyter-使用总结/">python-jupyter-使用总结</a></p>
   <p><span>文章作者:</span></a>Chao</p>
   <p><span>发布时间:</span>2019年04月12日 - 09:04</p>
-  <p><span>最后更新:</span>2019年06月22日 - 23:06</p>
+  <p><span>最后更新:</span>2019年06月30日 - 10:06</p>
   <p><span>原始链接:</span><a href="/python-jupyter-使用总结/" title="python-jupyter-使用总结">http://xchcloud.cn/python-jupyter-使用总结/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/python-jupyter-使用总结/"  aria-label="复制成功！"></i></span>
   </p>
@@ -834,7 +876,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-centos-下配置-jupyter"><span class="nav-number">1.</span> <span class="nav-text">在 centos 下配置 jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文档"><span class="nav-number">1.1.</span> <span class="nav-text">配置文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码："><span class="nav-number">1.2.</span> <span class="nav-text">修改密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问是https"><span class="nav-number">1.3.</span> <span class="nav-text">访问是https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Jupyter工作目录"><span class="nav-number">1.4.</span> <span class="nav-text">修改Jupyter工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动命令："><span class="nav-number">1.5.</span> <span class="nav-text">启动命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死占用端口程序进程"><span class="nav-number">2.</span> <span class="nav-text">杀死占用端口程序进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改jupyter的权限"><span class="nav-number">3.</span> <span class="nav-text">修改jupyter的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-快捷键"><span class="nav-number">4.</span> <span class="nav-text">jupyter 快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-notebook-写代码自动补全"><span class="nav-number">5.</span> <span class="nav-text">jupyter notebook 写代码自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.1.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Jupyter-Notebook中交互式运行C-代码"><span class="nav-number">6.</span> <span class="nav-text">在Jupyter Notebook中交互式运行C++代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装（坑货）"><span class="nav-number">6.1.</span> <span class="nav-text">编译安装（坑货）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速安装"><span class="nav-number">6.2.</span> <span class="nav-text">快速安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装的-C-内核-11-14-17-区别"><span class="nav-number">6.3.</span> <span class="nav-text">安装的 C++ 内核 11 14 17 区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conda使用手册"><span class="nav-number">7.</span> <span class="nav-text">Conda使用手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-云平台"><span class="nav-number">8.</span> <span class="nav-text">jupyter 云平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只下载github的某个文件夹"><span class="nav-number">9.</span> <span class="nav-text">只下载github的某个文件夹</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在-centos-下配置-jupyter"><span class="nav-number">1.</span> <span class="nav-text">在 centos 下配置 jupyter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文档"><span class="nav-number">1.1.</span> <span class="nav-text">配置文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改密码："><span class="nav-number">1.2.</span> <span class="nav-text">修改密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问是https"><span class="nav-number">1.3.</span> <span class="nav-text">访问是https</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Jupyter工作目录"><span class="nav-number">1.4.</span> <span class="nav-text">修改Jupyter工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动命令："><span class="nav-number">1.5.</span> <span class="nav-text">启动命令：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死占用端口程序进程"><span class="nav-number">2.</span> <span class="nav-text">杀死占用端口程序进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改jupyter的权限"><span class="nav-number">3.</span> <span class="nav-text">修改jupyter的权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-快捷键"><span class="nav-number">4.</span> <span class="nav-text">jupyter 快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-notebook-写代码自动补全"><span class="nav-number">5.</span> <span class="nav-text">jupyter notebook 写代码自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#出现的问题"><span class="nav-number">5.1.</span> <span class="nav-text">出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Jupyter-Notebook中交互式运行C-代码"><span class="nav-number">6.</span> <span class="nav-text">在Jupyter Notebook中交互式运行C++代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译安装（坑货）"><span class="nav-number">6.1.</span> <span class="nav-text">编译安装（坑货）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速安装"><span class="nav-number">6.2.</span> <span class="nav-text">快速安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装的-C-内核-11-14-17-区别"><span class="nav-number">6.3.</span> <span class="nav-text">安装的 C++ 内核 11 14 17 区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conda使用手册"><span class="nav-number">7.</span> <span class="nav-text">Conda使用手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter-云平台"><span class="nav-number">8.</span> <span class="nav-text">jupyter 云平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只下载github的某个文件夹"><span class="nav-number">9.</span> <span class="nav-text">只下载github的某个文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇技淫巧"><span class="nav-number">10.</span> <span class="nav-text">奇技淫巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他连接"><span class="nav-number">11.</span> <span class="nav-text">其他连接</span></a></li></ol></div>
             
 
           </div>
@@ -867,7 +909,7 @@ show_date_time();
 
 
 <div class="theme-info">
-  <span class="post-count">博客全站共108.3k字</span>
+  <span class="post-count">博客全站共110.4k字</span>
 </div>
 
         

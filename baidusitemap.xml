@@ -4,11 +4,11 @@
 
     
   <url>
-    <loc>http://xchcloud.cn/%E9%93%BE%E6%8E%A5%E6%95%B4%E7%90%862019-5-18%E5%A7%8B/</loc>
-    <lastmod>2019-06-22T16:11:05.169Z</lastmod>
+    <loc>http://xchcloud.cn/%E9%93%BE%E6%8E%A5%E6%95%B4%E7%90%86/</loc>
+    <lastmod>2019-06-30T02:42:49.963Z</lastmod>
     <data>
         <display>
-        <title>链接整理2019-5-18始</title>
+        <title>链接整理</title>
         <pubTime>2019-06-01T12:27:22.000Z</pubTime>
         
         <tag>链接</tag>
@@ -17,6 +17,28 @@
            
              
               <breadCrumb title="链接收集" url="http://xchcloud.cn/categories/%E9%93%BE%E6%8E%A5%E6%94%B6%E9%9B%86/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://xchcloud.cn/python-jupyter-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2019-06-30T02:19:32.390Z</lastmod>
+    <data>
+        <display>
+        <title>python-jupyter-使用总结</title>
+        <pubTime>2019-04-12T01:50:22.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>jupyter</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://xchcloud.cn/categories/python/"/>
           
         </display>
     </data>
@@ -37,28 +59,6 @@
            
              
               <breadCrumb title="Hexo" url="http://xchcloud.cn/categories/Hexo/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://xchcloud.cn/python-jupyter-%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2019-06-22T15:00:48.063Z</lastmod>
-    <data>
-        <display>
-        <title>python-jupyter-使用总结</title>
-        <pubTime>2019-04-12T01:50:22.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>jupyter</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://xchcloud.cn/categories/python/"/>
           
         </display>
     </data>
@@ -1039,9 +1039,9 @@
         <title>java-web-会话及其会话技术</title>
         <pubTime>2018-10-09T11:59:18.000Z</pubTime>
         
-        <tag>会话</tag>
-         
         <tag>java web</tag>
+         
+        <tag>会话</tag>
          
          
            
