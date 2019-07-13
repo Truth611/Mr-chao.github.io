@@ -1,3 +1,5 @@
+http://xchcloud.cn/OpenResty从入门到实战笔记/
+http://xchcloud.cn/2019年中总结/
 http://xchcloud.cn/MongoDB实战经验/
 http://xchcloud.cn/python查缺补漏/
 http://xchcloud.cn/将Ubuntu系统安装到移动硬盘/
@@ -44,5 +46,3 @@ http://xchcloud.cn/左耳朵大叔推荐的实战项目/
 http://xchcloud.cn/左耳朵大叔介绍的书籍、文章、网站/
 http://xchcloud.cn/服务器环境搭建/
 http://xchcloud.cn/程序员练级攻略之笔记/
-http://xchcloud.cn/苏州之行/
-http://xchcloud.cn/8月幸会，一次总结/

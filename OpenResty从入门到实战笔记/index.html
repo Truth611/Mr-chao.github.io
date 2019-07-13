@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Lua,OpenResty,Nignx," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-16x16-next.png?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="安装官方教程 ubuntu 实践：1234567891011121314# import our GPG key:wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -# for installing the add-apt-repository command# (you can remove this p">
+<meta name="keywords" content="Lua,OpenResty,Nignx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenResty从入门到实战笔记">
+<meta property="og:url" content="http://xchcloud.cn/OpenResty从入门到实战笔记/index.html">
+<meta property="og:site_name" content="超哥记录日记">
+<meta property="og:description" content="安装官方教程 ubuntu 实践：1234567891011121314# import our GPG key:wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -# for installing the add-apt-repository command# (you can remove this p">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/a7/92/a7304c2c8af0e1e6c54819c97611b992.jpg">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/2a/73/2a05cb2a679bd1c81b44508666e70273.png">
+<meta property="og:image" content="https://static001.geekbang.org/resource/image/cd/ef/cdef970a60810548b9c297e6959671ef.png">
+<meta property="og:updated_time" content="2019-07-13T02:27:32.693Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenResty从入门到实战笔记">
+<meta name="twitter:description" content="安装官方教程 ubuntu 实践：1234567891011121314# import our GPG key:wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -# for installing the add-apt-repository command# (you can remove this p">
+<meta name="twitter:image" content="https://static001.geekbang.org/resource/image/a7/92/a7304c2c8af0e1e6c54819c97611b992.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xchcloud.cn/OpenResty从入门到实战笔记/"/>
+
+
+
+
+
+  <title>OpenResty从入门到实战笔记 | 超哥记录日记</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b8d23512908ca3b4b175b2620a75740f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">超哥记录日记</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">生命有息、学无止境、折腾不止</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xchcloud.cn/OpenResty从入门到实战笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="超哥记录日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OpenResty从入门到实战笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T10:26:15+08:00">
+                2019-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenResty/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenResty</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+ 
+
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">访问数</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>°C
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,649
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="https://openresty.org/en/linux-packages.html" target="_blank" rel="noopener">官方教程</a></p>
+<p>ubuntu 实践：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># import our GPG key:</span><br><span class="line">wget -qO - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># for installing the add-apt-repository command</span><br><span class="line"># (you can remove this package and its dependencies later):</span><br><span class="line">sudo apt-get -y install software-properties-common</span><br><span class="line"></span><br><span class="line"># add the our official APT repository:</span><br><span class="line">sudo add-apt-repository -y &quot;deb http://openresty.org/package/ubuntu $(lsb_release -sc) main&quot;</span><br><span class="line"></span><br><span class="line"># to update the APT index:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install openresty</span><br></pre></td></tr></table></figure></p>
+<h3 id="官网直通车"><a href="#官网直通车" class="headerlink" title="官网直通车"></a>官网直通车</h3><p><a href="https://openresty.org/cn/" target="_blank" rel="noopener">中文官网主页</a></p>
+<p><a href="http://openresty.org/cn/rpm-packages.html" target="_blank" rel="noopener">OpenResty 官方 Yum 资源库提供下面的 RPM 包</a></p>
+<p><a href="https://note.youdao.com/ynoteshare1/index.html?id=965c9f034a82ffb0f8b4de6ca81f3e73&amp;type=note" target="_blank" rel="noopener">NginxLuaModule 源码分析－某不知名大佬有道云笔记</a></p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><h3 id="第一个实例"><a href="#第一个实例" class="headerlink" title="第一个实例"></a>第一个实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resty -e &apos;print(&quot;hello, world&quot;)&apos;</span><br><span class="line"></span><br><span class="line">    hello, world</span><br></pre></td></tr></table></figure>
+<h3 id="准备目录布局"><a href="#准备目录布局" class="headerlink" title="准备目录布局"></a>准备目录布局</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">先实践一个简单的</span><br><span class="line">mkdir ~/work</span><br><span class="line">cd ~/work</span><br><span class="line">mkdir logs/ conf/</span><br><span class="line"></span><br><span class="line">我们还为日志文件创建了 logs / 目录，为配置文件创建了 conf / 。</span><br></pre></td></tr></table></figure>
+<p>logs/error.log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim 造一个空文件</span><br></pre></td></tr></table></figure>
+<p>conf/nginx.conf </p>
+<p>下面是不同的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">官方：</span><br><span class="line"></span><br><span class="line">worker_processes  1;</span><br><span class="line">error_log logs/error.log;</span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 8080;</span><br><span class="line">        location / &#123;</span><br><span class="line">            default_type text/html;</span><br><span class="line">            content_by_lua_block &#123;</span><br><span class="line">                ngx.say(&quot;&lt;p&gt;hello, world&lt;/p&gt;&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">极客时间：</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 8080;</span><br><span class="line">        location / &#123;</span><br><span class="line">            content_by_lua &apos;</span><br><span class="line">                ngx.say(&quot;hello, world&quot;)</span><br><span class="line">            &apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">极客时间：</span><br><span class="line"></span><br><span class="line">pid logs/nginx.pid;</span><br><span class="line">events &#123;</span><br><span class="line">	worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">	server &#123;</span><br><span class="line">		listen 8080;</span><br><span class="line">		location / &#123;</span><br><span class="line">			content_by_lua_file lua/hello.lua;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启动-Nignx-服务器"><a href="#启动-Nignx-服务器" class="headerlink" title="启动 Nignx 服务器"></a>启动 Nignx 服务器</h3><p>/usr/local/openresty (this is the default)</p>
+<p>确定路径正确</p>
+<p>环境变量设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=/usr/local/openresty/nginx/sbin:$PATH</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure></p>
+<p>启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nginx -p `pwd`/ -c conf/nginx.conf</span><br><span class="line"></span><br><span class="line">curl http://localhost:8080/</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;hello, world&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>###　结构介绍<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/openresty/lualib$ ls</span><br><span class="line"></span><br><span class="line">drwxr-xr-x  5 root root  4096 6月  17 22:04 ./</span><br><span class="line">drwxr-xr-x 10 root root  4096 6月  17 22:04 ../</span><br><span class="line">-rw-r--r--  1 root root 39464 5月  17 07:33 cjson.so</span><br><span class="line">-rw-r--r--  1 root root  5848 5月  17 07:33 librestysignal.so</span><br><span class="line">drwxr-xr-x  3 root root  4096 6月  17 22:04 ngx/</span><br><span class="line">drwxr-xr-x  2 root root  4096 6月  17 22:04 redis/</span><br><span class="line">drwxr-xr-x  8 root root  4096 6月  17 22:04 resty/</span><br><span class="line">-rw-r--r--  1 root root  1374 5月  17 07:33 tablepool.lua</span><br><span class="line"></span><br><span class="line">ngx: 存放的是 lua-resty-core 这个官方项目中的 Lua 代码，里面都是基于 FFI 重新实现的 OpenResty API</span><br><span class="line"></span><br><span class="line">resty: 存放的则是各种 lua-resty-* 项目包含的 Lua 代码</span><br><span class="line"></span><br><span class="line">PS: </span><br><span class="line">早期的 OpenResty 同时带有 Lua 和 LuaJIT，你可以通过编译选项，来决定使用 Lua 还是 LuaJIT。不过到了现在，Lua 逐渐被淘汰，就只支持更高性能的 LuaJIT 了。</span><br></pre></td></tr></table></figure></p>
+<h4 id="OpenResty-项目概览"><a href="#OpenResty-项目概览" class="headerlink" title="OpenResty 项目概览"></a>OpenResty 项目概览</h4><p><a href="https://github.com/openresty/" target="_blank" rel="noopener">OpenResty 包含了 68 个公开的项目</a></p>
+<h5 id="NGINX-C-模块"><a href="#NGINX-C-模块" class="headerlink" title="NGINX C 模块"></a>NGINX C 模块</h5><p>OpenResty 中一共包含了 20 多个 C 模块，我们在本节最开始使用的 openresty -V 中，也可以看到这些 C 模块：</p>
+<p>–add-module=后面跟着的，就是 OpenResty 的 C 模块。其中，最核心的就是 lua-nginx-module 和 stream-lua-nginx-module，前者用来处理七层流量，后者用来处理四层流量。</p>
+<p>这些 C 模块中，有些是需要特别注意的，虽然默认编译进入了 OpenResty，但并不推荐使用。 </p>
+<p>lua 是未来，其他项目大多处于疏于维护状态。</p>
+<h5 id="lua-resty-周边库"><a href="#lua-resty-周边库" class="headerlink" title="lua-resty- 周边库"></a>lua-resty- 周边库</h5><p>OpenResty 官方仓库中包含 18 个 lua-resty-* 库，涵盖 Redis、MySQL、memcached、websocket、dns、流量控制、字符串处理、进程内缓存等常用库。</p>
+<p>了官方自带的之外，还有更多的第三方库。</p>
+<h5 id="自己维护的-LuaJIT-分支"><a href="#自己维护的-LuaJIT-分支" class="headerlink" title="自己维护的 LuaJIT 分支"></a>自己维护的 LuaJIT 分支</h5><p><a href="https://github.com/openresty/luajit2" target="_blank" rel="noopener"> LuaJIT 分支</a></p>
+<p>OpenResty 除了维护自己的 OpenSSL patch 外，还维护了自己的 LuaJIT 分支。</p>
+<p>相对于 Lua，LuaJIT 增加了不少独有的函数，这些函数非常重要</p>
+<h5 id="测试框架"><a href="#测试框架" class="headerlink" title="测试框架"></a>测试框架</h5><p><a href="https://github.com/openresty/test-nginx" target="_blank" rel="noopener"> Perl 语言来开发的 test-nginx</a>:OpenResty 官方的所有 C 模块和 lua-resty 库的测试案例，都是由 test-nginx 驱动的。</p>
+<p><a href="https://github.com/openresty/mockeagain" target="_blank" rel="noopener">可以模拟慢速的网络的　mockeagain </a>:让程序每次只读写一个字节。</p>
+<h5 id="调试工具链"><a href="#调试工具链" class="headerlink" title="调试工具链"></a>调试工具链</h5><p><a href="https://openresty.org/posts/dynamic-tracing/" target="_blank" rel="noopener">动态追踪技术漫谈</a></p>
+<p>使用 systemtap 最大的优势，便是实现活体分析，同时对目标程序完全无侵入。</p>
+<p><a href="https://github.com/openresty/openresty-systemtap-toolkit" target="_blank" rel="noopener">openresty-systemtap-toolkit</a></p>
+<p><a href="https://github.com/openresty/stapxx" target="_blank" rel="noopener">stapxx </a></p>
+<h5 id="打包相关"><a href="#打包相关" class="headerlink" title="打包相关"></a>打包相关</h5><p><a href="https://github.com/openresty/openresty-packaging" target="_blank" rel="noopener">openresty-packaging </a></p>
+<p><a href="https://github.com/openresty/homebrew-brew" target="_blank" rel="noopener">home-brew</a></p>
+<h5 id="工程化工具"><a href="#工程化工具" class="headerlink" title="工程化工具"></a>工程化工具</h5><p><a href="https://github.com/openresty/openresty-devel-utils" target="_blank" rel="noopener">Perl 开发的 OpenResty 和 NGINX 的工具集 openresty-devel-utils</a></p>
+<p>lj-releng 是一个简单有效的 LuaJIT 代码检测工具，类似 luacheck，可以找出全局变量等潜在的问题。</p>
+<p>reindex 从名字来看是重建索引的意思，它其实是格式化 test-nginx 测试案例的工具，可以重新排列测试案例的编号，以及去除多余的空白符。reindex 可以说是 OpenResty 开发者每天都会用到的工具之一。</p>
+<p>opsboy 也是一个深藏不露的项目，主要用于自动化部署。OpenResty 每次发布版本前，都会在 AWS EC2 集群上做完整的回归测试，详细的文档你可以参考官方文档，而这个回归测试正是由 opsboy 来部署和驱动的。opsboy 是一个用 Perl 实现的 DSL（领域特定语言）。</p>
+<h3 id="OpenResty-中用到的-NGINX-知识"><a href="#OpenResty-中用到的-NGINX-知识" class="headerlink" title="OpenResty 中用到的 NGINX 知识"></a>OpenResty 中用到的 NGINX 知识</h3><h4 id="NGINX-配置"><a href="#NGINX-配置" class="headerlink" title="NGINX 配置"></a>NGINX 配置</h4><p>NGINX 通过配置文件来控制自身行为，它的配置可以看作是一个简单的 DSL。NGINX 在进程启动的时候读取配置，并加载到内存中。如果修改了配置文件，需要你重启或者重载 NGINX，再次读取后才能生效。</p>
+<p>NGINX 支持的功能，OpenResty 并不一定支持，需要看 OpenResty 的版本号。</p>
+<h4 id="MASTER-WORKER-模式"><a href="#MASTER-WORKER-模式" class="headerlink" title="MASTER-WORKER 模式"></a>MASTER-WORKER 模式</h4><p><img src="https://static001.geekbang.org/resource/image/a7/92/a7304c2c8af0e1e6c54819c97611b992.jpg" alt=""></p>
+<h4 id="执行阶段"><a href="#执行阶段" class="headerlink" title="执行阶段"></a>执行阶段</h4><p>执行阶段也是 NGINX 重要的特性，与 OpenResty 的具体实现密切相关。NGINX 有 11 个执行阶段．</p>
+<p><img src="https://static001.geekbang.org/resource/image/2a/73/2a05cb2a679bd1c81b44508666e70273.png" alt=""></p>
+<h4 id="二进制热升级"><a href="#二进制热升级" class="headerlink" title="二进制热升级"></a>二进制热升级</h4><p>热升级通过向旧的 Master 进程发送 USR2 和 WINCH 信号量来完成。对于这两步，前者的作用，是启动新的 Master 进程；后者的作用，是逐步关闭 Worker 进程。</p>
+<p>执行完这两步后，新的 Master 和新的 Worker 就已经启动了。不过此时，旧的 Master 并没有退出。不退出的原因也很简单，如果你需要回退，依旧可以给旧的 Master 发送 HUP 信号量。当然，如果你已经确定不需要回退，就可以给旧 Master 发送 KILL 信号量来退出。</p>
+<h4 id="NGINX-官方文档"><a href="#NGINX-官方文档" class="headerlink" title="NGINX 官方文档"></a>NGINX 官方文档</h4><p><a href="http://nginx.org/en/docs/control.html#upgrade" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://openresty.net.cn/agentzh-nginx-guide.html" target="_blank" rel="noopener">OpenResty 的作者 NGINX 教程</a></p>
+<h2 id="管理第三方包工具"><a href="#管理第三方包工具" class="headerlink" title="管理第三方包工具"></a>管理第三方包工具</h2><h3 id="OPM"><a href="#OPM" class="headerlink" title="OPM"></a>OPM</h3><p>OpenResty 自带的包管理器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">opm search ‘包名’</span><br><span class="line"></span><br><span class="line">返回：</span><br><span class="line">GitHub ID / repo name</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://opm.openresty.org/" target="_blank" rel="noopener">OPM 官网</a></p>
+<h3 id="LUAROCKS"><a href="#LUAROCKS" class="headerlink" title="LUAROCKS"></a>LUAROCKS</h3><p><a href="https://luarocks.org/" target="_blank" rel="noopener">LuaRocks 官网</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">luarocks search &quot;包名&quot;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以到 LuaRocks 的网站上，去查看这个包的详细信息，这里面包含了作者、License、GitHub 地址、下载次数、功能简介、历史版本、依赖等。和 OPM 不同的是，LuaRocks 并没有直接使用 GitHub 的用户信息，而是需要开发者单独在 LuaRocks 上进行注册。</p>
+<h4 id="开源的-API-网关项目-Kong"><a href="#开源的-API-网关项目-Kong" class="headerlink" title="开源的 API 网关项目 Kong"></a>开源的 API 网关项目 Kong</h4><p><a href="https://github.com/Kong/kong" target="_blank" rel="noopener">Kong 项目地址</a></p>
+<h3 id="AWESOME-RESTY"><a href="#AWESOME-RESTY" class="headerlink" title="AWESOME-RESTY"></a>AWESOME-RESTY</h3><p>OPM 和 LuaRocks 都不支持私有包。</p>
+<p><a href="https://github.com/bungle/awesome-resty" target="_blank" rel="noopener">AWESOME-RESTY 项目地址</a></p>
+<h4 id="库-以及一些-项目"><a href="#库-以及一些-项目" class="headerlink" title="库 以及一些　项目"></a>库 以及一些　项目</h4><p><a href="https://github.com/tokers/lua-resty-requests" target="_blank" rel="noopener">  lua-resty-requests </a></p>
+<p>它是人类更友好的 HTTP 访问库，接口风格与 Python 中大名鼎鼎的 Requests 一致。</p>
+<p><a href="https://2.python-requests.org//en/master/" target="_blank" rel="noopener"> python-requests</a></p>
+<p><a href="https://github.com/openresty/openresty.org" target="_blank" rel="noopener">OpenResty 的官方网站项目:　openresty.org</a></p>
+<p><a href="https://github.com/openresty/stapxx" target="_blank" rel="noopener">基于 systemtap 的扩展</a></p>
+<p><a href="https://github.com/openresty/openresty-gdb-utils" target="_blank" rel="noopener"> GDB 的工具集</a></p>
+<h5 id="简单的-API-ngx-base64-decode"><a href="#简单的-API-ngx-base64-decode" class="headerlink" title="简单的 API - ngx.base64_decode"></a>简单的 API - ngx.base64_decode</h5><p><a href="https://github.com/openresty/lua-nginx-module#ngxdecode_base64" target="_blank" rel="noopener">lua-resty-core</a></p>
+<p>在 Lua 中，你可以用 Lua C API 来调用 C 函数，而在 LuaJIT 中还可以使用 FFI。对 OpenResty 而言：</p>
+<p>在核心的 lua-nginx-module 中，调用 C 函数的 API，都是使用 Lua C API 来完成的；<br>而在 lua-resty-core 中，则是把 lua-nginx-module 已有的部分 API，使用 FFI 的模式重新实现了一遍。</p>
+<h6 id="Lua-CFunction"><a href="#Lua-CFunction" class="headerlink" title="Lua CFunction"></a>Lua CFunction</h6><p>能够被 Lua 调用的 C 函数来说，它的接口必须遵循 Lua 要求的形式，也就是 typedef int (<em>lua_CFunction)(lua_State</em> L)。</p>
+<p>它包含的参数是 lua_State 类型的指针 L ；它的返回值类型是一个整型，表示返回值的数量，而非返回值自身。</p>
+<p>for example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">static int</span><br><span class="line"> ngx_http_lua_ngx_decode_base64(lua_State *L)</span><br><span class="line"> &#123;</span><br><span class="line">     ngx_str_t p, src;</span><br><span class="line"> </span><br><span class="line">    src.data = (u_char *) luaL_checklstring(L, 1, &amp;src.len);</span><br><span class="line"> </span><br><span class="line">     p.len = ngx_base64_decoded_length(src.len);</span><br><span class="line"> </span><br><span class="line">     p.data = lua_newuserdata(L, p.len);</span><br><span class="line"> </span><br><span class="line">     if (ngx_decode_base64(&amp;p, &amp;src) == NGX_OK) &#123;</span><br><span class="line">         lua_pushlstring(L, (char *) p.data, p.len);</span><br><span class="line"> </span><br><span class="line">     &#125; else &#123;</span><br><span class="line">         lua_pushnil(L);</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">     return 1;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="LuaJIT-FFI"><a href="#LuaJIT-FFI" class="headerlink" title="LuaJIT FFI"></a>LuaJIT FFI</h6><p>FFI 的交互部分是用 Lua 实现的，这部分代码可以被 JIT 跟踪到，并进行优化;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ngx.decode_base64 = function (s)</span><br><span class="line">     local slen = #s</span><br><span class="line">     local dlen = base64_decoded_length(slen)</span><br><span class="line">     </span><br><span class="line">     local dst = get_string_buf(dlen)</span><br><span class="line">     local pdlen = get_size_ptr()</span><br><span class="line">     local ok = C.ngx_http_lua_ffi_decode_base64(s, slen, dst, pdlen)</span><br><span class="line">     if ok == 0 then</span><br><span class="line">         return nil</span><br><span class="line">     end</span><br><span class="line">     return ffi_string(dst, pdlen[0])</span><br><span class="line"> end</span><br><span class="line"></span><br><span class="line">ngx_http_lua_ffi_ ，是用 FFI 来处理 NGINX http 请求的 Lua 函数；</span><br><span class="line">ngx_http_lua_ngx_ ，是用 Cfunction 来处理 NGINX http 请求的 Lua 函数；</span><br><span class="line">其他 ngx_ 和 lua_ 开头的函数，则分别属于 NGINX 和 Lua 的内置函数。</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://openresty.org/cn/c-coding-style-guide.html" target="_blank" rel="noopener">OpenResty® C 代码风格指南</a>:对于有意学习 OpenResty 的 C 代码并提交 PR 的开发者来说，这是必备的一篇文档。</p>
+<p><a href="http://luajit.org/ext_ffi_tutorial.html" target="_blank" rel="noopener">LuaJIT 官方的教程</a></p>
+<p><a href="http://luajit.org/ext_ffi_api.html" target="_blank" rel="noopener"> LuaJIT 文档</a></p>
+<h6 id="LuaJIT-FFI-GC"><a href="#LuaJIT-FFI-GC" class="headerlink" title="LuaJIT FFI GC"></a>LuaJIT FFI GC</h6><p>LuaJIT 只负责由自己分配的资源；而 ffi.C 是 C 库的命名空间，所以，使用 ffi.C 分配的空间不由 LuaJIT 负责，需要你自己手动释放。</p>
+<p>如果要在 OpenResty 中申请大块的内存，我更推荐你用 ffi.C.malloc 而不是 ffi.new。原因也很明显：</p>
+<ul>
+<li>ffi.new 返回的是一个 cdata，这部分内存由 LuaJIT 管理；</li>
+<li>LuaJIT GC 的管理内存是有上限的，OpenResty 中的 LuaJIT 并未开启 GC64 选项，所以单个 worker 内存的上限只有 2G。一旦超过 LuaJIT 的内存管理上限，就会导致报错。</li>
+</ul>
+<p>在使用 FFI 的时候，我们还需要特别注意内存泄漏的问题。周边测试和调试工具.</p>
+<h6 id="lua-resty-core"><a href="#lua-resty-core" class="headerlink" title="lua-resty-core"></a>lua-resty-core</h6><p>现在新的 API，都通过 FFI 的方式，在 lua-resty-core 仓库中实现。</p>
+<h2 id="LuaJIT分支和标准Lua"><a href="#LuaJIT分支和标准Lua" class="headerlink" title="LuaJIT分支和标准Lua"></a>LuaJIT分支和标准Lua</h2><p> LuaJIT 在 OpenResty 整体架构中的位置：</p>
+<p> <img src="https://static001.geekbang.org/resource/image/cd/ef/cdef970a60810548b9c297e6959671ef.png" alt=""></p>
+<h3 id="标准-Lua-和-LuaJIT-的关系"><a href="#标准-Lua-和-LuaJIT-的关系" class="headerlink" title="标准 Lua 和 LuaJIT 的关系"></a>标准 Lua 和 LuaJIT 的关系</h3><p>标准 Lua 和 LuaJIT 是两回事儿，LuaJIT 只是兼容了 Lua 5.1 的语法。</p>
+<h3 id="LuaJIT-的性能优势"><a href="#LuaJIT-的性能优势" class="headerlink" title="LuaJIT 的性能优势"></a>LuaJIT 的性能优势</h3><p>标准 Lua 出于性能考虑，也内置了虚拟机，所以 Lua 代码并不是直接被解释执行的，而是先由 Lua 编译器编译为字节码（Byte Code），然后再由 Lua 虚拟机执行。</p>
+<p>LuaJIT 的运行时环境，除了一个汇编实现的 Lua 解释器外，还有一个可以直接生成机器代码的 JIT 编译器。开始的时候，LuaJIT 和标准 Lua 一样，Lua 代码被编译为字节码，字节码被 LuaJIT 的解释器解释执行。</p>
+<p><strong>所谓 LuaJIT 的性能优化，本质上就是让尽可能多的 Lua 代码可以被 JIT 编译器生成机器码，而不是回退到 Lua 解释器的解释执行模式。</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+      <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/OpenResty从入门到实战笔记/">OpenResty从入门到实战笔记</a></p>
+  <p><span>文章作者:</span></a>Chao</p>
+  <p><span>发布时间:</span>2019年07月13日 - 10:07</p>
+  <p><span>最后更新:</span>2019年07月13日 - 10:07</p>
+  <p><span>原始链接:</span><a href="/OpenResty从入门到实战笔记/" title="OpenResty从入门到实战笔记">http://xchcloud.cn/OpenResty从入门到实战笔记/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://xchcloud.cn/OpenResty从入门到实战笔记/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
+
+      
+</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Lua/" <i class="fa fa-tag"></i> Lua</a>
+          
+            <a href="/tags/OpenResty/" <i class="fa fa-tag"></i> OpenResty</a>
+          
+            <a href="/tags/Nignx/" <i class="fa fa-tag"></i> Nignx</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019年中总结/" rel="next" title="2019年中总结">
+                <i class="fa fa-chevron-left"></i> 2019年中总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://tuchuang-xchcloud-1253428588.cos.ap-chengdu.myqcloud.com/blog/header.jpg"
+               alt="John Doe" />
+          </span></a>Chao</p>
+
+
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lhc0101" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=qJmcmp_akJ6ZmZHo2dmGy8fF" target="_blank" title="E-mail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      E-mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              dalao&nbsp;
+              <i class="fa  fa-fw fa-globe"></i>
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://giracle.cn" title="DJG" target="_blank">DJG</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://owencxc.github.io" title="CX" target="_blank">CX</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.myzwl.win" title="ZWL" target="_blank">ZWL</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuliekun.me/" title="WLK" target="_blank">WLK</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://Li-rr.github.io" title="LRR" target="_blank">LRR</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dh.xchcloud.cn" title="导航" target="_blank">导航</a>
+                </li>
+              
+            </ul>
++        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+          </div>
+         
+
+-        <div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("06/26/2018 12:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官网直通车"><span class="nav-number">1.1.</span> <span class="nav-text">官网直通车</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">2.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个实例"><span class="nav-number">2.1.</span> <span class="nav-text">第一个实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备目录布局"><span class="nav-number">2.2.</span> <span class="nav-text">准备目录布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-Nignx-服务器"><span class="nav-number">2.3.</span> <span class="nav-text">启动 Nignx 服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenResty-项目概览"><span class="nav-number">2.3.1.</span> <span class="nav-text">OpenResty 项目概览</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NGINX-C-模块"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">NGINX C 模块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#lua-resty-周边库"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">lua-resty- 周边库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自己维护的-LuaJIT-分支"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">自己维护的 LuaJIT 分支</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试框架"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">测试框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#调试工具链"><span class="nav-number">2.3.1.5.</span> <span class="nav-text">调试工具链</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#打包相关"><span class="nav-number">2.3.1.6.</span> <span class="nav-text">打包相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工程化工具"><span class="nav-number">2.3.1.7.</span> <span class="nav-text">工程化工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenResty-中用到的-NGINX-知识"><span class="nav-number">2.4.</span> <span class="nav-text">OpenResty 中用到的 NGINX 知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NGINX-配置"><span class="nav-number">2.4.1.</span> <span class="nav-text">NGINX 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MASTER-WORKER-模式"><span class="nav-number">2.4.2.</span> <span class="nav-text">MASTER-WORKER 模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行阶段"><span class="nav-number">2.4.3.</span> <span class="nav-text">执行阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二进制热升级"><span class="nav-number">2.4.4.</span> <span class="nav-text">二进制热升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NGINX-官方文档"><span class="nav-number">2.4.5.</span> <span class="nav-text">NGINX 官方文档</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理第三方包工具"><span class="nav-number">3.</span> <span class="nav-text">管理第三方包工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OPM"><span class="nav-number">3.1.</span> <span class="nav-text">OPM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LUAROCKS"><span class="nav-number">3.2.</span> <span class="nav-text">LUAROCKS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开源的-API-网关项目-Kong"><span class="nav-number">3.2.1.</span> <span class="nav-text">开源的 API 网关项目 Kong</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AWESOME-RESTY"><span class="nav-number">3.3.</span> <span class="nav-text">AWESOME-RESTY</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#库-以及一些-项目"><span class="nav-number">3.3.1.</span> <span class="nav-text">库 以及一些　项目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单的-API-ngx-base64-decode"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">简单的 API - ngx.base64_decode</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Lua-CFunction"><span class="nav-number">3.3.1.1.1.</span> <span class="nav-text">Lua CFunction</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#LuaJIT-FFI"><span class="nav-number">3.3.1.1.2.</span> <span class="nav-text">LuaJIT FFI</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#LuaJIT-FFI-GC"><span class="nav-number">3.3.1.1.3.</span> <span class="nav-text">LuaJIT FFI GC</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#lua-resty-core"><span class="nav-number">3.3.1.1.4.</span> <span class="nav-text">lua-resty-core</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LuaJIT分支和标准Lua"><span class="nav-number">4.</span> <span class="nav-text">LuaJIT分支和标准Lua</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标准-Lua-和-LuaJIT-的关系"><span class="nav-number">4.1.</span> <span class="nav-text">标准 Lua 和 LuaJIT 的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LuaJIT-的性能优势"><span class="nav-number">4.2.</span> <span class="nav-text">LuaJIT 的性能优势</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chao</span>
+</div>
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共115.0k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">访客总量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+</body>
+</html>
