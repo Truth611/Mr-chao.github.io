@@ -1,3 +1,12 @@
+http://xchcloud.cn/python-假想在面试/
+http://xchcloud.cn/Ansible-升级打怪之路/
+http://xchcloud.cn/Zabbix-升级打怪之路/
+http://xchcloud.cn/死磕-python与多线程多进程/
+http://xchcloud.cn/数据库复盘笔记/
+http://xchcloud.cn/Linux复盘笔记/
+http://xchcloud.cn/知识复盘/
+http://xchcloud.cn/C-查缺补漏/
+http://xchcloud.cn/Django-Vue学习笔记/
 http://xchcloud.cn/OpenResty从入门到实战笔记/
 http://xchcloud.cn/2019年中总结/
 http://xchcloud.cn/MongoDB实战经验/
@@ -37,12 +46,3 @@ http://xchcloud.cn/前端学习笔记/
 http://xchcloud.cn/java-web-之请求与响应学习/
 http://xchcloud.cn/安卓从入门到放弃/
 http://xchcloud.cn/学习Servlet/
-http://xchcloud.cn/网络协议深入浅出/
-http://xchcloud.cn/高效学习之反思/
-http://xchcloud.cn/kali-linux渗透测试入门/
-http://xchcloud.cn/心态再次变化，低沉/
-http://xchcloud.cn/玩转kali系统/
-http://xchcloud.cn/左耳朵大叔推荐的实战项目/
-http://xchcloud.cn/左耳朵大叔介绍的书籍、文章、网站/
-http://xchcloud.cn/服务器环境搭建/
-http://xchcloud.cn/程序员练级攻略之笔记/
